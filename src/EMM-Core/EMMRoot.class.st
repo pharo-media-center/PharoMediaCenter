@@ -1,6 +1,10 @@
 Class {
 	#name : #EMMRoot,
 	#superclass : #WAComponent,
+	#instVars : [
+		'header',
+		'footer'
+	],
 	#category : #'EMM-Core'
 }
 
@@ -51,6 +55,58 @@ EMMRoot class >> version [
 	^ 'v0.0.1'
 ]
 
+{ #category : #components }
+EMMRoot >> defaultFooter [
+	^ EMMFooter new
+]
+
+{ #category : #components }
+EMMRoot >> defaultHeader [
+	^ EMMHeader new
+]
+
+{ #category : #accessing }
+EMMRoot >> footer [
+	^ footer
+]
+
+{ #category : #accessing }
+EMMRoot >> footer: anObject [
+	footer := anObject
+]
+
+{ #category : #accessing }
+EMMRoot >> header [
+	^ header
+]
+
+{ #category : #accessing }
+EMMRoot >> header: anObject [
+	header := anObject
+]
+
+{ #category : #initialization }
+EMMRoot >> initialize [
+	super initialize.
+	self header: self defaultHeader.
+	self footer: self defaultFooter.
+]
+
+{ #category : #rendering }
+EMMRoot >> renderContentOn: html [
+	html
+		mdlLayout: [ html render: self header.
+			html mdlLayoutContent
+				class: 'mdl-color-text--grey-600';
+				with: [ html mdlGrid
+						noSpacing;
+						with: [ html mdlCell
+								class: 'mdl-components';
+								size: 12;
+								with: [  ] ].
+					html render: self footer ] ]
+]
+
 { #category : #updating }
 EMMRoot >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
@@ -59,6 +115,6 @@ EMMRoot >> updateRoot: anHtmlRoot [
 	anHtmlRoot meta
 		attributeAt: 'name' put: 'viewport';
 		content: 'width=device-width, initial-scale=1'.
-	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://storage.googleapis.com/code.getmdl.io/1.3.0/material.deep_purple-pink.min.css').
+	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://code.getmdl.io/1.3.0/material.deep_orange-blue.min.css').
 	anHtmlRoot javascript add: 'hljs.initHighlightingOnLoad();'
 ]
