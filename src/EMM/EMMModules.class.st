@@ -8,3 +8,8 @@ Class {
 EMMModules class >> title [
 	^ self subclassResponsibility
 ]
+
+{ #category : #rendering }
+EMMModules >> renderContentOn: html [
+	html header: self class title
+]

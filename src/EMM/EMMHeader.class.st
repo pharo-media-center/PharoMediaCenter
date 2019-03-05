@@ -1,6 +1,6 @@
 Class {
 	#name : #EMMHeader,
-	#superclass : #MDLDemoComponent,
+	#superclass : #EMMComponent,
 	#instVars : [
 		'activeTab'
 	],
@@ -23,5 +23,7 @@ EMMHeader >> renderContentOn: html [
 			html
 				mdlNavigation: [ self possibleModules do: [ :module | 
 						html mdlNavigationLink
+							callback: [ self displayInstanceOf: module ];
+							"isActiveIf: module = self rootComponent componentToDisplay class;"
 							with: module title ] ] ]
 ]

@@ -1,9 +1,11 @@
 Class {
 	#name : #EMMRoot,
-	#superclass : #WAComponent,
+	#superclass : #EMMComponent,
 	#instVars : [
 		'header',
-		'footer'
+		'footer',
+		'componentToDisplay',
+		'componentInstances'
 	],
 	#category : #'EMM-Core'
 }
@@ -55,6 +57,26 @@ EMMRoot class >> version [
 	^ 'v0.0.1'
 ]
 
+{ #category : #accessing }
+EMMRoot >> componentInstances [
+	^ componentInstances
+]
+
+{ #category : #accessing }
+EMMRoot >> componentInstances: anObject [
+	componentInstances := anObject
+]
+
+{ #category : #accessing }
+EMMRoot >> componentToDisplay [
+	^ componentToDisplay
+]
+
+{ #category : #accessing }
+EMMRoot >> componentToDisplay: anObject [
+	componentToDisplay := anObject
+]
+
 { #category : #components }
 EMMRoot >> defaultFooter [
 	^ EMMFooter new
@@ -63,6 +85,11 @@ EMMRoot >> defaultFooter [
 { #category : #components }
 EMMRoot >> defaultHeader [
 	^ EMMHeader new
+]
+
+{ #category : #rendering }
+EMMRoot >> displayInstanceOf: aComponentClass [
+	self componentToDisplay: (self componentInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ])
 ]
 
 { #category : #accessing }
@@ -90,6 +117,9 @@ EMMRoot >> initialize [
 	super initialize.
 	self header: self defaultHeader.
 	self footer: self defaultFooter.
+	self session rootComponent: self.
+	self componentInstances: Dictionary new.
+	self displayInstanceOf: EMMModules allSubclasses first
 ]
 
 { #category : #rendering }
@@ -103,7 +133,7 @@ EMMRoot >> renderContentOn: html [
 						with: [ html mdlCell
 								class: 'mdl-components';
 								size: 12;
-								with: [  ] ].
+								with: [  html render: self componentToDisplay ] ].
 					html render: self footer ] ]
 ]
 

@@ -1,6 +1,6 @@
 Class {
 	#name : #EMMFooter,
-	#superclass : #WAComponent,
+	#superclass : #EMMComponent,
 	#category : #'EMM-Core'
 }
 
