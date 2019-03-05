@@ -1,10 +1,10 @@
 Class {
-	#name : #EMMCLockModule,
+	#name : #EMMClockModule,
 	#superclass : #EMMModules,
 	#category : #'EMM-Modules'
 }
 
 { #category : #accessing }
-EMMCLockModule class >> title [
+EMMClockModule class >> title [
 	^ 'Clock'
 ]
