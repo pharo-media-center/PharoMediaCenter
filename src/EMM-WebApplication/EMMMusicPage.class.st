@@ -11,10 +11,10 @@ EMMMusicPage class >> pageName [
 
 { #category : #accessing }
 EMMMusicPage class >> priority [
-	^ 1
+	^ 10
 ]
 
 { #category : #rendering }
 EMMMusicPage >> renderContentOn: html [
-	html div style: 'min-height: 400px;'; with: 'Hello world'
+	html div style: 'min-height: 400px;'; with:  self session model settings rootFolder asString.
 ]

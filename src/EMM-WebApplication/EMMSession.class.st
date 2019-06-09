@@ -15,10 +15,27 @@ Class {
 	#name : #EMMSession,
 	#superclass : #WASession,
 	#instVars : [
-		'rootComponent'
+		'rootComponent',
+		'model'
 	],
 	#category : #'EMM-WebApplication-Core'
 }
+
+{ #category : #accessing }
+EMMSession >> initialize [
+	super initialize.
+	^ self model: EMMModel new
+]
+
+{ #category : #accessing }
+EMMSession >> model [
+	^ model
+]
+
+{ #category : #accessing }
+EMMSession >> model: anObject [
+	model := anObject
+]
 
 { #category : #accessing }
 EMMSession >> rootComponent [
