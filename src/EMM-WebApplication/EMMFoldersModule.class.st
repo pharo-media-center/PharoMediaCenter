@@ -13,16 +13,16 @@ EMMFoldersModule class >> priority [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> renderContentOn: html [ 
+EMMFoldersModule >> renderContentOn: html [
 	html div
 		mdlTextColorAccent;
-		with: 'Selected element: ' , (selectedElement ifNil: [ 'No element selected: ', self session model settings rootFolder directories asString. ] ifNotNil: [ selectedElement printString ]).
+		with: 'Selected element: ' , (selectedElement ifNil: [ 'No element selected' ] ifNotNil: [ selectedElement path fullName ]).
 	html div
 		style: 'height: 400px';
 		with:
-			((MDLNestedList elements: WAObject allSubclasses children: [ :classOrMethod | classOrMethod isClass ifTrue: [ classOrMethod methods ] ifFalse: [ #() ] ])
-				format: #name;
-				helpBlock: #comment;
+			((MDLNestedList elements: self session model settings rootFolder directories children: [ :child | #() ])
+				format: [ :fileReference | fileReference path basename ];
+				helpBlock: [ :fileReference | fileReference fullPath fullName ];
 				selectedEntity: selectedElement;
 				actionBlock: [ :class | selectedElement := class ];
 				yourself)

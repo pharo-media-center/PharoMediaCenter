@@ -30,5 +30,5 @@ EMMFooter >> renderContentOn: html [
 										listItem: [ html anchor
 												url: url;
 												with: label ] ] ] ].
-			html mdlMiniFooterRightSection: [ html mdlMiniFooterLinkList: [ html listItem: [ html text: 'Contact: TODO' ] ] ] ]
+			html mdlMiniFooterRightSection: [ html mdlMiniFooterLinkList: [ html listItem: [ html text: 'Contact: badetitou@gmail.com' ] ] ] ]
 ]

@@ -77,14 +77,12 @@ EMMRoot >> children [
 
 { #category : #accessing }
 EMMRoot >> componentInstances [
-	"I return a dictionary with browsers as keys and their instances as value if they were instantiated at least once."
-
 	^ componentInstances
 ]
 
 { #category : #accessing }
-EMMRoot >> componentInstances: aDictionary [
-	componentInstances := aDictionary
+EMMRoot >> componentInstances: anObject [
+	componentInstances := anObject
 ]
 
 { #category : #accessing }
