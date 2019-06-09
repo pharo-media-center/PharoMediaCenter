@@ -1,17 +1,25 @@
+"
+Description
+--------------------
+
+Abstract superclass of all Seaside components of Event Music Manager. 
+
+I provide some conveniance methods to be used during the redering of the components.
+"
 Class {
 	#name : #EMMComponent,
 	#superclass : #WAComponent,
-	#category : #'EMM-Core'
+	#category : #'EMM-WebApplication-Core'
 }
 
-{ #category : #accessing }
+{ #category : #convenience }
 EMMComponent >> display: aComponentInstance [
 	"Set a component instance as the component to display by the root component."
 
 	self rootComponent componentToDisplay: aComponentInstance
 ]
 
-{ #category : #accessing }
+{ #category : #convenience }
 EMMComponent >> displayInstanceOf: aComponentClass [
 	"Set a component class as the component to display by the root component."
 
@@ -21,9 +29,4 @@ EMMComponent >> displayInstanceOf: aComponentClass [
 { #category : #accessing }
 EMMComponent >> rootComponent [
 	^ self session rootComponent
-]
-
-{ #category : #accessing }
-EMMComponent >> version [
-	^ self rootComponent version
 ]

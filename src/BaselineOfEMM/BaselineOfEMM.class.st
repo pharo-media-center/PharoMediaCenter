@@ -31,7 +31,5 @@ BaselineOfEMM >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfEMM >> definePackages: spec [
 	spec
-		repository: 'https://github.com/badetitou/EMM';
-		package: 'BaselineOfEMM';
-		package: 'EMM'
+		package: 'EMM-WebApplication'
 ]

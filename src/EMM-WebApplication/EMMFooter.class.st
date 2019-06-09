@@ -1,17 +1,21 @@
+"
+Description
+--------------------
+
+A footer for the application with all the useful links.
+"
 Class {
 	#name : #EMMFooter,
 	#superclass : #EMMComponent,
-	#category : #'EMM-Core'
+	#category : #'EMM-WebApplication-Core'
 }
 
-{ #category : #rendering }
+{ #category : #accessing }
 EMMFooter >> links [
 	^ OrderedDictionary
-		with: 'Github' -> 'https://github.com/badetitou/EMM'
+		with: 'MDL for Seaside' -> 'https://github.com/DuneSt/MaterialDesignLite'
 		with: 'Pharo' -> 'http://pharo.org/'
 		with: 'Seaside' -> 'https://github.com/SeasideSt/Seaside'
-		with: 'Material Design' -> 'https://material.io/guidelines/'
-		with: 'Material Design Lite' -> 'https://getmdl.io/'
 ]
 
 { #category : #rendering }
@@ -26,5 +30,5 @@ EMMFooter >> renderContentOn: html [
 										listItem: [ html anchor
 												url: url;
 												with: label ] ] ] ].
-			html mdlMiniFooterRightSection: [ html mdlMiniFooterLinkList: [ html listItem: [ html text: 'Contact: Benoit Verhaeghe (badetitou@gmail.com)' ] ] ] ]
+			html mdlMiniFooterRightSection: [ html mdlMiniFooterLinkList: [ html listItem: [ html text: 'Contact: TODO' ] ] ] ]
 ]
