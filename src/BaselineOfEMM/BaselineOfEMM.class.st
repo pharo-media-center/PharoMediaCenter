@@ -17,9 +17,13 @@ BaselineOfEMM >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfEMM >> defineDependencies: spec [
+	spec baseline: 'MaterialDesignLite' with: [ spec repository: 'github://DuneSt/MaterialDesignLite:master/src' ].
 	spec
-    baseline: 'MaterialDesignLite'
-    with: [ spec repository: 'github://DuneSt/MaterialDesignLite:master/src' ]
+		project: 'PharoSound'
+		with: [ spec
+				className: #ConfigurationOfPharoSound;
+				versionString: #stable;
+				repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main/' ]
 ]
 
 { #category : #baselines }
@@ -31,5 +35,7 @@ BaselineOfEMM >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfEMM >> definePackages: spec [
 	spec
-		package: 'EMM-WebApplication'
+		package: 'EMM-WebApplication';
+		package: 'EMM';
+		package: 'EMM-SoundSystem' with: [ spec requires: #('PharoSound') ]
 ]
