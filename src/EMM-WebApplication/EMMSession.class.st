@@ -24,7 +24,7 @@ Class {
 { #category : #accessing }
 EMMSession >> initialize [
 	super initialize.
-	^ self model: EMMModel new
+	^ self model: EMMModel new import; yourself
 ]
 
 { #category : #accessing }
