@@ -15,7 +15,12 @@ EMMMSong class >> newFromFile: aFileReference [
 
 { #category : #accessing }
 EMMMSong >> initializationFromFile: aFileReference [
-	self name: aFileReference basenameWithoutExtension
+	| id3parser |
+	"Minimal initialization"
+	self name: aFileReference basenameWithoutExtension.
+	"Try to parse ID3 metadata for MP3 files"
+	id3parser := ID3Parser on: (File named: aFileReference originalString) readStream.
+	id3parser id3v2Tag
 ]
 
 { #category : #accessing }
