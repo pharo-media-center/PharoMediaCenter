@@ -18,6 +18,7 @@ BaselineOfEMM >> baseline: spec [
 { #category : #baselines }
 BaselineOfEMM >> defineDependencies: spec [
 	spec baseline: 'MaterialDesignLite' with: [ spec repository: 'github://DuneSt/MaterialDesignLite:master/src' ].
+	spec baseline: 'ID3' with: [ spec repository: 'github://badetitou/id3-pharo:master/repository' ].
 	spec
 		project: 'PharoSound'
 		with: [ spec
@@ -36,6 +37,6 @@ BaselineOfEMM >> defineGroups: spec [
 BaselineOfEMM >> definePackages: spec [
 	spec
 		package: 'EMM-WebApplication';
-		package: 'EMM';
+		package: 'EMM' with: [ spec requires: #('ID3') ];
 		package: 'EMM-SoundSystem' with: [ spec requires: #('PharoSound') ]
 ]
