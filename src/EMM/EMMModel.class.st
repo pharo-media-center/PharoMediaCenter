@@ -15,21 +15,8 @@ EMMModel >> directories [
 ]
 
 { #category : #initialization }
-EMMModel >> ensureFolderFromFileReference: directory [
-	^ directories at: directory ifAbsentPut: (EMMMFolder newFromFileReference: directory)
-]
-
-{ #category : #initialization }
 EMMModel >> import [
-	self rootFolder allDirectories
-		do: [ :directory | 
-			directory files
-				do: [ :file | 
-					file extension = 'mp3'
-						ifTrue: [ | song |
-							song := EMMMSong newFromFile: file.
-							songs add: song.
-							(self ensureFolderFromFileReference: directory) addSong: song ] ] ]
+	^ EMMLibraryImporter new importFromFolder: self rootFolder
 ]
 
 { #category : #initialization }
@@ -52,4 +39,9 @@ EMMModel >> settings [
 { #category : #accessing }
 EMMModel >> settings: anObject [
 	settings := anObject
+]
+
+{ #category : #accessing }
+EMMModel >> songs [
+	^ songs
 ]
