@@ -3,24 +3,36 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'folder',
-		'name'
+		'name',
+		'artists'
 	],
 	#category : #EMM
 }
 
-{ #category : #'instance creation' }
-EMMMSong class >> newFromFile: aFileReference [
-	^ self new initializationFromFile: aFileReference
+{ #category : #accessing }
+EMMMSong >> artists [
+	^ artists
 ]
 
 { #category : #accessing }
-EMMMSong >> initializationFromFile: aFileReference [
-	| id3parser |
-	"Minimal initialization"
-	self name: aFileReference basenameWithoutExtension.
-	"Try to parse ID3 metadata for MP3 files"
-	id3parser := ID3Parser on: (File named: aFileReference originalString) readStream.
-	id3parser id3v2Tag
+EMMMSong >> artists: anObject [
+	artists := anObject
+]
+
+{ #category : #accessing }
+EMMMSong >> folder [
+	^ folder
+]
+
+{ #category : #accessing }
+EMMMSong >> folder: anObject [
+	folder := anObject
+]
+
+{ #category : #accessing }
+EMMMSong >> initialize [
+	super initialize.
+	artists := Set new
 ]
 
 { #category : #accessing }
