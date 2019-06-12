@@ -51,8 +51,9 @@ EMMListModule >> renderContentOn: html [
 										with: song artists asOrderedCollection first name.
 									html mdlTableCell
 										nonNumerical;
-										with: [ html mdlButton
+										with: [ html mdlAnchorButton
+												callback: [ (EMMMusicPlayer new playSong: song) play. ];
+												colored;
 												icon;
-												with: [ html mdlIcon: 'play_arrow' ];
-												callback: [ (EMMMusicPlayer new playSong: song) play.  ] ] ] ] ] ]
+												with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ]
 ]
