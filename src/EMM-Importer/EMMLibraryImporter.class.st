@@ -14,7 +14,7 @@ EMMLibraryImporter >> artistsDelimiter [
 
 { #category : #'as yet unclassified' }
 EMMLibraryImporter >> createSongFromFile: file [
-	| song artists id3parser | 
+	| song artists id3parser folder | 
 	song := EMMMSong new.
 	song name: file basenameWithoutExtension.
 	"Try to parse ID3 metadata for MP3 files"
@@ -23,7 +23,10 @@ EMMLibraryImporter >> createSongFromFile: file [
 	artists do: [:artist | artist addSong: song].
 	song artists addAll: artists.
 	model songs add: song.
-	(self ensureFolderFromFileReference: file parent) addSong: song.
+	folder := (self ensureFolderFromFileReference: file parent).
+	folder addSong: song.
+	song folder: folder.
+	song path: file.
 	^ song
 ]
 

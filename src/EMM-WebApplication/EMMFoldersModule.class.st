@@ -24,6 +24,12 @@ EMMFoldersModule >> renderContentOn: html [
 				format: [ :emmmDirectory | emmmDirectory name ];
 				"helpBlock: [ :fileReference | fileReference fullPath fullName ];"
 				selectedEntity: selectedElement;
-				actionBlock: [ :class | selectedElement := class ];
+				actionBlock: [ :class | self selectedElement: class ];
 				yourself)
+]
+
+{ #category : #rendering }
+EMMFoldersModule >> selectedElement: class [
+	selectedElement := class.
+	SystemAnnouncer uniqueInstance announce: (EMMFolderSelectedAnnouncement new folder: class; yourself )
 ]

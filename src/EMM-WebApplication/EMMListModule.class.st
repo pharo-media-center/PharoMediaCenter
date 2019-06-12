@@ -1,6 +1,9 @@
 Class {
 	#name : #EMMListModule,
 	#superclass : #EMMModule,
+	#instVars : [
+		'datas'
+	],
 	#category : #'EMM-WebApplication-Core'
 }
 
@@ -10,9 +13,20 @@ EMMListModule class >> priority [
 ]
 
 { #category : #rendering }
+EMMListModule >> folderChanged: anEMMFolderSelectedAnnouncement [
+	datas := anEMMFolderSelectedAnnouncement folder songs asSortedCollection: [:a :b | a name < b name ].
+]
+
+{ #category : #rendering }
+EMMListModule >> initialize [
+	datas := OrderedCollection new.
+	SystemAnnouncer uniqueInstance weak subscribe: EMMFolderSelectedAnnouncement
+			send: #folderChanged:
+			to: self.
+]
+
+{ #category : #rendering }
 EMMListModule >> renderContentOn: html [
-	| datas |
-	datas := OrderedDictionary with: 'Acrylic (Transparent)' -> #('25' '$2.90') with: 'Plywood (Birch)' -> #('50' '$1.25') with: 'Laminate (Gold on Blue)' -> #('10' '$2.35').
 	html mdlTable
 		with: [ html
 				tableHead: [ html
@@ -24,10 +38,21 @@ EMMListModule >> renderContentOn: html [
 							html mdlTableHeading: 'Play' ] ].
 			html
 				tableBody: [ datas
-						keysAndValuesDo: [ :title :members | 
+						do: [ :song | 
 							html
 								tableRow: [ html mdlTableCell
 										nonNumerical;
-										with: title.
-									members do: [ :data | html mdlTableCell: data ] ] ] ] ]
+										with: song name.
+									html mdlTableCell
+										nonNumerical;
+										with: 'le'.
+									html mdlTableCell
+										nonNumerical;
+										with: song artists asOrderedCollection first name.
+									html mdlTableCell
+										nonNumerical;
+										with: [ html mdlButton
+												icon;
+												with: [ html mdlIcon: 'play_arrow' ];
+												callback: [ (EMMMusicPlayer new playSong: song) play.  ] ] ] ] ] ]
 ]

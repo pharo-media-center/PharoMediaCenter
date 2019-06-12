@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'folder',
 		'name',
-		'artists'
+		'artists',
+		'path'
 	],
 	#category : #EMM
 }
@@ -43,6 +44,16 @@ EMMMSong >> name [
 { #category : #accessing }
 EMMMSong >> name: anObject [
 	name := anObject
+]
+
+{ #category : #accessing }
+EMMMSong >> path [
+	^ path
+]
+
+{ #category : #accessing }
+EMMMSong >> path: anObject [
+	path := anObject
 ]
 
 { #category : #printing }
