@@ -51,7 +51,7 @@ EMMListModule >> renderContentOn: html [
 							html
 								tableRow: [
 									html mdlTableCell
-										with: song track.
+										with: song track asString.
 									 html mdlTableCell
 										nonNumerical;
 										with: song title.

@@ -27,7 +27,7 @@ EMMLibraryImporter >> createSongFromFile: file [
 	folder addSong: song.
 	song folder: folder.
 	song title: id3parser id3v2Tag title.
-	song track: id3parser id3v2Tag track.
+	song track: id3parser id3v2Tag track asInteger.
 	[ song length: id3parser id3v2Tag length ]
 		on: FrameNotFoundError
 		do: [ song length: self notDefineTextValue ].
