@@ -31,7 +31,10 @@ EMMListModule >> renderContentOn: html [
 		attributeAt: 'width' put: '100%';
 		with: [ html
 				tableHead: [ html
-						tableRow: [ html mdlTableHeading
+						tableRow: [
+							html mdlTableHeading
+								with: 'N°'.
+							 html mdlTableHeading
 								nonNumerical;
 								with: 'Title'.
 							html mdlTableHeading
@@ -46,13 +49,16 @@ EMMListModule >> renderContentOn: html [
 				tableBody: [ datas
 						do: [ :song | 
 							html
-								tableRow: [ html mdlTableCell
+								tableRow: [
+									html mdlTableCell
+										with: song track.
+									 html mdlTableCell
 										nonNumerical;
 										with: song title.
 									html mdlTableCell
 										nonNumerical;
 										with: song artists asOrderedCollection first name.
-									html mdlTableCell with: 'le'.
+									html mdlTableCell with: song length.
 									html mdlTableCell
 										nonNumerical;
 										with: [ html mdlAnchorButton

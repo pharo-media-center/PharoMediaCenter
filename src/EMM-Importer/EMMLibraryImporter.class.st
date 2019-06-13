@@ -14,19 +14,23 @@ EMMLibraryImporter >> artistsDelimiter [
 
 { #category : #'as yet unclassified' }
 EMMLibraryImporter >> createSongFromFile: file [
-	| song artists id3parser folder | 
+	| song artists id3parser folder |
 	song := EMMMSong new.
 	song name: file basenameWithoutExtension.
 	"Try to parse ID3 metadata for MP3 files"
 	id3parser := ID3Parser on: (File named: file originalString) readStream.
-	artists := (self ensureArtists: id3parser id3v2Tag artist).
-	artists do: [:artist | artist addSong: song].
+	artists := self ensureArtists: id3parser id3v2Tag artist.
+	artists do: [ :artist | artist addSong: song ].
 	song artists addAll: artists.
 	model songs add: song.
-	folder := (self ensureFolderFromFileReference: file parent).
+	folder := self ensureFolderFromFileReference: file parent.
 	folder addSong: song.
 	song folder: folder.
 	song title: id3parser id3v2Tag title.
+	song track: id3parser id3v2Tag track.
+	[ song length: id3parser id3v2Tag length ]
+		on: FrameNotFoundError
+		do: [ song length: self notDefineTextValue ].
 	song path: file.
 	^ song
 ]
@@ -72,4 +76,9 @@ EMMLibraryImporter >> importFromFolder: aFolder inAModel: anEMMModel [
 					file extension = 'mp3'
 						ifTrue: [
 							self createSongFromFile: file ] ] ]
+]
+
+{ #category : #'as yet unclassified' }
+EMMLibraryImporter >> notDefineTextValue [
+	^ 'NotDef'
 ]

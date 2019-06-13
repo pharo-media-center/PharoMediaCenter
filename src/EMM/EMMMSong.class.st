@@ -6,7 +6,9 @@ Class {
 		'name',
 		'artists',
 		'path',
-		'title'
+		'title',
+		'track',
+		'length'
 	],
 	#category : #EMM
 }
@@ -35,6 +37,16 @@ EMMMSong >> folder: anObject [
 EMMMSong >> initialize [
 	super initialize.
 	artists := Set new
+]
+
+{ #category : #accessing }
+EMMMSong >> length [
+	^ length
+]
+
+{ #category : #accessing }
+EMMMSong >> length: anObject [
+	length := anObject
 ]
 
 { #category : #accessing }
@@ -70,4 +82,14 @@ EMMMSong >> title [
 { #category : #accessing }
 EMMMSong >> title: anObject [
 	title := anObject
+]
+
+{ #category : #accessing }
+EMMMSong >> track [
+	^ track
+]
+
+{ #category : #accessing }
+EMMMSong >> track: anObject [
+	track := anObject
 ]
