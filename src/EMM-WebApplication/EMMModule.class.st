@@ -18,3 +18,8 @@ EMMModule class >> modulesToDisplay [
 EMMModule class >> priority [
 	^ self subclassResponsibility
 ]
+
+{ #category : #accessing }
+EMMModule >> size [
+	^ 4
+]

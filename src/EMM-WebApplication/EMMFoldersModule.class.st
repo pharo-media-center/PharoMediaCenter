@@ -18,7 +18,6 @@ EMMFoldersModule >> renderContentOn: html [
 		mdlTextColorAccent;
 		with: 'Selected element: ' , (selectedElement ifNil: [ 'No element selected' ] ifNotNil: [ selectedElement name ]).
 	html div
-		style: 'height: 400px';
 		with:
 			((MDLNestedList elements: self session model directories values children: [ :child | #() ])
 				format: [ :emmmDirectory | emmmDirectory name ];

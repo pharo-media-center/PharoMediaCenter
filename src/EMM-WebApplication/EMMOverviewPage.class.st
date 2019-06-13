@@ -46,7 +46,8 @@ EMMOverviewPage >> renderContentOn: html [
 		with: [ EMMModule modulesToDisplay
 				do: [ :module | 
 					html mdlCell
-						size: 4;
+						style: 'height: 400px; overflow: auto';
+						size: (self moduleInstanceOf: module) size;
 						shadow: 2;
 						with: [ html render: (self moduleInstanceOf: module) ] ] ]
 ]

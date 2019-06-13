@@ -26,6 +26,7 @@ EMMLibraryImporter >> createSongFromFile: file [
 	folder := (self ensureFolderFromFileReference: file parent).
 	folder addSong: song.
 	song folder: folder.
+	song title: id3parser id3v2Tag title.
 	song path: file.
 	^ song
 ]

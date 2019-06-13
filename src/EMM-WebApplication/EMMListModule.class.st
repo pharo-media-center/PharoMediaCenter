@@ -28,32 +28,41 @@ EMMListModule >> initialize [
 { #category : #rendering }
 EMMListModule >> renderContentOn: html [
 	html mdlTable
+		attributeAt: 'width' put: '100%';
 		with: [ html
 				tableHead: [ html
 						tableRow: [ html mdlTableHeading
 								nonNumerical;
 								with: 'Title'.
+							html mdlTableHeading
+								nonNumerical;
+								with: 'Author'.
 							html mdlTableHeading: 'Lenght'.
-							html mdlTableHeading: 'Author'.
-							html mdlTableHeading: 'Play' ] ].
+
+							html mdlTableHeading
+								nonNumerical;
+								with: 'Play' ] ].
 			html
 				tableBody: [ datas
 						do: [ :song | 
 							html
 								tableRow: [ html mdlTableCell
 										nonNumerical;
-										with: song name.
-									html mdlTableCell
-										nonNumerical;
-										with: 'le'.
+										with: song title.
 									html mdlTableCell
 										nonNumerical;
 										with: song artists asOrderedCollection first name.
+									html mdlTableCell with: 'le'.
 									html mdlTableCell
 										nonNumerical;
 										with: [ html mdlAnchorButton
-												callback: [ (EMMMusicPlayer new playSong: song) play. ];
+												callback: [ (EMMMusicPlayer new playSong: song) play ];
 												colored;
 												icon;
 												with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ]
+]
+
+{ #category : #accessing }
+EMMListModule >> size [
+	^ 8
 ]

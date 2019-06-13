@@ -5,7 +5,8 @@ Class {
 		'folder',
 		'name',
 		'artists',
-		'path'
+		'path',
+		'title'
 	],
 	#category : #EMM
 }
@@ -59,4 +60,14 @@ EMMMSong >> path: anObject [
 { #category : #printing }
 EMMMSong >> printOn: aStream [
 	aStream nextPutAll: self name
+]
+
+{ #category : #accessing }
+EMMMSong >> title [
+	^ title
+]
+
+{ #category : #accessing }
+EMMMSong >> title: anObject [
+	title := anObject
 ]
