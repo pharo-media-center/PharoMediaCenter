@@ -1,9 +1,6 @@
 Class {
 	#name : #EMMJingleModule,
 	#superclass : #EMMModule,
-	#instVars : [
-		'datas'
-	],
 	#category : #'EMM-WebApplication-Core'
 }
 
@@ -13,23 +10,18 @@ EMMJingleModule class >> priority [
 ]
 
 { #category : #rendering }
-EMMJingleModule >> initialize [
-	datas := OrderedCollection new
-]
-
-{ #category : #rendering }
 EMMJingleModule >> renderContentOn: html [
 	html mdlGrid
 		shadow: 2;
 		style: 'height: 96%';
-		with: [ datas
-				do: [ :data | 
+		with: [ self session model jingles
+				do: [ :jingle | 
 					html mdlCell
 						size: 1;
 						with: [ html mdlAnchorButton
-								callback: [ 'Test' crLog ];
+								callback: [ jingle play ];
 								primaryColor;
-								with: data name ] ] ]
+								with: jingle name ] ] ]
 ]
 
 { #category : #accessing }
