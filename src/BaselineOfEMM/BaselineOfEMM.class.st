@@ -36,8 +36,10 @@ BaselineOfEMM >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfEMM >> definePackages: spec [
 	spec
-		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-Importer') ];
+		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-FolderImporter') ];
 		package: 'EMM';
-		package: 'EMM-Importer' with: [ spec requires: #('EMM' 'ID3') ];
+		package: 'EMM-Importer' with: [ spec requires: #('EMM') ];
+		package: 'EMM-FolderImporter' with: [ spec requires: #('EMM-Importer' 'ID3') ];
+		package: 'EMM-STON' with: [ spec requires: #('EMM-Importer') ];
 		package: 'EMM-SoundSystem' with: [ spec requires: #('PharoSound') ]
 ]
