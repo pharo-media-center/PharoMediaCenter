@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-EMMMusicPlayer >> playSong: aSong [
-	^ StreamingMP3Sound onFileNamed: aSong path originalString
+EMMMusicPlayer >> playSong: aPlayable [
+	^ StreamingMP3Sound onFileNamed: aPlayable path originalString
 ]

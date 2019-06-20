@@ -1,59 +1,71 @@
 Class {
-	#name : #EMMModel,
+	#name : #EMMMusicLibrary,
 	#superclass : #Object,
 	#instVars : [
 		'artists',
 		'settings',
 		'songs',
-		'directories'
+		'directories',
+		'jingles'
 	],
 	#category : #EMM
 }
 
 { #category : #accessing }
-EMMModel >> addArtist: anEMMArtist [
+EMMMusicLibrary >> addArtist: anEMMArtist [
 	artists add: anEMMArtist
 ]
 
 { #category : #accessing }
-EMMModel >> artists [
+EMMMusicLibrary >> addJingle: anEMMJingle [
+	jingles add: anEMMJingle
+]
+
+{ #category : #accessing }
+EMMMusicLibrary >> artists [
 	^ directories
 ]
 
 { #category : #accessing }
-EMMModel >> directories [
+EMMMusicLibrary >> directories [
 	^ directories
 ]
 
 { #category : #initialization }
-EMMModel >> import [
-	^ EMMLibraryImporter new importFromFolder: self rootFolder
+EMMMusicLibrary >> import [
+	^ EMMFolderImporter new importFromFolder: self rootFolder
 ]
 
 { #category : #initialization }
-EMMModel >> initialize [
+EMMMusicLibrary >> initialize [
 	self settings: EMMMSettings new.
 	songs := Set new.
 	artists := Set new.
+	jingles := Set new.
 	directories := Dictionary new
 ]
 
 { #category : #accessing }
-EMMModel >> rootFolder [
+EMMMusicLibrary >> jingles [
+	^ jingles 
+]
+
+{ #category : #accessing }
+EMMMusicLibrary >> rootFolder [
 	^ self settings rootFolder
 ]
 
 { #category : #accessing }
-EMMModel >> settings [
+EMMMusicLibrary >> settings [
 	^ settings
 ]
 
 { #category : #accessing }
-EMMModel >> settings: anObject [
+EMMMusicLibrary >> settings: anObject [
 	settings := anObject
 ]
 
 { #category : #accessing }
-EMMModel >> songs [
+EMMMusicLibrary >> songs [
 	^ songs
 ]

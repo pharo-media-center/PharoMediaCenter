@@ -1,15 +1,8 @@
 "
-Description
---------------------
-
-Simple session for the Event Music Manager. I save the root component to help with the application management. Each components will be able to access the root component via myself.
-
-Internal Representation and Key Implementation Points.
---------------------
-
-    Instance Variables
-	rootComponent:		<aComponent>		The root component of the demo. Should be an instance of the root component of the application.
-
+""Access to the model""
+(WAAdmin defaultDispatcher handlerAt: 'Event Music Manager') sessions first model.
+""Clear the sessions""
+WAAdmin clearSessions
 "
 Class {
 	#name : #EMMSession,
@@ -24,7 +17,7 @@ Class {
 { #category : #accessing }
 EMMSession >> initialize [
 	super initialize.
-	^ self model: EMMModel new import; yourself
+	^ self model: EMMMusicLibrary new import; yourself
 ]
 
 { #category : #accessing }

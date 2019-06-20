@@ -11,7 +11,7 @@ EMMModule class >> isAbstract [
 
 { #category : #accessing }
 EMMModule class >> modulesToDisplay [
-	^ (self allSubclasses reject: #isAbstract) sorted: #priority ascending
+	^ (self allSubclasses reject: [ :module | module isAbstract or: [ module priority < 0 ] ]) sorted: #priority ascending
 ]
 
 { #category : #accessing }

@@ -62,7 +62,7 @@ EMMListModule >> renderContentOn: html [
 									html mdlTableCell
 										nonNumerical;
 										with: [ html mdlAnchorButton
-												callback: [ (EMMMusicPlayer new playSong: song) play ];
+												callback: [ song play ];
 												colored;
 												icon;
 												with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ]

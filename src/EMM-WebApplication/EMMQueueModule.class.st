@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 EMMQueueModule class >> priority [
-	^ 6
+	^ -1
 ]
 
 { #category : #rendering }

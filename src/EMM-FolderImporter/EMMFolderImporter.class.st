@@ -1,19 +1,19 @@
 Class {
-	#name : #EMMLibraryImporter,
-	#superclass : #Object,
+	#name : #EMMFolderImporter,
+	#superclass : #EMMImporter,
 	#instVars : [
 		'model'
 	],
-	#category : #'EMM-Importer'
+	#category : #'EMM-FolderImporter'
 }
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> artistsDelimiter [
+EMMFolderImporter >> artistsDelimiter [
 	^ ';'
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> createSongFromFile: file [
+EMMFolderImporter >> createSongFromFile: file [
 	| song artists id3parser folder |
 	song := EMMMSong new.
 	song name: file basenameWithoutExtension.
@@ -36,7 +36,7 @@ EMMLibraryImporter >> createSongFromFile: file [
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> ensureArtist: authorString [
+EMMFolderImporter >> ensureArtist: authorString [
 	^ model artists
 		detect: [ :artist | artist name = authorString ]
 		ifNone: [ 
@@ -49,25 +49,30 @@ EMMLibraryImporter >> ensureArtist: authorString [
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> ensureArtists: aStringWithAuthors [
+EMMFolderImporter >> ensureArtists: aStringWithAuthors [
 	^ (aStringWithAuthors substrings: self artistsDelimiter) collect: [ :authorString | self ensureArtist: authorString ]
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> ensureFolderFromFileReference: directory [
+EMMFolderImporter >> ensureFolderFromFileReference: directory [
 	^ model directories at: directory ifAbsentPut: (EMMMFolder newFromFileReference: directory)
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> importFromFolder: aFolder [
+EMMFolderImporter >> importFrom: anArgument [
+	^ self importFromFolder: anArgument
+]
+
+{ #category : #'as yet unclassified' }
+EMMFolderImporter >> importFromFolder: aFolder [
 	| emmModel | 
-	emmModel := EMMModel new.
+	emmModel := EMMMusicLibrary new.
 	self importFromFolder: aFolder inAModel: emmModel. 
 	^ emmModel
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> importFromFolder: aFolder inAModel: anEMMModel [
+EMMFolderImporter >> importFromFolder: aFolder inAModel: anEMMModel [
 	model := anEMMModel.
 	 aFolder allDirectories
 		do: [ :directory | 
@@ -79,6 +84,6 @@ EMMLibraryImporter >> importFromFolder: aFolder inAModel: anEMMModel [
 ]
 
 { #category : #'as yet unclassified' }
-EMMLibraryImporter >> notDefineTextValue [
+EMMFolderImporter >> notDefineTextValue [
 	^ 'NotDef'
 ]
