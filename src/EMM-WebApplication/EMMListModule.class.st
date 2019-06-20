@@ -31,10 +31,8 @@ EMMListModule >> renderContentOn: html [
 		attributeAt: 'width' put: '100%';
 		with: [ html
 				tableHead: [ html
-						tableRow: [
+						tableRow: [ html mdlTableHeading with: 'N°'.
 							html mdlTableHeading
-								with: 'N°'.
-							 html mdlTableHeading
 								nonNumerical;
 								with: 'Title'.
 							html mdlTableHeading
@@ -49,10 +47,8 @@ EMMListModule >> renderContentOn: html [
 				tableBody: [ datas
 						do: [ :song | 
 							html
-								tableRow: [
+								tableRow: [ html mdlTableCell with: song track asString.
 									html mdlTableCell
-										with: song track asString.
-									 html mdlTableCell
 										nonNumerical;
 										with: song title.
 									html mdlTableCell
@@ -61,11 +57,17 @@ EMMListModule >> renderContentOn: html [
 									html mdlTableCell with: song length.
 									html mdlTableCell
 										nonNumerical;
-										with: [ html mdlAnchorButton
-												callback: [ song play ];
-												colored;
-												icon;
-												with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ]
+										with: [ song isPlaying
+												ifTrue: [ html mdlAnchorButton
+														callback: [ song pause ];
+														colored;
+														icon;
+														with: [ html mdlIcon: 'stop' ] ]
+												ifFalse: [ html mdlAnchorButton
+														callback: [ song play ];
+														colored;
+														icon;
+														with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ] ]
 ]
 
 { #category : #accessing }

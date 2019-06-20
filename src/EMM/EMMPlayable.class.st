@@ -2,7 +2,8 @@ Class {
 	#name : #EMMPlayable,
 	#superclass : #Object,
 	#instVars : [
-		'path'
+		'path',
+		'streaming'
 	],
 	#category : #EMM
 }
@@ -10,6 +11,11 @@ Class {
 { #category : #testing }
 EMMPlayable class >> isAbstract [
 	^ self == EMMPlayable 
+]
+
+{ #category : #playing }
+EMMPlayable >> isPlaying [
+	^ self streaming isPlaying
 ]
 
 { #category : #accessing }
@@ -23,6 +29,16 @@ EMMPlayable >> path: anObject [
 ]
 
 { #category : #playing }
+EMMPlayable >> pause [
+	self streaming pause
+]
+
+{ #category : #playing }
 EMMPlayable >> play [
-	(StreamingMP3Sound onFileNamed: self path originalString) play
+	self streaming play
+]
+
+{ #category : #playing }
+EMMPlayable >> streaming [
+	^ streaming ifNil: [ streaming := (StreamingMP3Sound onFileNamed: self path originalString) ]
 ]
