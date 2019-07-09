@@ -31,6 +31,7 @@ EMMMusicPlayer >> musicList [
 
 { #category : #accessing }
 EMMMusicPlayer >> musicList: aListOfPlayable [
+	"set the new list of music and play the musics from the first one"
 	musicList := OrderedCollection new.
 ]
 
