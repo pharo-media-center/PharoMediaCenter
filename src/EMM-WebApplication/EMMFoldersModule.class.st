@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 EMMFoldersModule class >> priority [
-	^ 4
+	^ 1
 ]
 
 { #category : #rendering }

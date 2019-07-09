@@ -6,13 +6,13 @@ Class {
 
 { #category : #accessing }
 EMMQueueModule class >> priority [
-	^ -1
+	^ 3
 ]
 
 { #category : #rendering }
 EMMQueueModule >> renderContentOn: html [
 	| datas |
-	datas := OrderedDictionary with: 'Acrylic (Transparent)' -> #('25' '$2.90') with: 'Plywood (Birch)' -> #('50' '$1.25') with: 'Laminate (Gold on Blue)' -> #('10' '$2.35').
+	datas := self session musicPlayer musicList.
 	html mdlTable
 		with: [ html
 				tableHead: [ html
@@ -20,14 +20,17 @@ EMMQueueModule >> renderContentOn: html [
 								nonNumerical;
 								with: 'Title'.
 							html mdlTableHeading: 'Lenght'.
-							html mdlTableHeading: 'Author'.
-							html mdlTableHeading: 'Play' ] ].
+							html mdlTableHeading: 'Author' ] ].
 			html
 				tableBody: [ datas
-						keysAndValuesDo: [ :title :members | 
+						do: [ :song | 
 							html
-								tableRow: [ html mdlTableCell
+								tableRow: [ html mdlTableCell with: song track.
+									html mdlTableCell
 										nonNumerical;
-										with: title.
-									members do: [ :data | html mdlTableCell: data ] ] ] ] ]
+										with: song title.
+									html mdlTableCell
+										nonNumerical;
+										with: song artists asOrderedCollection first name.
+									html mdlTableCell with: song length ] ] ] ]
 ]

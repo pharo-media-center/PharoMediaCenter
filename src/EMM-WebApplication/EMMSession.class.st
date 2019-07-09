@@ -9,15 +9,21 @@ Class {
 	#superclass : #WASession,
 	#instVars : [
 		'rootComponent',
-		'model'
+		'model',
+		'musicPlayer'
 	],
 	#category : #'EMM-WebApplication-Core'
 }
 
 { #category : #accessing }
+EMMSession >> defaultMusicPlayer [
+	^ EMMMusicPlayer 
+]
+
+{ #category : #initialization }
 EMMSession >> initialize [
 	super initialize.
-	^ self model: EMMMusicLibrary new import; yourself
+	^ self model: EMMMusicLibrary new import; musicPlayer: (self defaultMusicPlayer new); yourself
 ]
 
 { #category : #accessing }
@@ -28,6 +34,16 @@ EMMSession >> model [
 { #category : #accessing }
 EMMSession >> model: anObject [
 	model := anObject
+]
+
+{ #category : #accessing }
+EMMSession >> musicPlayer [
+	^ musicPlayer
+]
+
+{ #category : #accessing }
+EMMSession >> musicPlayer: anObject [
+	musicPlayer := anObject
 ]
 
 { #category : #accessing }

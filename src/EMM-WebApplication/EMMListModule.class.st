@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 EMMListModule class >> priority [
-	^ 5
+	^ 2
 ]
 
 { #category : #rendering }
@@ -64,7 +64,7 @@ EMMListModule >> renderContentOn: html [
 														icon;
 														with: [ html mdlIcon: 'stop' ] ]
 												ifFalse: [ html mdlAnchorButton
-														callback: [ song play ];
+														callback: [ self session musicPlayer musicList: { song } asOrderedCollection  ];
 														colored;
 														icon;
 														with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ] ]
