@@ -32,7 +32,7 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> currentSound [ 
-	self musicList at: (self pointerCurrentMusic) ifAbsent: [ ^ nil ]
+	^ (self musicList at: (self pointerCurrentMusic) ifAbsent: [ ^ nil ]) streaming
 ]
 
 { #category : #'sound generation' }
@@ -68,10 +68,10 @@ EMMMusicPlayer >> mixSampleCount: n into: aSoundBuffer startingAt: startIndex le
 	[i <= finalIndex] whileTrue: [
 		[self currentSound isNil ifTrue: [^ self].
 		(remaining := self currentSound samplesRemaining) <= 0]
-			whileTrue: [self currentSound: self nextSound].
+			whileTrue: [self nextSound].
 		count := (finalIndex - i) + 1.
 		remaining < count ifTrue: [count := remaining].
-		self currentSound mixSampleCount: count into: aSoundBuffer startingAt: i leftVol: leftVol rightVol: rightVol.
+		self currentSound playSampleCount: count into: aSoundBuffer startingAt: i "leftVol: leftVol rightVol: rightVol".
 		i := i + count]
 ]
 
@@ -87,11 +87,6 @@ EMMMusicPlayer >> musicList: aListOfPlayable [
 ]
 
 { #category : #control }
-EMMMusicPlayer >> next [
-	self shouldBeImplemented
-]
-
-{ #category : #'sound generation' }
 EMMMusicPlayer >> nextSound [
 	| answer |
 	pointerCurrentMusic := pointerCurrentMusic + 1.
@@ -105,9 +100,20 @@ EMMMusicPlayer >> pointerCurrentMusic [
 	^ pointerCurrentMusic 
 ]
 
+{ #category : #accessing }
+EMMMusicPlayer >> pointerCurrentMusic: position [
+	self currentSound ifNotNil: [ :currentSound | currentSound reset ].
+	pointerCurrentMusic := position
+	
+]
+
 { #category : #control }
-EMMMusicPlayer >> previous [
-	self shouldBeImplemented
+EMMMusicPlayer >> previousSound [
+	| answer |
+	pointerCurrentMusic := pointerCurrentMusic - 1.
+	answer := (musicList at: pointerCurrentMusic ifAbsent: [ ^ nil ]) streaming.
+	answer reset.
+	^ answer
 ]
 
 { #category : #'sound generation' }
@@ -116,4 +122,14 @@ EMMMusicPlayer >> samplesRemaining [
 		ifTrue: [^ 0]
 		ifFalse: [^ 1000000].
 
+]
+
+{ #category : #accessing }
+EMMMusicPlayer >> startTime [
+	^ startTime
+]
+
+{ #category : #accessing }
+EMMMusicPlayer >> startTime: anObject [
+	startTime := anObject
 ]
