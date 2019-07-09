@@ -158,7 +158,7 @@ StreamingMP3Sound >> playSampleCount: n into: aSoundBuffer startingAt: startInde
 	mutex critical: [
 		lastBufferMSecs := Time millisecondClockValue.
 		self loadBuffersForSampleCount: (n * streamSamplingRate) // SoundPlayer samplingRate.
-		mixer playSampleCount: n into: aSoundBuffer startingAt: startIndex].
+		mixer playSampleCount: n into: aSoundBuffer startingAt: startIndex ].
 
 ]
 
