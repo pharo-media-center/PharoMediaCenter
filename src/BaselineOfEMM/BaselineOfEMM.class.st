@@ -42,5 +42,5 @@ BaselineOfEMM >> definePackages: spec [
 		package: 'EMM-Importer' with: [ spec requires: #('EMM') ];
 		package: 'EMM-FolderImporter' with: [ spec requires: #('EMM-Importer' 'ID3') ];
 		package: 'EMM-STON' with: [ spec requires: #('EMM-Importer') ];
-		package: 'EMM-SoundSystem' with: [ spec requires: #('PharoSound') ]
+		package: 'EMM-SoundSystem' with: [ spec requires: #('PharoSound' 'EMM') ]
 ]

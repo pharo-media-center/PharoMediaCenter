@@ -94,7 +94,7 @@ EMMMusicPlayer >> next [
 EMMMusicPlayer >> nextSound [
 	| answer |
 	pointerCurrentMusic := pointerCurrentMusic + 1.
-	answer := musicList at: pointerCurrentMusic ifAbsent: [ ^ nil ].
+	answer := (musicList at: pointerCurrentMusic ifAbsent: [ ^ nil ]) streaming.
 	answer reset.
 	^ answer
 ]
