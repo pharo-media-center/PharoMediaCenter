@@ -22,12 +22,12 @@ EMMMusicPlayer >> add: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> addAtTheBeginning: aPlayable [
-	self shouldBeImplemented
+	musicList addFirst: aPlayable
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> addAtTheEnd: aPlayable [
-	self shouldBeImplemented
+	musicList addLast: aPlayable
 ]
 
 { #category : #accessing }
@@ -51,7 +51,8 @@ EMMMusicPlayer >> initialize [
 	super initialize.
 	musicList := OrderedCollection new.
 	done := false.
-	startTime := Time millisecondClockValue
+	startTime := Time millisecondClockValue.
+	pointerCurrentMusic := 1.
 ]
 
 { #category : #'sound generation' }
