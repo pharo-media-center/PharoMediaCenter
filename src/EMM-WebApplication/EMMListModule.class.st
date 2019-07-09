@@ -38,11 +38,7 @@ EMMListModule >> renderContentOn: html [
 							html mdlTableHeading
 								nonNumerical;
 								with: 'Author'.
-							html mdlTableHeading: 'Lenght'.
-
-							html mdlTableHeading
-								nonNumerical;
-								with: 'Play' ] ].
+							html mdlTableHeading with: 'Length' ] ].
 			html
 				tableBody: [ datas
 						do: [ :song | 

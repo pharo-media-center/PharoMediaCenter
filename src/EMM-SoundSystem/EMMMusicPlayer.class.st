@@ -31,8 +31,13 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 ]
 
 { #category : #accessing }
+EMMMusicPlayer >> currentMusic [
+	^ (self musicList at: (self pointerCurrentMusic) ifAbsent: [ ^ nil ])
+]
+
+{ #category : #accessing }
 EMMMusicPlayer >> currentSound [ 
-	^ (self musicList at: (self pointerCurrentMusic) ifAbsent: [ ^ nil ]) streaming
+	^ self currentMusic streaming
 ]
 
 { #category : #'sound generation' }
