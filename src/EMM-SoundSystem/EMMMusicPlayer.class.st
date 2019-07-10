@@ -37,7 +37,7 @@ EMMMusicPlayer >> currentMusic [
 
 { #category : #accessing }
 EMMMusicPlayer >> currentSound [ 
-	^ self currentMusic streaming
+	^ self currentMusic ifNil: [ ^ nil ] ifNotNil: [ :playable | playable streaming ]
 ]
 
 { #category : #'sound generation' }
