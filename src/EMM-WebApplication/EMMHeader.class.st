@@ -18,15 +18,23 @@ EMMHeader >> possiblePages [
 { #category : #rendering }
 EMMHeader >> renderContentOn: html [
 	html
-		mdlLayoutHeader: [ 
-			html
-				mdlLayoutHeaderRow: [ 
-					html mdlNavigationLink
+		mdlLayoutHeader: [ html
+				mdlLayoutHeaderRow: [ html mdlNavigationLink
 						callback: [ "Just refresh" ];
-						with: [ html
-								mdlLayoutTitle: 'Event Music Manager' ].
+						with: [ html mdlLayoutTitle: 'Event Music Manager' ].
 					html mdlLayoutSpacer.
-					html text: 'Version 0.0.0'. ] ].
+					html mdlAnchorButton
+						icon;
+						id: html nextId;
+						callback: [  SoundPlayer
+								initialize;
+								shutDown;
+								startUp ];
+						with: [ html mdlIcon: 'cached' ].
+					html mdlTooltip
+						for: html lastId;
+						with: 'Reset the SoundPlayer'.
+						 html text: 'Version ', self version ] ].
 	self renderDrawerOn: html
 ]
 
@@ -42,4 +50,9 @@ EMMHeader >> renderDrawerOn: html [
 								beCurrentIf: aClass = self rootComponent componentToDisplay class;
 								callback: [ self displayInstanceOf: aClass ];
 								with: aClass pageName ] ] ]
+]
+
+{ #category : #rendering }
+EMMHeader >> version [
+	^ 'v0.2.0'
 ]
