@@ -40,8 +40,8 @@ EMMListModule >> renderContentOn: html [
 								with: 'Author'.
 							html mdlTableHeading with: 'Length' ] ].
 			html
-				tableBody: [ datas
-						do: [ :song | 
+				tableBody: [ datas doWithIndex:
+						 [ :song :index | 
 							html
 								tableRow: [ html mdlTableCell with: song track.
 									html mdlTableCell
@@ -60,7 +60,7 @@ EMMListModule >> renderContentOn: html [
 														icon;
 														with: [ html mdlIcon: 'stop' ] ]
 												ifFalse: [ html mdlAnchorButton
-														callback: [ self session musicPlayer musicList: { song } asOrderedCollection  ];
+														callback: [ self session musicPlayer musicList: (datas copyFrom: index to: datas size )  ];
 														colored;
 														icon;
 														with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ] ]
