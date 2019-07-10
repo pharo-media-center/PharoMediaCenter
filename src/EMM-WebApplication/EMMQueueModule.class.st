@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 EMMQueueModule class >> priority [
-	^ 3
+	^ 4
 ]
 
 { #category : #rendering }
@@ -40,7 +40,7 @@ EMMQueueModule >> renderContentOn: html [
 			html mdlCell
 				size: 6;
 				with: [ html paragraph with: (self session musicPlayer currentMusic ifNotNil: [ :song | song title ] ifNil: [ '' ]) ] ].
-	html render: (MDLProgressBarWidget progression: [ self session musicPlayer currentSound soundPosition ] every: 0.2 seconds).
+	html render: (MDLProgressBarWidget progression: [ self session musicPlayer currentSound soundPosition ]).
 	html mdlTable
 		attributeAt: 'width' put: '100%';
 		with: [ html
@@ -61,4 +61,9 @@ EMMQueueModule >> renderContentOn: html [
 										nonNumerical;
 										with: song artists asOrderedCollection first name.
 									html mdlTableCell with: song length ] ] ] ]
+]
+
+{ #category : #accessing }
+EMMQueueModule >> size [
+	^ 8
 ]

@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 EMMJingleModule class >> priority [
-	^ 6
+	^ 3
 ]
 
 { #category : #rendering }
@@ -22,9 +22,4 @@ EMMJingleModule >> renderContentOn: html [
 								callback: [ jingle play ];
 								primaryColor;
 								with: jingle name ] ] ]
-]
-
-{ #category : #accessing }
-EMMJingleModule >> size [
-	^ 12
 ]
