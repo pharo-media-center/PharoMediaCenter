@@ -40,6 +40,7 @@ EMMQueueModule >> renderContentOn: html [
 			html mdlCell
 				size: 6;
 				with: [ html paragraph with: (self session musicPlayer currentMusic ifNotNil: [ :song | song title ] ifNil: [ '' ]) ] ].
+	html render: (MDLProgressBarWidget progression: [ self session musicPlayer currentSound soundPosition ] every: 0.2 seconds).
 	html mdlTable
 		attributeAt: 'width' put: '100%';
 		with: [ html
