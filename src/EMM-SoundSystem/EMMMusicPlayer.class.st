@@ -90,6 +90,7 @@ EMMMusicPlayer >> musicList: aListOfPlayable [
 	"set the new list of music and play the musics from the first one"
 	musicList := aListOfPlayable.
 	pointerCurrentMusic := 1.
+	(musicList at: 1) streaming reset. 
 	self reset.
 	self play
 ]
