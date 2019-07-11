@@ -10,6 +10,11 @@ EMMQueueModule class >> priority [
 ]
 
 { #category : #rendering }
+EMMQueueModule >> musicTitleId [
+	^ 'musicTitleId'
+]
+
+{ #category : #rendering }
 EMMQueueModule >> renderContentOn: html [
 	| datas |
 	datas := self session musicPlayer musicList.
@@ -39,7 +44,7 @@ EMMQueueModule >> renderContentOn: html [
 						with: [ html mdlIcon: 'skip_next' ] ].
 			html mdlCell
 				size: 6;
-				with: [ html paragraph with: (self session musicPlayer currentMusic ifNotNil: [ :song | song title ] ifNil: [ '' ]) ] ].
+				with: [ html paragraph id: self musicTitleId ;with: (self session musicPlayer currentMusic ifNotNil: [ :song | song title ] ifNil: [ '' ]) ] ].
 	html render: (MDLProgressBarWidget progression: [ self session musicPlayer currentSound soundPosition ]).
 	html mdlTable
 		attributeAt: 'width' put: '100%';
@@ -60,7 +65,37 @@ EMMQueueModule >> renderContentOn: html [
 									html mdlTableCell
 										nonNumerical;
 										with: song artists asOrderedCollection first name.
-									html mdlTableCell with: song length ] ] ] ]
+									html mdlTableCell with: song length ] ] ] ].
+
+	self renderJavaScriptOn: html
+]
+
+{ #category : #rendering }
+EMMQueueModule >> renderJavaScriptOn: html [
+	html script: '
+var conn = {};
+var musicTitle = document.getElementById("', self musicTitleId , '");
+ 
+if (window.WebSocket === undefined) {
+  state.innerHTML = "(WebSockets not supported)";
+} else {
+    conn = new WebSocket("ws://localhost:8041/emm");
+    conn.onopen = function () {
+      musicTitle.innerHTML = "WebSocket: Connected";
+    };
+ 
+    conn.onmessage = function (event) {
+      musicTitle.innerHTML =  event.data ;
+    };
+
+	conn.onerror = function (event) { 
+		musicTitle.innerHTML = "WebSocket: Error"
+	};
+	   
+    /*conn.onclose = function (event) {
+      musicTitle.innerHTML = "WebSocket: Closed";
+    };*/
+};'
 ]
 
 { #category : #accessing }

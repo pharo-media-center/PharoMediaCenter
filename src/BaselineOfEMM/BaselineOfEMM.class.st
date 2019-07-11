@@ -24,7 +24,12 @@ BaselineOfEMM >> defineDependencies: spec [
 		with: [ spec
 				className: #ConfigurationOfPharoSound;
 				versionString: #stable;
-				repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main/' ]
+				repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main/' ].
+	spec
+		baseline: 'ZincHTTPComponents'
+		with: [ spec
+				loads: #('WebSocket');
+				repository: 'github://svenvc/zinc:v3.0.1/repository' ]
 ]
 
 { #category : #baselines }
@@ -36,7 +41,7 @@ BaselineOfEMM >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfEMM >> definePackages: spec [
 	spec
-		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-FolderImporter') ];
+		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-FolderImporter' 'ZincHTTPComponents') ];
 		package: 'EMM';
 		package: 'EMM-Tests' with: [ spec requires: #('EMM') ];
 		package: 'EMM-Importer' with: [ spec requires: #('EMM') ];
