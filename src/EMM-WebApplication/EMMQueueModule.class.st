@@ -44,8 +44,10 @@ EMMQueueModule >> renderContentOn: html [
 						with: [ html mdlIcon: 'skip_next' ] ].
 			html mdlCell
 				size: 6;
-				with: [ html paragraph id: self musicTitleId ;with: (self session musicPlayer currentMusic ifNotNil: [ :song | song title ] ifNil: [ '' ]) ] ].
-	html render: (MDLProgressBarWidget progression: [ self session musicPlayer currentSound soundPosition ]).
+				with: [ html paragraph
+						id: self musicTitleId;
+						with: (self session musicPlayer currentMusic ifNotNil: [ :song | song title ] ifNil: [ '' ]) ] ].
+	html render: (MDLProgressBarWidget progression: [ self session musicPlayer currentSound ifNotNil: [ :sound | sound soundPosition ] ifNil: [ 0 ] ]).
 	html mdlTable
 		attributeAt: 'width' put: '100%';
 		with: [ html
