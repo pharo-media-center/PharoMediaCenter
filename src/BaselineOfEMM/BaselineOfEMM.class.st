@@ -41,7 +41,7 @@ BaselineOfEMM >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfEMM >> definePackages: spec [
 	spec
-		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-FolderImporter' 'ZincHTTPComponents') ];
+		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-SoundSystem' 'EMM-FolderImporter' 'ZincHTTPComponents') ];
 		package: 'EMM';
 		package: 'EMM-Tests' with: [ spec requires: #('EMM') ];
 		package: 'EMM-Importer' with: [ spec requires: #('EMM') ];

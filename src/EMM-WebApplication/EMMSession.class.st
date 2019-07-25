@@ -18,7 +18,10 @@ Class {
 { #category : #initialization }
 EMMSession >> currentEMM [
 	EMM allInstancesDo: [ :a | ^ a ].
-	^ self model: (EMM new import; musicPlayer: (self defaultMusicPlayer new); yourself)
+
+	^ EMM new import
+		musicPlayer: self defaultMusicPlayer new;
+		yourself
 ]
 
 { #category : #accessing }
@@ -28,8 +31,11 @@ EMMSession >> defaultMusicPlayer [
 
 { #category : #initialization }
 EMMSession >> initialize [
+	| emm | 
 	super initialize.
-	^ self model: self currentEMM
+	emm := self currentEMM.
+	self model: emm.
+	self startSocketFor: emm
 ]
 
 { #category : #accessing }
@@ -55,4 +61,12 @@ EMMSession >> rootComponent [
 { #category : #accessing }
 EMMSession >> rootComponent: aRootComponent [
 	rootComponent := aRootComponent
+]
+
+{ #category : #initialization }
+EMMSession >> startSocketFor: emm [
+	ZnServer stopDefault.
+	ZnServer startDefaultOn: 8041.
+	ZnServer default logToTranscript.
+	ZnServer default delegate map: 'emm' to: (ZnWebSocketDelegate map: 'emm' to: (EMMWebSocket new emm: emm; yourself))
 ]

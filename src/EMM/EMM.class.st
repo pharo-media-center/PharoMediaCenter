@@ -28,6 +28,16 @@ EMM >> artists [
 ]
 
 { #category : #accessing }
+EMM >> currentMusic [
+	^ self musicPlayer currentMusic
+]
+
+{ #category : #accessing }
+EMM >> currentSound [
+	^ self musicPlayer currentSound
+]
+
+{ #category : #accessing }
 EMM >> directories [
 	^ directories
 ]

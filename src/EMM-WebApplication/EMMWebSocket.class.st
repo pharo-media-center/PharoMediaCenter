@@ -9,8 +9,21 @@ ZnServer default delegate
 Class {
 	#name : #EMMWebSocket,
 	#superclass : #Object,
+	#instVars : [
+		'emm'
+	],
 	#category : #'EMM-WebApplication-WebSocket'
 }
+
+{ #category : #accessing }
+EMMWebSocket >> emm [
+	^ emm
+]
+
+{ #category : #accessing }
+EMMWebSocket >> emm: anObject [
+	emm := anObject
+]
 
 { #category : #initialization }
 EMMWebSocket >> initialize [
@@ -21,5 +34,5 @@ EMMWebSocket >> initialize [
 EMMWebSocket >> value: webSocket [
 	"I stream status messages to a WebSocket client, once every second 
 	until ConnectionClosed or no longer isConnected"
-	webSocket sendMessage: 'Hello Bade2'
+	self emm ifNotNil: [ webSocket sendMessage:( emm currentMusic ifNil: [ 'No Sound' ] ifNotNil: [:sound | sound title]) ] ifNil: [ webSocket sendMessage: 'EMM Not Connected' ] 
 ]
