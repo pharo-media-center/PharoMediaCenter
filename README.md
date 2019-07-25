@@ -3,9 +3,14 @@ Event Music Manager
 
 ## Installation
 
-On Linux you must install:
+On Linux you must install and activate the service osspd.
 
-- osspd
+On archlinux:
+```
+yay -S oosp
+systemctl start osspd.service
+```
+
 
 ## Thanks
 
