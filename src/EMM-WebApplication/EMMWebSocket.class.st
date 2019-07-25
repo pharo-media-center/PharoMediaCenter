@@ -21,5 +21,5 @@ EMMWebSocket >> initialize [
 EMMWebSocket >> value: webSocket [
 	"I stream status messages to a WebSocket client, once every second 
 	until ConnectionClosed or no longer isConnected"
-	webSocket sendMessage: 'Hello Bade'
+	webSocket sendMessage: 'Hello Bade2'
 ]

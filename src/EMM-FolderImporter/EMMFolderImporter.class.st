@@ -69,7 +69,7 @@ EMMFolderImporter >> importFrom: anArgument [
 { #category : #'as yet unclassified' }
 EMMFolderImporter >> importFromFolder: aFolder [
 	| emmModel | 
-	emmModel := EMMMusicLibrary new.
+	emmModel := EMM new.
 	self importFromFolder: aFolder inAModel: emmModel. 
 	^ emmModel
 ]

@@ -15,6 +15,12 @@ Class {
 	#category : #'EMM-WebApplication-Core'
 }
 
+{ #category : #initialization }
+EMMSession >> currentEMM [
+	EMM allInstancesDo: [ :a | ^ a ].
+	^ self model: (EMM new import; musicPlayer: (self defaultMusicPlayer new); yourself)
+]
+
 { #category : #accessing }
 EMMSession >> defaultMusicPlayer [
 	^ EMMMusicPlayer 
@@ -23,7 +29,7 @@ EMMSession >> defaultMusicPlayer [
 { #category : #initialization }
 EMMSession >> initialize [
 	super initialize.
-	^ self model: EMMMusicLibrary new import; musicPlayer: (self defaultMusicPlayer new); yourself
+	^ self model: self currentEMM
 ]
 
 { #category : #accessing }
@@ -38,12 +44,7 @@ EMMSession >> model: anObject [
 
 { #category : #accessing }
 EMMSession >> musicPlayer [
-	^ musicPlayer
-]
-
-{ #category : #accessing }
-EMMSession >> musicPlayer: anObject [
-	musicPlayer := anObject
+	^ self model musicPlayer
 ]
 
 { #category : #accessing }
