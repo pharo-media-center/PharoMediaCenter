@@ -15,19 +15,6 @@ Class {
 	#category : #'EMM-SoundSystem'
 }
 
-{ #category : #initialization }
-EMMMusicPlayer class >> initialize [
-	self resetSoundPlayer
-]
-
-{ #category : #initialization }
-EMMMusicPlayer class >> resetSoundPlayer [
-	SoundPlayer
-		initialize;
-		shutDown;
-		startUp
-]
-
 { #category : #accessing }
 EMMMusicPlayer >> add: aPlayable [
 	self addAtTheEnd: aPlayable
