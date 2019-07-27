@@ -22,10 +22,10 @@ EMMMusicPlayer class >> initialize [
 
 { #category : #initialization }
 EMMMusicPlayer class >> resetSoundPlayer [
-	SoundPlayer
+"	SoundPlayer
 		initialize;
 		shutDown;
-		startUp
+		startUp"
 ]
 
 { #category : #accessing }

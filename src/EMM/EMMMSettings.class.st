@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 EMMMSettings >> rootFolder [
-	^ rootFolder ifNil: [ 'D:\Users\benoit.verhaeghe\Music\EMM\Musics' asFileReference ]
+	^ rootFolder ifNil: [ '/home/badetitou/Musique' asFileReference ]
 ]
 
 { #category : #accessing }
