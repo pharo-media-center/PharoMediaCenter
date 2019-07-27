@@ -370,8 +370,9 @@ MPEGFile >> primGetTime: aFileHandle [
 
 { #category : #primitives }
 MPEGFile >> primHasAudio: aHandle [
-	<primitive: 'primitiveMPEG3HasAudio' module: 'Mpeg3Plugin'>
-	self primitiveFailed
+	^ MpegLibrary uniqueInstance hasAudio: aHandle
+	"<primitive: 'primitiveMPEG3HasAudio' module: 'Mpeg3Plugin'>
+	self primitiveFailed"
 ]
 
 { #category : #primitives }
