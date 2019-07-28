@@ -55,13 +55,27 @@ EMMMusicPlayer >> musicList [
 
 { #category : #accessing }
 EMMMusicPlayer >> musicList: aListOfPlayable [
-	"set the new list of music and play the musics from the first one"
-	
+	| mediaList |
+	self flag: #ImproveWithFFICallThatSetTheListInOneTime.
+	mediaList := vlc createMediaList.
+	aListOfPlayable collect: [ :aPlayable | vlc mediaFileFromStringPath: aPlayable path asString ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
+	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
+	self play
 ]
 
 { #category : #control }
 EMMMusicPlayer >> nextSound [
 	vlc nextListPlayer: vlcListPlayer
+]
+
+{ #category : #control }
+EMMMusicPlayer >> pause [
+	vlc pauseListPlayer: vlcListPlayer 
+]
+
+{ #category : #control }
+EMMMusicPlayer >> play [
+	vlc playListPlayer: vlcListPlayer 
 ]
 
 { #category : #control }

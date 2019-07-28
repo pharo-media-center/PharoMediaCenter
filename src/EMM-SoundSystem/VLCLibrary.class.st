@@ -15,7 +15,7 @@ VLCLibrary class >> reset [
 
 { #category : #'media list' }
 VLCLibrary >> addMedia: aMedia inMediaList: aMediaList [
-	^ self ffiCall: 'boolean libvlc_media_list_add_media(void* aMediaList, void* aMedia)'
+	^ self ffiCall: 'bool libvlc_media_list_add_media(void* aMediaList, void* aMedia)'
 ]
 
 { #category : #'media list player' }
@@ -147,9 +147,20 @@ VLCLibrary >> previousListPlayer: aListPlayer [
 	^ self ffiCall: 'void* libvlc_media_list_player_previous (void* aListPlayer)'
 ]
 
+{ #category : #media }
+VLCLibrary >> releaseMedia: aMedia [
+	"ex self mediaFileFromStringPath: '/home/badetitou/Musique/Coda.mp3'"
+	^ self ffiCall: 'void* libvlc_media_release(void* aMedia);'
+]
+
 { #category : #'media player' }
 VLCLibrary >> resetMediaPlayer: aMediaPlayer [
 	self positionMediaPlayer: aMediaPlayer setAt: 0.0 
+]
+
+{ #category : #'media list player' }
+VLCLibrary >> setMediaList: aMediaList forListPlayer: aListPlayer [
+	^ self ffiCall: 'void* libvlc_media_list_player_set_media_list (void* aListPlayer, void* aMediaList)'
 ]
 
 { #category : #'accessing platform' }
