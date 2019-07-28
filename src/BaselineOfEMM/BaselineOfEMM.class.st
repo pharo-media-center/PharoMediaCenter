@@ -43,7 +43,7 @@ BaselineOfEMM >> definePackages: spec [
 	spec
 		package: 'EMM' with: [ spec requires: #('EMM-MusicLibrary' 'EMM-SoundSystem')];
 		package: 'EMM-MusicLibrary';
-		package: 'EMM-SoundSystem';
+		package: 'EMM-SoundSystem' with: [spec requires: #('EMM-MusicLibrary')];
 		package: 'EMM-Tests' with: [ spec requires: #('EMM') ];
 		package: 'EMM-Importer' with: [ spec requires: #('EMM-MusicLibrary') ];
 		package: 'EMM-FolderImporter' with: [ spec requires: #('EMM-Importer' 'ID3') ];

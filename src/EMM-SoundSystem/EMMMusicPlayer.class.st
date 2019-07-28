@@ -8,10 +8,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'musicList',
-		'pointerCurrentMusic',
-		'done',
-		'startTime',
-		'vlc'
+		'vlc',
+		'vlcListPlayer'
 	],
 	#category : #'EMM-SoundSystem'
 }
@@ -45,8 +43,9 @@ EMMMusicPlayer >> currentSound [
 EMMMusicPlayer >> initialize [
 	super initialize.
 	musicList := OrderedCollection new.
-	pointerCurrentMusic := 1.
 	vlc := VLCLibrary uniqueInstance.
+	vlcListPlayer := VLCLibrary uniqueInstance createListPlayer.
+	
 ]
 
 { #category : #accessing }
@@ -57,39 +56,15 @@ EMMMusicPlayer >> musicList [
 { #category : #accessing }
 EMMMusicPlayer >> musicList: aListOfPlayable [
 	"set the new list of music and play the musics from the first one"
-	musicList := aListOfPlayable.
-	pointerCurrentMusic := 1.
-	(musicList at: 1) streaming reset. 
-	self reset.
-	self play
-]
-
-{ #category : #control }
-EMMMusicPlayer >> nextSound [
-	| answer |
-	pointerCurrentMusic := pointerCurrentMusic + 1.
-	answer := (musicList at: pointerCurrentMusic ifAbsent: [ ^ nil ]) streaming.
-	answer reset.
-	^ answer
-]
-
-{ #category : #accessing }
-EMMMusicPlayer >> pointerCurrentMusic [
-	^ pointerCurrentMusic 
-]
-
-{ #category : #accessing }
-EMMMusicPlayer >> pointerCurrentMusic: position [
-	self currentSound ifNotNil: [ :currentSound | currentSound reset ].
-	pointerCurrentMusic := position
 	
 ]
 
 { #category : #control }
+EMMMusicPlayer >> nextSound [
+	vlc nextListPlayer: vlcListPlayer
+]
+
+{ #category : #control }
 EMMMusicPlayer >> previousSound [
-	| answer |
-	pointerCurrentMusic := pointerCurrentMusic - 1.
-	answer := (musicList at: pointerCurrentMusic ifAbsent: [ ^ nil ]) streaming.
-	answer reset.
-	^ answer
+	vlc previousListPlayer: vlcListPlayer
 ]
