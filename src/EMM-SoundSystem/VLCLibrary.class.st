@@ -13,7 +13,7 @@ VLCLibrary class >> reset [
 	uniqueInstance := nil
 ]
 
-{ #category : #'accessing platform' }
+{ #category : #creating }
 VLCLibrary >> createPlayerForMedia: aVLCMedia [
 	"example:
 	
@@ -26,13 +26,13 @@ VLCLibrary >> createPlayerForMedia: aVLCMedia [
 	^ self ffiCall: 'void* libvlc_media_player_new_from_media(void* aVLCMedia);'
 ]
 
-{ #category : #'accessing platform' }
+{ #category : #initialization }
 VLCLibrary >> initialize [
 	super initialize.
 	libVLCInstance := self initializeVLC
 ]
 
-{ #category : #'accessing platform' }
+{ #category : #initialization }
 VLCLibrary >> initializeVLC [
 	^ self ffiCall: 'void * libvlc_new();'
 ]
@@ -42,19 +42,20 @@ VLCLibrary >> libraryName [
 	^ 'libvlc.so'
 ]
 
-{ #category : #'accessing platform' }
+{ #category : #creating }
 VLCLibrary >> mediaFileFromStringPath: aStringPath [
 	"ex self mediaFileFromStringPath: '/home/badetitou/Musique/Coda.mp3'"
 	^ self ffiCall: 'void* libvlc_media_new_path(void* libVLCInstance, String aStringPath);'
 ]
 
-{ #category : #'accessing platform' }
+{ #category : #music }
 VLCLibrary >> playPlayer: aPlayer [
 	"
 	| vlc media player |
 	vlc := VLCLibrary uniqueInstance.
 	media := vlc mediaFileFromStringPath: '/home/badetitou/Musique/Coda.mp3'.	
-	player := vlc createPlayerForMedia:: '/home/badetitou/Musique/Coda.mp3'.
+	player := vlc createPlayerForMedia: media.
+	vlc playPlayer: player
 	"
 	^ self ffiCall: 'void * libvlc_media_player_play(void* aPlayer);'
 ]
@@ -77,4 +78,11 @@ VLCLibrary >> unix64ModuleName [
 			libraryPath := path asFileReference / self libraryName.
 			libraryPath exists ifTrue: [ ^ libraryPath fullName ] ].
 	self error: 'Cannot locate cairo library. Please check if it installed on your system'
+]
+
+{ #category : #'accessing platform' }
+VLCLibrary >> unixModuleName [
+	"Kept for backward compatibility. 
+	 Users should use unix32* or unix64*"
+	^ self unix64ModuleName
 ]
