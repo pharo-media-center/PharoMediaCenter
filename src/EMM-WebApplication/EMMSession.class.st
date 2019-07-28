@@ -19,7 +19,7 @@ Class {
 EMMSession >> currentEMM [
 	EMM allInstancesDo: [ :a | ^ a ].
 
-	^ EMM new import
+	^ EMM new import;
 		musicPlayer: self defaultMusicPlayer new;
 		yourself
 ]
