@@ -25,7 +25,7 @@ VLCLibrary >> createListPlayer [
 
 { #category : #'media list' }
 VLCLibrary >> createMediaList [
-	^ self ffiCall: 'void* libvlc_media_list_player_new(void* libVLCInstance)'
+	^ self ffiCall: 'void* libvlc_media_list_new(void* libVLCInstance)'
 ]
 
 { #category : #'media player' }

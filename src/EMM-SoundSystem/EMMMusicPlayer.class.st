@@ -44,7 +44,7 @@ EMMMusicPlayer >> initialize [
 	super initialize.
 	musicList := OrderedCollection new.
 	vlc := VLCLibrary uniqueInstance.
-	vlcListPlayer := VLCLibrary uniqueInstance createListPlayer.
+	vlcListPlayer := vlc createListPlayer.
 	
 ]
 
