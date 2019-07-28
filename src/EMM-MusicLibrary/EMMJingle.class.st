@@ -1,6 +1,6 @@
 Class {
 	#name : #EMMJingle,
-	#superclass : #AnObsoleteEMMPlayable,
+	#superclass : #EMMPlayable,
 	#instVars : [
 		'name',
 		'from',

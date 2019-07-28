@@ -1,6 +1,6 @@
 Class {
 	#name : #EMMMSong,
-	#superclass : #AnObsoleteEMMPlayable,
+	#superclass : #EMMPlayable,
 	#instVars : [
 		'folder',
 		'name',
