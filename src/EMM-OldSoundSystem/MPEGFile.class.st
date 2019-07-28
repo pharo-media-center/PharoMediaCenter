@@ -22,7 +22,7 @@ Class {
 	#classVars : [
 		'Registry'
 	],
-	#category : #'EMM-SoundSystem'
+	#category : #'EMM-OldSoundSystem'
 }
 
 { #category : #testing }

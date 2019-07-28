@@ -13,7 +13,7 @@ VLCLibrary class >> reset [
 	uniqueInstance := nil
 ]
 
-{ #category : #creating }
+{ #category : #'media player' }
 VLCLibrary >> createPlayerForMedia: aVLCMedia [
 	"example:
 	
@@ -37,6 +37,18 @@ VLCLibrary >> initializeVLC [
 	^ self ffiCall: 'void * libvlc_new();'
 ]
 
+{ #category : #'media player' }
+VLCLibrary >> isMediaPlayerPlaying: aMediaPlayer [
+	"
+	| vlc media player |
+	vlc := VLCLibrary uniqueInstance.
+	media := vlc mediaFileFromStringPath: '/home/badetitou/Musique/Coda.mp3'.	
+	player := vlc createPlayerForMedia: media.
+	vlc isMediaPlayerPlaying: aMediaPlayer
+	"
+	^ self ffiCall: 'bool libvlc_media_player_is_playing(void* aMediaPlayer);'
+]
+
 { #category : #'accessing platform' }
 VLCLibrary >> libraryName [
 	^ 'libvlc.so'
@@ -48,16 +60,46 @@ VLCLibrary >> mediaFileFromStringPath: aStringPath [
 	^ self ffiCall: 'void* libvlc_media_new_path(void* libVLCInstance, String aStringPath);'
 ]
 
-{ #category : #music }
-VLCLibrary >> playPlayer: aPlayer [
+{ #category : #'media player' }
+VLCLibrary >> pauseMediaPlayer: aMediaPlayer [
 	"
 	| vlc media player |
 	vlc := VLCLibrary uniqueInstance.
 	media := vlc mediaFileFromStringPath: '/home/badetitou/Musique/Coda.mp3'.	
 	player := vlc createPlayerForMedia: media.
-	vlc playPlayer: player
+	vlc pauseMediaPlayer: player
 	"
-	^ self ffiCall: 'void * libvlc_media_player_play(void* aPlayer);'
+	^ self ffiCall: 'void * libvlc_media_player_pause(void* aMediaPlayer);'
+]
+
+{ #category : #'media player' }
+VLCLibrary >> playMediaPlayer: aMediaPlayer [
+	"
+	| vlc media player |
+	vlc := VLCLibrary uniqueInstance.
+	media := vlc mediaFileFromStringPath: '/home/badetitou/Musique/Coda.mp3'.	
+	player := vlc createPlayerForMedia: media.
+	vlc playMediaPlayer: player
+	"
+	^ self ffiCall: 'void * libvlc_media_player_play(void* aMediaPlayer);'
+]
+
+{ #category : #'media player' }
+VLCLibrary >> positionMediaPlayer: aMediaPlayer [
+	"return a value between 0.0 and 1.0"
+	^ self ffiCall: 'float libvlc_media_player_get_position(void* aMediaPlayer);'
+]
+
+{ #category : #'media player' }
+VLCLibrary >> positionMediaPlayer: aMediaPlayer setAt: thePositionAsFloatBetweenOAnd1 [
+	"return a value between 0.0 and 1.0"
+
+	^ self ffiCall: 'float libvlc_media_player_set_position(void* aMediaPlayer, float thePositionAsFloatBetweenOAnd1, true);'
+]
+
+{ #category : #'media player' }
+VLCLibrary >> resetMediaPlayer: aMediaPlayer [
+	self positionMediaPlayer: aMediaPlayer setAt: 0.0 
 ]
 
 { #category : #'accessing platform' }

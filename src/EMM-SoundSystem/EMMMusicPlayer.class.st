@@ -5,12 +5,13 @@ But it allows us to keep information of the previous sounds
 "
 Class {
 	#name : #EMMMusicPlayer,
-	#superclass : #AbstractSound,
+	#superclass : #Object,
 	#instVars : [
 		'musicList',
 		'pointerCurrentMusic',
 		'done',
-		'startTime'
+		'startTime',
+		'vlc'
 	],
 	#category : #'EMM-SoundSystem'
 }
@@ -40,44 +41,12 @@ EMMMusicPlayer >> currentSound [
 	^ self currentMusic ifNil: [ ^ nil ] ifNotNil: [ :playable | playable streaming ]
 ]
 
-{ #category : #'sound generation' }
-EMMMusicPlayer >> doControl [
-	super doControl.
-	self currentSound notNil ifTrue: [self currentSound doControl]
-]
-
-{ #category : #accessing }
-EMMMusicPlayer >> done: aBoolean [
-	done := aBoolean
-]
-
 { #category : #initialization }
 EMMMusicPlayer >> initialize [
 	super initialize.
 	musicList := OrderedCollection new.
-	done := false.
-	startTime := Time millisecondClockValue.
 	pointerCurrentMusic := 1.
-]
-
-{ #category : #'sound generation' }
-EMMMusicPlayer >> mixSampleCount: n into: aSoundBuffer startingAt: startIndex leftVol: leftVol rightVol: rightVol [
-	"Play a collection of sounds in sequence."
-
-	| finalIndex i remaining count rate |
-	self currentSound isNil ifTrue: [^ self].  "already done"
-	self startTime > Time millisecondClockValue ifTrue: [^ self].
-	rate := self samplingRate.
-	finalIndex := (startIndex + n) - 1.
-	i := startIndex.
-	[i <= finalIndex] whileTrue: [
-		[self currentSound isNil ifTrue: [^ self].
-		(remaining := self currentSound samplesRemaining) <= 0]
-			whileTrue: [self nextSound].
-		count := (finalIndex - i) + 1.
-		remaining < count ifTrue: [count := remaining].
-		self currentSound playSampleCount: count into: aSoundBuffer startingAt: i "leftVol: leftVol rightVol: rightVol".
-		i := i + count]
+	vlc := VLCLibrary uniqueInstance.
 ]
 
 { #category : #accessing }
@@ -123,22 +92,4 @@ EMMMusicPlayer >> previousSound [
 	answer := (musicList at: pointerCurrentMusic ifAbsent: [ ^ nil ]) streaming.
 	answer reset.
 	^ answer
-]
-
-{ #category : #'sound generation' }
-EMMMusicPlayer >> samplesRemaining [
-	(done and: [self musicList isEmpty])
-		ifTrue: [^ 0]
-		ifFalse: [^ 1000000].
-
-]
-
-{ #category : #accessing }
-EMMMusicPlayer >> startTime [
-	^ startTime
-]
-
-{ #category : #accessing }
-EMMMusicPlayer >> startTime: anObject [
-	startTime := anObject
 ]

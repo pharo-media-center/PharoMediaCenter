@@ -18,7 +18,7 @@ Class {
 		'lastBufferMSecs',
 		'mutex'
 	],
-	#category : #'EMM-SoundSystem'
+	#category : #'EMM-OldSoundSystem'
 }
 
 { #category : #'instance creation' }
