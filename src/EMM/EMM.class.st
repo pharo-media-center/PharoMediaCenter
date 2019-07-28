@@ -2,11 +2,7 @@ Class {
 	#name : #EMM,
 	#superclass : #Object,
 	#instVars : [
-		'artists',
 		'settings',
-		'songs',
-		'directories',
-		'jingles',
 		'musicPlayer',
 		'musicLibrary'
 	],
@@ -15,17 +11,17 @@ Class {
 
 { #category : #'api - library' }
 EMM >> addArtist: anEMMArtist [
-	artists add: anEMMArtist
+	self musicLibrary addArtist: anEMMArtist
 ]
 
 { #category : #'api - library' }
 EMM >> addJingle: anEMMJingle [
-	jingles add: anEMMJingle
+	self musicLibrary addJingle: anEMMJingle
 ]
 
 { #category : #'api - library' }
 EMM >> artists [
-	^ directories
+	^ self musicLibrary artists
 ]
 
 { #category : #'api - music' }
@@ -50,12 +46,12 @@ EMM >> defaultMusicPlayer [
 
 { #category : #'api - library' }
 EMM >> directories [
-	^ directories
+	^ self musicLibrary directories
 ]
 
 { #category : #initialization }
 EMM >> import [
-	^ EMMFolderImporter new importFrom: self rootFolder in: self
+	^ EMMFolderImporter new importFrom: self rootFolder in: self musicLibrary
 ]
 
 { #category : #initialization }
@@ -67,7 +63,7 @@ EMM >> initialize [
 
 { #category : #'api - library' }
 EMM >> jingles [
-	^ jingles 
+	^ self musicLibrary jingles 
 ]
 
 { #category : #accessing }
@@ -112,5 +108,5 @@ EMM >> settings: anObject [
 
 { #category : #'api - library' }
 EMM >> songs [
-	^ songs
+	^ self musicLibrary songs
 ]
