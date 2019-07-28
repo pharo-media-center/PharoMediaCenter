@@ -53,7 +53,7 @@ VLCLibrary >> initializeVLC [
 
 { #category : #'media list player' }
 VLCLibrary >> isListPlayerPlaying: aListPlayer [
-	^ self ffiCall: 'void* libvlc_media_list_player_is_playing (void* aListPlayer)'
+	^ self ffiCall: 'bool libvlc_media_list_player_is_playing (void* aListPlayer)'
 ]
 
 { #category : #'media player' }

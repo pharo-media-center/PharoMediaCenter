@@ -53,17 +53,11 @@ EMMListModule >> renderContentOn: html [
 									html mdlTableCell with: song length.
 									html mdlTableCell
 										nonNumerical;
-										with: [ song isPlaying
-												ifTrue: [ html mdlAnchorButton
-														callback: [ song pause ];
-														colored;
-														icon;
-														with: [ html mdlIcon: 'stop' ] ]
-												ifFalse: [ html mdlAnchorButton
+										with: [ html mdlAnchorButton
 														callback: [ self session musicPlayer musicList: (datas copyFrom: index to: datas size )  ];
 														colored;
 														icon;
-														with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ] ]
+														with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ]
 ]
 
 { #category : #accessing }

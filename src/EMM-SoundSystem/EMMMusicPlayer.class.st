@@ -31,12 +31,12 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> currentMusic [
-	^ (self musicList at: (self pointerCurrentMusic) ifAbsent: [ ^ nil ])
+	^ nil
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> currentSound [ 
-	^ self currentMusic ifNil: [ ^ nil ] ifNotNil: [ :playable | playable streaming ]
+	^ nil
 ]
 
 { #category : #initialization }
@@ -46,6 +46,11 @@ EMMMusicPlayer >> initialize [
 	vlc := VLCLibrary uniqueInstance.
 	vlcListPlayer := vlc createListPlayer.
 	
+]
+
+{ #category : #accessing }
+EMMMusicPlayer >> isPlaying [
+	^ vlc isListPlayerPlaying: vlcListPlayer
 ]
 
 { #category : #accessing }
