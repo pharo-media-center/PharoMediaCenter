@@ -2,7 +2,6 @@ Class {
 	#name : #VLCLibrary,
 	#superclass : #FFILibrary,
 	#instVars : [
-		'vlcMediaPlayer',
 		'libVLCInstance'
 	],
 	#category : #'EMM-SoundSystem-Library'

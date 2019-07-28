@@ -87,8 +87,23 @@ EMM >> musicPlayer: anObject [
 ]
 
 { #category : #'api - music' }
-EMM >> play: aPlayable [
-	self musicPlayer play: aPlayable
+EMM >> pause [
+	self musicPlayer pause
+]
+
+{ #category : #'api - music' }
+EMM >> play [
+	self musicPlayer play
+]
+
+{ #category : #'api - music' }
+EMM >> playList: aListOfPlayable [
+	self musicPlayer musicList: aListOfPlayable
+]
+
+{ #category : #'api - music' }
+EMM >> resume [
+	self musicPlayer play
 ]
 
 { #category : #accessing }

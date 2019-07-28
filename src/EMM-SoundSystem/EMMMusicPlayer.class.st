@@ -58,7 +58,7 @@ EMMMusicPlayer >> musicList: aListOfPlayable [
 	| mediaList |
 	self flag: #ImproveWithFFICallThatSetTheListInOneTime.
 	mediaList := vlc createMediaList.
-	aListOfPlayable collect: [ :aPlayable | vlc mediaFileFromStringPath: aPlayable path asString ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
+	aListOfPlayable collect: [ :aPlayable | vlc mediaFileFromStringPath: aPlayable path originalString ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
 	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
 	self play
 ]
