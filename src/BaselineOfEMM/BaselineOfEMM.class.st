@@ -41,11 +41,12 @@ BaselineOfEMM >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfEMM >> definePackages: spec [
 	spec
-		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-SoundSystem' 'EMM-FolderImporter' 'ZincHTTPComponents') ];
-		package: 'EMM';
+		package: 'EMM' with: [ spec requires: #('EMM-MusicLibrary' 'EMM-SoundSystem')];
+		package: 'EMM-MusicLibrary';
+		package: 'EMM-SoundSystem';
 		package: 'EMM-Tests' with: [ spec requires: #('EMM') ];
-		package: 'EMM-Importer' with: [ spec requires: #('EMM') ];
+		package: 'EMM-Importer' with: [ spec requires: #('EMM-MusicLibrary') ];
 		package: 'EMM-FolderImporter' with: [ spec requires: #('EMM-Importer' 'ID3') ];
 		package: 'EMM-STON' with: [ spec requires: #('EMM-Importer') ];
-		package: 'EMM-SoundSystem' with: [ spec requires: #('PharoSound' 'EMM') ]
+		package: 'EMM-WebApplication' with: [ spec requires: #('EMM' 'EMM-FolderImporter' 'ZincHTTPComponents') ]
 ]

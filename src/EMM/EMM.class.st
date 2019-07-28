@@ -7,58 +7,77 @@ Class {
 		'songs',
 		'directories',
 		'jingles',
-		'musicPlayer'
+		'musicPlayer',
+		'musicLibrary'
 	],
 	#category : #EMM
 }
 
-{ #category : #accessing }
+{ #category : #'api - library' }
 EMM >> addArtist: anEMMArtist [
 	artists add: anEMMArtist
 ]
 
-{ #category : #accessing }
+{ #category : #'api - library' }
 EMM >> addJingle: anEMMJingle [
 	jingles add: anEMMJingle
 ]
 
-{ #category : #accessing }
+{ #category : #'api - library' }
 EMM >> artists [
 	^ directories
 ]
 
-{ #category : #accessing }
+{ #category : #'api - music' }
 EMM >> currentMusic [
 	^ self musicPlayer currentMusic
 ]
 
-{ #category : #accessing }
+{ #category : #'api - music' }
 EMM >> currentSound [
 	^ self musicPlayer currentSound
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
+EMM >> defaultMusicLibrary [
+	^ EMMMusicLibrary 
+]
+
+{ #category : #initialization }
+EMM >> defaultMusicPlayer [
+	^ EMMMusicPlayer  
+]
+
+{ #category : #'api - library' }
 EMM >> directories [
 	^ directories
 ]
 
 { #category : #initialization }
 EMM >> import [
-	^ EMMFolderImporter new importFromFolder: self rootFolder
+	^ EMMFolderImporter new importFrom: self rootFolder in: self
 ]
 
 { #category : #initialization }
 EMM >> initialize [
 	self settings: EMMMSettings new.
-	songs := Set new.
-	artists := Set new.
-	jingles := Set new.
-	directories := Dictionary new
+	self musicLibrary: self defaultMusicLibrary new.
+	self musicPlayer: self defaultMusicPlayer new.
+]
+
+{ #category : #'api - library' }
+EMM >> jingles [
+	^ jingles 
 ]
 
 { #category : #accessing }
-EMM >> jingles [
-	^ jingles 
+EMM >> musicLibrary [
+	^ musicLibrary
+]
+
+{ #category : #accessing }
+EMM >> musicLibrary: anObject [
+	musicLibrary := anObject
 ]
 
 { #category : #accessing }
@@ -69,6 +88,11 @@ EMM >> musicPlayer [
 { #category : #accessing }
 EMM >> musicPlayer: anObject [
 	musicPlayer := anObject
+]
+
+{ #category : #'api - music' }
+EMM >> play: aPlayable [
+	self musicPlayer play: aPlayable
 ]
 
 { #category : #accessing }
@@ -86,7 +110,7 @@ EMM >> settings: anObject [
 	settings := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'api - library' }
 EMM >> songs [
 	^ songs
 ]

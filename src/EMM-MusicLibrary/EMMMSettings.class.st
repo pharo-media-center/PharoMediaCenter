@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'rootFolder'
 	],
-	#category : #EMM
+	#category : #'EMM-MusicLibrary'
 }
 
 { #category : #accessing }

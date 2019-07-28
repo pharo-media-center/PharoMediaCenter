@@ -6,7 +6,7 @@ Class {
 		'name',
 		'songs'
 	],
-	#category : #EMM
+	#category : #'EMM-MusicLibrary'
 }
 
 { #category : #'instance creation' }

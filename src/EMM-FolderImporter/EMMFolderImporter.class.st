@@ -62,16 +62,8 @@ EMMFolderImporter >> ensureFolderFromFileReference: directory [
 ]
 
 { #category : #'as yet unclassified' }
-EMMFolderImporter >> importFrom: anArgument [
-	^ self importFromFolder: anArgument
-]
-
-{ #category : #'as yet unclassified' }
-EMMFolderImporter >> importFromFolder: aFolder [
-	| emmModel | 
-	emmModel := EMM new.
-	self importFromFolder: aFolder inAModel: emmModel. 
-	^ emmModel
+EMMFolderImporter >> importFrom: anArgument in: anEMM [
+	^ self importFromFolder: anArgument inAModel: anEMM
 ]
 
 { #category : #'as yet unclassified' }

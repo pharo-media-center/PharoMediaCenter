@@ -6,7 +6,7 @@ Class {
 		'from',
 		'duration'
 	],
-	#category : #EMM
+	#category : #'EMM-MusicLibrary'
 }
 
 { #category : #accessing }

@@ -9,7 +9,7 @@ Class {
 		'track',
 		'length'
 	],
-	#category : #EMM
+	#category : #'EMM-MusicLibrary'
 }
 
 { #category : #accessing }

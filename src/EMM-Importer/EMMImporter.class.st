@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-EMMImporter >> importFrom: anArgument [
+EMMImporter >> importFrom: anArgument in: anEMM [
 	^ self subclassResponsibility
 ]

@@ -5,7 +5,7 @@ Class {
 		'path',
 		'streaming'
 	],
-	#category : #EMM
+	#category : #'EMM-MusicLibrary'
 }
 
 { #category : #testing }

@@ -5,7 +5,7 @@ Class {
 		'songs',
 		'name'
 	],
-	#category : #EMM
+	#category : #'EMM-MusicLibrary'
 }
 
 { #category : #comparing }
