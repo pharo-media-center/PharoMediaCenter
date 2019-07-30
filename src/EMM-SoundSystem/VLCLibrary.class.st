@@ -61,6 +61,27 @@ VLCLibrary >> createPlayerForMedia: aVLCMedia [
 	^ self ffiCall: 'void* libvlc_media_player_new_from_media(void* aVLCMedia);'
 ]
 
+{ #category : #'event manager' }
+VLCLibrary >> detachToEventManager: anEventManager forEvent: aTypeOfEvent withCallback: aCallbackMethod andData: dataWeWantToCarryWithTheEvent [
+	"
+	anEventManager := vlc eventManagerListPlayer: aListPlayer.
+	vlc
+		detachToEventManager: eventManager 
+		forEvent: VLCEventTypeEnumeration libvlc_MediaListPlayerNextItemSet
+		withCallback: VLCEvent
+		andData: 0.0.
+	"
+
+	self
+		ffiCall:
+			'
+	void libvlc_event_detach ( void * anEventManager,
+	VLCEventTypeEnumeration aTypeOfEvent,
+	VLCEventCallback aCallbackMethod,
+	float* dataWeWantToCarryWithTheEvent 
+)	'
+]
+
 { #category : #'media list player' }
 VLCLibrary >> eventManagerListPlayer: aListPlayer [
 	^ self ffiCall: 'void* libvlc_media_list_player_event_manager (void* aListPlayer)'
