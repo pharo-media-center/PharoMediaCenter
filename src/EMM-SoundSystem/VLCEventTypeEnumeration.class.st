@@ -1,3 +1,6 @@
+"
+'the list of event type is available here: https://www.videolan.org/developers/vlc/doc/doxygen/html/group__libvlc__event.html#ga7af8cc980d8f13c9c10ed632990ce6ef'
+"
 Class {
 	#name : #VLCEventTypeEnumeration,
 	#superclass : #FFIExternalEnumeration,
@@ -55,7 +58,7 @@ Class {
 		'libvlc_RendererDiscovererItemAdded',
 		'libvlc_RendererDiscovererItemDeleted'
 	],
-	#category : #'EMM-SoundSystem-Library'
+	#category : #'EMM-SoundSystem-Enumeration'
 }
 
 { #category : #'enum declaration' }
@@ -117,4 +120,524 @@ VLCEventTypeEnumeration class >> enumDecl [
 { #category : #'enum declaration' }
 VLCEventTypeEnumeration class >> initialize [
 	self initializeEnumeration
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaDurationChanged [
+	^ libvlc_MediaDurationChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaDurationChanged: anObject [
+	libvlc_MediaDurationChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaFreed [
+	^ libvlc_MediaFreed
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaFreed: anObject [
+	libvlc_MediaFreed := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListEndReached [
+	^ libvlc_MediaListEndReached
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListEndReached: anObject [
+	libvlc_MediaListEndReached := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListItemAdded [
+	^ libvlc_MediaListItemAdded
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListItemAdded: anObject [
+	libvlc_MediaListItemAdded := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListItemDeleted [
+	^ libvlc_MediaListItemDeleted
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListItemDeleted: anObject [
+	libvlc_MediaListItemDeleted := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListPlayerNextItemSet [
+	^ libvlc_MediaListPlayerNextItemSet
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListPlayerNextItemSet: anObject [
+	libvlc_MediaListPlayerNextItemSet := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListPlayerPlayed [
+	^ libvlc_MediaListPlayerPlayed
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListPlayerPlayed: anObject [
+	libvlc_MediaListPlayerPlayed := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListPlayerStopped [
+	^ libvlc_MediaListPlayerStopped
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListPlayerStopped: anObject [
+	libvlc_MediaListPlayerStopped := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewItemAdded [
+	^ libvlc_MediaListViewItemAdded
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewItemAdded: anObject [
+	libvlc_MediaListViewItemAdded := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewItemDeleted [
+	^ libvlc_MediaListViewItemDeleted
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewItemDeleted: anObject [
+	libvlc_MediaListViewItemDeleted := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewWillAddItem [
+	^ libvlc_MediaListViewWillAddItem
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewWillAddItem: anObject [
+	libvlc_MediaListViewWillAddItem := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewWillDeleteItem [
+	^ libvlc_MediaListViewWillDeleteItem
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListViewWillDeleteItem: anObject [
+	libvlc_MediaListViewWillDeleteItem := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListWillAddItem [
+	^ libvlc_MediaListWillAddItem
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListWillAddItem: anObject [
+	libvlc_MediaListWillAddItem := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListWillDeleteItem [
+	^ libvlc_MediaListWillDeleteItem
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaListWillDeleteItem: anObject [
+	libvlc_MediaListWillDeleteItem := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaMetaChanged [
+	^ libvlc_MediaMetaChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaMetaChanged: anObject [
+	libvlc_MediaMetaChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaParsedChanged [
+	^ libvlc_MediaParsedChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaParsedChanged: anObject [
+	libvlc_MediaParsedChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerAudioDevice [
+	^ libvlc_MediaPlayerAudioDevice
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerAudioDevice: anObject [
+	libvlc_MediaPlayerAudioDevice := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerAudioVolume [
+	^ libvlc_MediaPlayerAudioVolume
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerAudioVolume: anObject [
+	libvlc_MediaPlayerAudioVolume := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerBackward [
+	^ libvlc_MediaPlayerBackward
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerBackward: anObject [
+	libvlc_MediaPlayerBackward := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerBuffering [
+	^ libvlc_MediaPlayerBuffering
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerBuffering: anObject [
+	libvlc_MediaPlayerBuffering := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerChapterChanged [
+	^ libvlc_MediaPlayerChapterChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerChapterChanged: anObject [
+	libvlc_MediaPlayerChapterChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerCorked [
+	^ libvlc_MediaPlayerCorked
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerCorked: anObject [
+	libvlc_MediaPlayerCorked := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerESAdded [
+	^ libvlc_MediaPlayerESAdded
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerESAdded: anObject [
+	libvlc_MediaPlayerESAdded := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerESDeleted [
+	^ libvlc_MediaPlayerESDeleted
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerESDeleted: anObject [
+	libvlc_MediaPlayerESDeleted := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerESSelected [
+	^ libvlc_MediaPlayerESSelected
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerESSelected: anObject [
+	libvlc_MediaPlayerESSelected := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerEncounteredError [
+	^ libvlc_MediaPlayerEncounteredError
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerEncounteredError: anObject [
+	libvlc_MediaPlayerEncounteredError := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerEndReached [
+	^ libvlc_MediaPlayerEndReached
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerEndReached: anObject [
+	libvlc_MediaPlayerEndReached := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerForward [
+	^ libvlc_MediaPlayerForward
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerForward: anObject [
+	libvlc_MediaPlayerForward := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerLengthChanged [
+	^ libvlc_MediaPlayerLengthChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerLengthChanged: anObject [
+	libvlc_MediaPlayerLengthChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerMediaChanged [
+	^ libvlc_MediaPlayerMediaChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerMediaChanged: anObject [
+	libvlc_MediaPlayerMediaChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerMuted [
+	^ libvlc_MediaPlayerMuted
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerMuted: anObject [
+	libvlc_MediaPlayerMuted := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerNothingSpecial [
+	^ libvlc_MediaPlayerNothingSpecial
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerNothingSpecial: anObject [
+	libvlc_MediaPlayerNothingSpecial := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerOpening [
+	^ libvlc_MediaPlayerOpening
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerOpening: anObject [
+	libvlc_MediaPlayerOpening := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPausableChanged [
+	^ libvlc_MediaPlayerPausableChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPausableChanged: anObject [
+	libvlc_MediaPlayerPausableChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPaused [
+	^ libvlc_MediaPlayerPaused
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPaused: anObject [
+	libvlc_MediaPlayerPaused := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPlaying [
+	^ libvlc_MediaPlayerPlaying
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPlaying: anObject [
+	libvlc_MediaPlayerPlaying := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPositionChanged [
+	^ libvlc_MediaPlayerPositionChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerPositionChanged: anObject [
+	libvlc_MediaPlayerPositionChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerScrambledChanged [
+	^ libvlc_MediaPlayerScrambledChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerScrambledChanged: anObject [
+	libvlc_MediaPlayerScrambledChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerSeekableChanged [
+	^ libvlc_MediaPlayerSeekableChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerSeekableChanged: anObject [
+	libvlc_MediaPlayerSeekableChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerSnapshotTaken [
+	^ libvlc_MediaPlayerSnapshotTaken
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerSnapshotTaken: anObject [
+	libvlc_MediaPlayerSnapshotTaken := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerStopped [
+	^ libvlc_MediaPlayerStopped
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerStopped: anObject [
+	libvlc_MediaPlayerStopped := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerTimeChanged [
+	^ libvlc_MediaPlayerTimeChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerTimeChanged: anObject [
+	libvlc_MediaPlayerTimeChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerTitleChanged [
+	^ libvlc_MediaPlayerTitleChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerTitleChanged: anObject [
+	libvlc_MediaPlayerTitleChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerUncorked [
+	^ libvlc_MediaPlayerUncorked
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerUncorked: anObject [
+	libvlc_MediaPlayerUncorked := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerUnmuted [
+	^ libvlc_MediaPlayerUnmuted
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerUnmuted: anObject [
+	libvlc_MediaPlayerUnmuted := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerVout [
+	^ libvlc_MediaPlayerVout
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaPlayerVout: anObject [
+	libvlc_MediaPlayerVout := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaStateChanged [
+	^ libvlc_MediaStateChanged
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaStateChanged: anObject [
+	libvlc_MediaStateChanged := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaSubItemAdded [
+	^ libvlc_MediaSubItemAdded
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaSubItemAdded: anObject [
+	libvlc_MediaSubItemAdded := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaSubItemTreeAdded [
+	^ libvlc_MediaSubItemTreeAdded
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaSubItemTreeAdded: anObject [
+	libvlc_MediaSubItemTreeAdded := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaThumbnailGenerated [
+	^ libvlc_MediaThumbnailGenerated
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_MediaThumbnailGenerated: anObject [
+	libvlc_MediaThumbnailGenerated := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_RendererDiscovererItemAdded [
+	^ libvlc_RendererDiscovererItemAdded
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_RendererDiscovererItemAdded: anObject [
+	libvlc_RendererDiscovererItemAdded := anObject
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_RendererDiscovererItemDeleted [
+	^ libvlc_RendererDiscovererItemDeleted
+]
+
+{ #category : #accessing }
+VLCEventTypeEnumeration class >> libvlc_RendererDiscovererItemDeleted: anObject [
+	libvlc_RendererDiscovererItemDeleted := anObject
 ]

@@ -21,21 +21,20 @@ VLCLibrary >> addMedia: aMedia inMediaList: aMediaList [
 VLCLibrary >> attachToEventManager: anEventManager forEvent: aTypeOfEvent withCallback: aCallbackMethod andData: dataWeWantToCarryWithTheEvent [
 	"
 	anEventManager := vlc eventManagerListPlayer: aListPlayer.
-	'the list of event type is available here: https://www.videolan.org/developers/vlc/doc/doxygen/html/group__libvlc__event.html#ga7af8cc980d8f13c9c10ed632990ce6ef'
 	vlc
-		attachToEventManager: anEventManager 
-		forEvent: 'libvlc_MediaListPlayerNextItemSet'
-		withCallback: aCallbackMethod 
-		andData: dataWeWantToCarryWithTheEvent
+		attachToEventManager: eventManager 
+		forEvent: VLCEventTypeEnumeration libvlc_MediaListPlayerNextItemSet
+		withCallback: VLCEvent
+		andData: 0.0.
 	"
-	
+
 	self
 		ffiCall:
 			'
 	int libvlc_event_attach ( void * anEventManager,
-	void aTypeOfEvent,
-	void aCallbackMethod,
-	void * dataWeWantToCarryWithTheEvent 
+	VLCEventTypeEnumeration aTypeOfEvent,
+	VLCEventCallback aCallbackMethod,
+	float* dataWeWantToCarryWithTheEvent 
 )	'
 ]
 
