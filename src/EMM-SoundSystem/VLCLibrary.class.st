@@ -17,6 +17,28 @@ VLCLibrary >> addMedia: aMedia inMediaList: aMediaList [
 	^ self ffiCall: 'bool libvlc_media_list_add_media(void* aMediaList, void* aMedia)'
 ]
 
+{ #category : #'event manager' }
+VLCLibrary >> attachToEventManager: anEventManager forEvent: aTypeOfEvent withCallback: aCallbackMethod andData: dataWeWantToCarryWithTheEvent [
+	"
+	anEventManager := vlc eventManagerListPlayer: aListPlayer.
+	'the list of event type is available here: https://www.videolan.org/developers/vlc/doc/doxygen/html/group__libvlc__event.html#ga7af8cc980d8f13c9c10ed632990ce6ef'
+	vlc
+		attachToEventManager: anEventManager 
+		forEvent: 'libvlc_MediaListPlayerNextItemSet'
+		withCallback: aCallbackMethod 
+		andData: dataWeWantToCarryWithTheEvent
+	"
+	
+	self
+		ffiCall:
+			'
+	int libvlc_event_attach ( void * anEventManager,
+	void aTypeOfEvent,
+	void aCallbackMethod,
+	void * dataWeWantToCarryWithTheEvent 
+)	'
+]
+
 { #category : #'media list player' }
 VLCLibrary >> createListPlayer [
 	^ self ffiCall: 'void* libvlc_media_list_player_new(void* libVLCInstance)'
@@ -38,6 +60,11 @@ VLCLibrary >> createPlayerForMedia: aVLCMedia [
 	"
 
 	^ self ffiCall: 'void* libvlc_media_player_new_from_media(void* aVLCMedia);'
+]
+
+{ #category : #'media list player' }
+VLCLibrary >> eventManagerListPlayer: aListPlayer [
+	^ self ffiCall: 'void* libvlc_media_list_player_event_manager (void* aListPlayer)'
 ]
 
 { #category : #initialization }
