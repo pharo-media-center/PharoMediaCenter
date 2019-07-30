@@ -1,28 +1,28 @@
 Class {
-	#name : #'VLC_media_meta_changed',
+	#name : #'VLC_media_player_buffering',
 	#superclass : #FFIExternalStructure,
 	#classVars : [
-		'OFFSET_META_TYPE'
+		'OFFSET_NEW_CACHE'
 	],
 	#category : #'EMM-SoundSystem-Structure'
 }
 
 { #category : #'field definition' }
-VLC_media_meta_changed class >> fieldsDesc [
+VLC_media_player_buffering class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
-	VLCMetaT meta_type
+	float new_cache;
 	)
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type [
+VLC_media_player_buffering >> new_cache [
 	"This method was automatically generated"
-	^VLCMetaT fromInteger: (handle unsignedLongAt: OFFSET_META_TYPE)
+	^handle floatAt: OFFSET_NEW_CACHE
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type: anObject [
+VLC_media_player_buffering >> new_cache: anObject [
 	"This method was automatically generated"
-	handle unsignedLongAt: OFFSET_META_TYPE put: anObject value
+	handle floatAt: OFFSET_NEW_CACHE put: anObject
 ]

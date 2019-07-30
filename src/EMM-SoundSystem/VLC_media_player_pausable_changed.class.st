@@ -1,28 +1,28 @@
 Class {
-	#name : #'VLC_media_meta_changed',
+	#name : #'VLC_media_player_pausable_changed',
 	#superclass : #FFIExternalStructure,
 	#classVars : [
-		'OFFSET_META_TYPE'
+		'OFFSET_NEW_PAUSABLE'
 	],
 	#category : #'EMM-SoundSystem-Structure'
 }
 
 { #category : #'field definition' }
-VLC_media_meta_changed class >> fieldsDesc [
+VLC_media_player_pausable_changed class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
-	VLCMetaT meta_type
+	int new_pausable;
 	)
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type [
+VLC_media_player_pausable_changed >> new_pausable [
 	"This method was automatically generated"
-	^VLCMetaT fromInteger: (handle unsignedLongAt: OFFSET_META_TYPE)
+	^handle signedLongAt: OFFSET_NEW_PAUSABLE
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type: anObject [
+VLC_media_player_pausable_changed >> new_pausable: anObject [
 	"This method was automatically generated"
-	handle unsignedLongAt: OFFSET_META_TYPE put: anObject value
+	handle signedLongAt: OFFSET_NEW_PAUSABLE put: anObject
 ]

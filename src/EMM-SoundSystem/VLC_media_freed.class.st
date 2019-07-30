@@ -1,28 +1,32 @@
 Class {
-	#name : #'VLC_media_meta_changed',
+	#name : #'VLC_media_freed',
 	#superclass : #FFIExternalStructure,
 	#classVars : [
-		'OFFSET_META_TYPE'
+		'OFFSET_MD'
 	],
 	#category : #'EMM-SoundSystem-Structure'
 }
 
 { #category : #'field definition' }
-VLC_media_meta_changed class >> fieldsDesc [
+VLC_media_freed class >> fieldsDesc [
 	"self rebuildFieldAccessors"
+	" struct {
+      libvlc_media_t *   md
+ 
+   }   media_freed"
 	^ #(
-	VLCMetaT meta_type
+	void * md;
 	)
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type [
+VLC_media_freed >> md [
 	"This method was automatically generated"
-	^VLCMetaT fromInteger: (handle unsignedLongAt: OFFSET_META_TYPE)
+	^ExternalData fromHandle: (handle pointerAt: OFFSET_MD) type: ExternalType void asPointerType
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type: anObject [
+VLC_media_freed >> md: anObject [
 	"This method was automatically generated"
-	handle unsignedLongAt: OFFSET_META_TYPE put: anObject value
+	handle pointerAt: OFFSET_MD put: anObject getHandle.
 ]

@@ -1,28 +1,28 @@
 Class {
-	#name : #'VLC_media_meta_changed',
+	#name : #'VLC_media_player_audio_volume',
 	#superclass : #FFIExternalStructure,
 	#classVars : [
-		'OFFSET_META_TYPE'
+		'OFFSET_VOLUME'
 	],
 	#category : #'EMM-SoundSystem-Structure'
 }
 
 { #category : #'field definition' }
-VLC_media_meta_changed class >> fieldsDesc [
+VLC_media_player_audio_volume class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
-	VLCMetaT meta_type
+	float volume;
 	)
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type [
+VLC_media_player_audio_volume >> volume [
 	"This method was automatically generated"
-	^VLCMetaT fromInteger: (handle unsignedLongAt: OFFSET_META_TYPE)
+	^handle floatAt: OFFSET_VOLUME
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type: anObject [
+VLC_media_player_audio_volume >> volume: anObject [
 	"This method was automatically generated"
-	handle unsignedLongAt: OFFSET_META_TYPE put: anObject value
+	handle floatAt: OFFSET_VOLUME put: anObject
 ]

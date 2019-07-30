@@ -1,28 +1,28 @@
 Class {
-	#name : #'VLC_media_meta_changed',
+	#name : #'VLC_media_player_length_changed',
 	#superclass : #FFIExternalStructure,
 	#classVars : [
-		'OFFSET_META_TYPE'
+		'OFFSET_NEW_LENGTH'
 	],
 	#category : #'EMM-SoundSystem-Structure'
 }
 
 { #category : #'field definition' }
-VLC_media_meta_changed class >> fieldsDesc [
+VLC_media_player_length_changed class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
-	VLCMetaT meta_type
+	int64 new_length;
 	)
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type [
+VLC_media_player_length_changed >> new_length [
 	"This method was automatically generated"
-	^VLCMetaT fromInteger: (handle unsignedLongAt: OFFSET_META_TYPE)
+	^handle signedLongLongAt: OFFSET_NEW_LENGTH
 ]
 
 { #category : #'accessing structure variables' }
-VLC_media_meta_changed >> meta_type: anObject [
+VLC_media_player_length_changed >> new_length: anObject [
 	"This method was automatically generated"
-	handle unsignedLongAt: OFFSET_META_TYPE put: anObject value
+	handle signedLongLongAt: OFFSET_NEW_LENGTH put: anObject
 ]
