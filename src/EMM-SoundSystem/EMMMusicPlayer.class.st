@@ -65,7 +65,8 @@ EMMMusicPlayer >> initialize [
 { #category : #initialization }
 EMMMusicPlayer >> initializeEvents [
 	| result |
-	setCurrentPlayable := VLCEventCallback on: [ :event :data | Transcript crLog: 'HHEHHEHEHHEHHE' ].
+	"keep setCurrentPlayable in instance var because the gargabe collec must not collect it"
+	setCurrentPlayable := VLCEventCallback on: [ :event :data | 1halt.  ].
 	result := vlc
 		attachToEventManager: vlcEventManager 
 		forEvent: VLCEventTypeEnumeration libvlc_MediaListPlayerNextItemSet
