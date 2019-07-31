@@ -9,10 +9,18 @@ Class {
 	#instVars : [
 		'musicList',
 		'vlc',
-		'vlcListPlayer'
+		'vlcListPlayer',
+		'playableToMedia',
+		'currentPlayable'
 	],
-	#category : #'EMM-SoundSystem'
+	#category : #'EMM-SoundSystem-MusicPlayer'
 }
+
+{ #category : #initialization }
+EMMMusicPlayer class >> reset [
+	<script>
+	VLCLibrary reset
+]
 
 { #category : #accessing }
 EMMMusicPlayer >> add: aPlayable [
@@ -30,13 +38,13 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 ]
 
 { #category : #accessing }
-EMMMusicPlayer >> currentMusic [
-	^ nil
+EMMMusicPlayer >> currentPlayable [
+	^ currentPlayable
 ]
 
 { #category : #accessing }
-EMMMusicPlayer >> currentSound [ 
-	^ nil
+EMMMusicPlayer >> currentPlayable: anObject [
+	currentPlayable := anObject
 ]
 
 { #category : #initialization }
@@ -45,12 +53,18 @@ EMMMusicPlayer >> initialize [
 	musicList := OrderedCollection new.
 	vlc := VLCLibrary uniqueInstance.
 	vlcListPlayer := vlc createListPlayer.
+	playableToMedia := Dictionary new.
 	
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> isPlaying [
 	^ vlc isListPlayerPlaying: vlcListPlayer
+]
+
+{ #category : #private }
+EMMMusicPlayer >> mediaForPlayable: aPlayable [
+	^ playableToMedia at: aPlayable ifAbsentPut: [ vlc mediaFileFromStringPath: aPlayable path originalString ]
 ]
 
 { #category : #accessing }
@@ -61,9 +75,10 @@ EMMMusicPlayer >> musicList [
 { #category : #accessing }
 EMMMusicPlayer >> musicList: aListOfPlayable [
 	| mediaList |
-	self flag: #ImproveWithFFICallThatSetTheListInOneTime.
+	self resetList.
+	musicList addAll: aListOfPlayable.
 	mediaList := vlc createMediaList.
-	aListOfPlayable collect: [ :aPlayable | vlc mediaFileFromStringPath: aPlayable path originalString ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
+	aListOfPlayable collect: [ :aPlayable | self mediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
 	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
 	self play
 ]
@@ -86,4 +101,9 @@ EMMMusicPlayer >> play [
 { #category : #control }
 EMMMusicPlayer >> previousSound [
 	vlc previousListPlayer: vlcListPlayer
+]
+
+{ #category : #private }
+EMMMusicPlayer >> resetList [
+	playableToMedia removeAll
 ]

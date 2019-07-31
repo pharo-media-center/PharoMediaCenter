@@ -26,7 +26,7 @@ EMMHeader >> renderContentOn: html [
 					html mdlAnchorButton
 						icon;
 						id: html nextId;
-						callback: [  self session musicPlayer reset ];
+						callback: [  self session emm reset ];
 						with: [ html mdlIcon: 'cached' ].
 					html mdlTooltip
 						for: html lastId;

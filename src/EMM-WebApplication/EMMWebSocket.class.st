@@ -34,5 +34,5 @@ EMMWebSocket >> initialize [
 EMMWebSocket >> value: webSocket [
 	"I stream status messages to a WebSocket client, once every second 
 	until ConnectionClosed or no longer isConnected"
-	self emm ifNotNil: [ webSocket sendMessage:( emm currentMusic ifNil: [ 'No Sound' ] ifNotNil: [:sound | sound title]) ] ifNil: [ webSocket sendMessage: 'EMM Not Connected' ] 
+	self emm ifNotNil: [ webSocket sendMessage:( emm currentPlayable ifNil: [ 'No Sound' ] ifNotNil: [:sound | sound title]) ] ifNil: [ webSocket sendMessage: 'EMM Not Connected' ] 
 ]

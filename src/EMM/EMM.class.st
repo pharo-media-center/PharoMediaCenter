@@ -25,13 +25,8 @@ EMM >> artists [
 ]
 
 { #category : #'api - music' }
-EMM >> currentMusic [
-	^ self musicPlayer currentMusic
-]
-
-{ #category : #'api - music' }
-EMM >> currentSound [
-	^ self musicPlayer currentSound
+EMM >> currentPlayable [
+	^ self musicPlayer currentPlayable
 ]
 
 { #category : #initialization }
@@ -61,6 +56,11 @@ EMM >> initialize [
 	self musicPlayer: self defaultMusicPlayer new.
 ]
 
+{ #category : #'api - music' }
+EMM >> isPlaying [
+	self musicPlayer isPlaying
+]
+
 { #category : #'api - library' }
 EMM >> jingles [
 	^ self musicLibrary jingles 
@@ -87,6 +87,11 @@ EMM >> musicPlayer: anObject [
 ]
 
 { #category : #'api - music' }
+EMM >> next [
+	self musicPlayer nextSound
+]
+
+{ #category : #'api - music' }
 EMM >> pause [
 	self musicPlayer pause
 ]
@@ -97,8 +102,18 @@ EMM >> play [
 ]
 
 { #category : #'api - music' }
+EMM >> playList [
+	^ self musicPlayer musicList
+]
+
+{ #category : #'api - music' }
 EMM >> playList: aListOfPlayable [
 	self musicPlayer musicList: aListOfPlayable
+]
+
+{ #category : #'api - music' }
+EMM >> previous [
+	self musicPlayer previousSound
 ]
 
 { #category : #'api - music' }

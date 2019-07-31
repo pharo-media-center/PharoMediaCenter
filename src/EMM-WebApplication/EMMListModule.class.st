@@ -54,7 +54,7 @@ EMMListModule >> renderContentOn: html [
 									html mdlTableCell
 										nonNumerical;
 										with: [ html mdlAnchorButton
-														callback: [ self session musicPlayer musicList: (datas copyFrom: index to: datas size )  ];
+														callback: [ self session model playList: (datas copyFrom: index to: datas size )  ];
 														colored;
 														icon;
 														with: [ html mdlIcon: 'play_arrow' ] ] ] ] ] ]

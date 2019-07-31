@@ -49,11 +49,6 @@ EMMSession >> model: anObject [
 ]
 
 { #category : #accessing }
-EMMSession >> musicPlayer [
-	^ self model musicPlayer
-]
-
-{ #category : #accessing }
 EMMSession >> rootComponent [
 	^ rootComponent
 ]
