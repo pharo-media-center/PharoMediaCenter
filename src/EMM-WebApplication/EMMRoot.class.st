@@ -67,7 +67,7 @@ EMMRoot class >> open [
 				detect: #isRunning
 				ifFound: [ :anAdaptor | port := anAdaptor server port ]
 				ifNone: [ (ZnZincServerAdaptor port: (port := 8085)) start ] ].
-	WebBrowser openOn: 'http://localhost:' , port asString , '/Event Music Manager'
+	WebBrowser openOn: 'http://localhost:' , port asString , '/Event%20Music%20Manager'
 ]
 
 { #category : #hooks }
