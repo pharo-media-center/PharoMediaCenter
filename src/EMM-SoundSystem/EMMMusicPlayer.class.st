@@ -11,7 +11,8 @@ Class {
 		'vlcListPlayer',
 		'playableToMedia',
 		'currentPlayable',
-		'vlcEventManager'
+		'vlcEventManager',
+		'setCurrentPlayable'
 	],
 	#category : #'EMM-SoundSystem-MusicPlayer'
 }
@@ -63,7 +64,7 @@ EMMMusicPlayer >> initialize [
 
 { #category : #initialization }
 EMMMusicPlayer >> initializeEvents [
-	| setCurrentPlayable result |
+	| result |
 	setCurrentPlayable := VLCEventCallback on: [ :event :data | Transcript crLog: 'HHEHHEHEHHEHHE' ].
 	result := vlc
 		attachToEventManager: vlcEventManager 
