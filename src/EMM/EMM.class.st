@@ -58,7 +58,7 @@ EMM >> initialize [
 
 { #category : #'api - music' }
 EMM >> isPlaying [
-	self musicPlayer isPlaying
+	^ self musicPlayer isPlaying
 ]
 
 { #category : #'api - library' }
