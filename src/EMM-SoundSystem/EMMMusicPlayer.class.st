@@ -44,12 +44,7 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> currentPlayable [
-	^ nil
-]
-
-{ #category : #accessing }
-EMMMusicPlayer >> currentPlayable: anObject [
-	currentPlayable := anObject
+	^ currentPlayable
 ]
 
 { #category : #initialization }
@@ -66,9 +61,15 @@ EMMMusicPlayer >> initialize [
 EMMMusicPlayer >> initializeEvents [
 	| result |
 	"keep setCurrentPlayable in instance var because the gargabe collec must not collect it"
-	setCurrentPlayable := VLCEventCallback on: [ :event :data | 1halt.  ].
+	setCurrentPlayable := VLCEventCallback
+		on: [ :event :data | 
+			| vlcEvent |
+			vlcEvent := VLCEvent_t fromHandle: event.
+			currentPlayable := (playableToMedia associationsSelect: [ :assoc | assoc value getHandle = vlcEvent u vlcmpmc new_media getHandle ])
+				ifNotEmpty: [ :assocCollection | assocCollection keyAtIndex: 1 ]
+				ifEmpty: [ nil ] ].
 	result := vlc
-		attachToEventManager: vlcEventManager 
+		attachToEventManager: vlcEventManager
 		forEvent: VLCEventTypeEnumeration libvlc_MediaListPlayerNextItemSet
 		withCallback: setCurrentPlayable
 		andData: 0.0.
