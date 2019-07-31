@@ -11,7 +11,7 @@ Class {
 		'vlcListPlayer',
 		'playableToMedia',
 		'currentPlayable',
-		'musicList'
+		'vlcEventManager'
 	],
 	#category : #'EMM-SoundSystem-MusicPlayer'
 }
@@ -44,7 +44,6 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 { #category : #accessing }
 EMMMusicPlayer >> currentPlayable [
 	^ nil
-	"^ (playableToMedia keyAtIdentityValue: (vlc getCurrentMediaOfListPlayer: vlcListPlayer)) ifNil: [ Transcript crLog: 'No current sound' ]"
 ]
 
 { #category : #accessing }
@@ -57,8 +56,21 @@ EMMMusicPlayer >> initialize [
 	super initialize.
 	vlc := VLCLibrary uniqueInstance.
 	vlcListPlayer := vlc createListPlayer.
+	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
 	playableToMedia := OrderedDictionary new.
-	
+	self initializeEvents	
+]
+
+{ #category : #initialization }
+EMMMusicPlayer >> initializeEvents [
+	| setCurrentPlayable result |
+	setCurrentPlayable := VLCEventCallback on: [ :event :data | Transcript crLog: 'HHEHHEHEHHEHHE' ].
+	result := vlc
+		attachToEventManager: vlcEventManager 
+		forEvent: VLCEventTypeEnumeration libvlc_MediaListPlayerNextItemSet
+		withCallback: setCurrentPlayable
+		andData: 0.0.
+	result ~= 0 ifTrue: [ self error: 'Event Manager not correctly set' ]
 ]
 
 { #category : #accessing }
