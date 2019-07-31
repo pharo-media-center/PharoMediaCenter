@@ -87,6 +87,11 @@ VLCLibrary >> eventManagerListPlayer: aListPlayer [
 	^ self ffiCall: 'void* libvlc_media_list_player_event_manager (void* aListPlayer)'
 ]
 
+{ #category : #'media list player' }
+VLCLibrary >> getCurrentMediaOfListPlayer: aListPlayer [
+	^ self ffiCall: 'void * libvlc_media_list_player_get_media_player (void * aListPlayer)'
+]
+
 { #category : #initialization }
 VLCLibrary >> initialize [
 	super initialize.

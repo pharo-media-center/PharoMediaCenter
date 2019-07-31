@@ -116,6 +116,11 @@ EMM >> previous [
 	self musicPlayer previousSound
 ]
 
+{ #category : #api }
+EMM >> reset [
+	self musicPlayer reset
+]
+
 { #category : #'api - music' }
 EMM >> resume [
 	self musicPlayer play

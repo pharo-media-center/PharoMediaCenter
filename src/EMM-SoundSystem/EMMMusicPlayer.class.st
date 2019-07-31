@@ -7,11 +7,11 @@ Class {
 	#name : #EMMMusicPlayer,
 	#superclass : #Object,
 	#instVars : [
-		'musicList',
 		'vlc',
 		'vlcListPlayer',
 		'playableToMedia',
-		'currentPlayable'
+		'currentPlayable',
+		'musicList'
 	],
 	#category : #'EMM-SoundSystem-MusicPlayer'
 }
@@ -29,17 +29,22 @@ EMMMusicPlayer >> add: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> addAtTheBeginning: aPlayable [
-	musicList addFirst: aPlayable
+	| media |
+	media := self mediaForPlayable: aPlayable.
+	self flag: #todo
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> addAtTheEnd: aPlayable [
-	musicList addLast: aPlayable
+	| media |
+	media := self mediaForPlayable: aPlayable.
+	self flag: #todo
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> currentPlayable [
-	^ currentPlayable
+	^ nil
+	"^ (playableToMedia keyAtIdentityValue: (vlc getCurrentMediaOfListPlayer: vlcListPlayer)) ifNil: [ Transcript crLog: 'No current sound' ]"
 ]
 
 { #category : #accessing }
@@ -50,10 +55,9 @@ EMMMusicPlayer >> currentPlayable: anObject [
 { #category : #initialization }
 EMMMusicPlayer >> initialize [
 	super initialize.
-	musicList := OrderedCollection new.
 	vlc := VLCLibrary uniqueInstance.
 	vlcListPlayer := vlc createListPlayer.
-	playableToMedia := Dictionary new.
+	playableToMedia := OrderedDictionary new.
 	
 ]
 
@@ -69,16 +73,16 @@ EMMMusicPlayer >> mediaForPlayable: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> musicList [
-	^ musicList
+	^ playableToMedia keys
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> musicList: aListOfPlayable [
 	| mediaList |
-	self resetList.
-	musicList addAll: aListOfPlayable.
+	self resetList..
 	mediaList := vlc createMediaList.
 	aListOfPlayable collect: [ :aPlayable | self mediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
+	self pause.
 	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
 	self play
 ]
@@ -101,6 +105,12 @@ EMMMusicPlayer >> play [
 { #category : #control }
 EMMMusicPlayer >> previousSound [
 	vlc previousListPlayer: vlcListPlayer
+]
+
+{ #category : #initialization }
+EMMMusicPlayer >> reset [
+	self class reset.
+	self initialize
 ]
 
 { #category : #private }

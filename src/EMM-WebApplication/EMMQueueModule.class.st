@@ -25,7 +25,7 @@ EMMQueueModule >> renderContentOn: html [
 		with: [ html mdlCell
 				size: 4;
 				with: [ html mdlAnchorButton
-						callback: [ self session model previousSound ];
+						callback: [ self session model previous ];
 						icon;
 						with: [ html mdlIcon: 'skip_previous' ].
 					self session model isPlaying

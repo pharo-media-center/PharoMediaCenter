@@ -26,7 +26,7 @@ EMMHeader >> renderContentOn: html [
 					html mdlAnchorButton
 						icon;
 						id: html nextId;
-						callback: [  self session emm reset ];
+						callback: [  self session model reset ];
 						with: [ html mdlIcon: 'cached' ].
 					html mdlTooltip
 						for: html lastId;
