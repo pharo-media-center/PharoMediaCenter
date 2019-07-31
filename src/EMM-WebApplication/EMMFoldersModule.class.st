@@ -13,10 +13,19 @@ EMMFoldersModule class >> priority [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> renderContentOn: html [
+EMMFoldersModule >> artistsContentOn: html [
 	html div
-		mdlTextColorAccent;
-		with: 'Selected element: ' , (selectedElement ifNil: [ 'No element selected' ] ifNotNil: [ selectedElement name ]).
+		with:
+			((MDLNestedList elements: self session model artists asSortedCollection children: [ :child | #() ])
+				format: [ :emmmDirectory | emmmDirectory name ];
+				"helpBlock: [ :fileReference | fileReference fullPath fullName ];"
+				selectedEntity: selectedElement;
+				actionBlock: [ :class | self selectedElement: class ];
+				yourself)
+]
+
+{ #category : #rendering }
+EMMFoldersModule >> foldersContentOn: html [
 	html div
 		with:
 			((MDLNestedList elements: self session model directories values children: [ :child | #() ])
@@ -25,6 +34,23 @@ EMMFoldersModule >> renderContentOn: html [
 				selectedEntity: selectedElement;
 				actionBlock: [ :class | self selectedElement: class ];
 				yourself)
+]
+
+{ #category : #rendering }
+EMMFoldersModule >> playlistsContentOn: html [
+	html div
+		with:
+			((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
+				format: [ :emmmDirectory | emmmDirectory name ];
+				"helpBlock: [ :fileReference | fileReference fullPath fullName ];"
+				selectedEntity: selectedElement;
+				actionBlock: [ :class | self selectedElement: class ];
+				yourself)
+]
+
+{ #category : #rendering }
+EMMFoldersModule >> renderContentOn: html [
+	self artistsContentOn: html.
 ]
 
 { #category : #rendering }

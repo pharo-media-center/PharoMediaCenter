@@ -42,7 +42,7 @@ EMMMFolder >> initializationFromFile: aFileReference [
 
 { #category : #initialization }
 EMMMFolder >> initialize [ 
-	songs := Set new
+	songs := OrderedCollection new
 ]
 
 { #category : #accessing }

@@ -1,5 +1,5 @@
 Class {
-	#name : #EMMMArtist,
+	#name : #EMMMPlaylist,
 	#superclass : #Object,
 	#instVars : [
 		'songs',
@@ -9,12 +9,12 @@ Class {
 }
 
 { #category : #comparing }
-EMMMArtist >> <= anEMMArtist [
-	^ self name < anEMMArtist name
+EMMMPlaylist >> <= anEMMMPlaylist [
+	^ self name < anEMMMPlaylist name
 ]
 
 { #category : #comparing }
-EMMMArtist >> = anObject [
+EMMMPlaylist >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
 
 	self == anObject ifTrue: [ ^ true ].
@@ -23,38 +23,38 @@ EMMMArtist >> = anObject [
 ]
 
 { #category : #accessing }
-EMMMArtist >> addSong: anEMMSong [
+EMMMPlaylist >> addSong: anEMMSong [
 	songs add: anEMMSong
 ]
 
 { #category : #comparing }
-EMMMArtist >> hash [
+EMMMPlaylist >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
 	^ name hash
 ]
 
 { #category : #accessing }
-EMMMArtist >> initialize [
-	songs := Set new
+EMMMPlaylist >> initialize [
+	songs := OrderedCollection new
 ]
 
 { #category : #accessing }
-EMMMArtist >> name [
+EMMMPlaylist >> name [
 	^ name
 ]
 
 { #category : #accessing }
-EMMMArtist >> name: anObject [
+EMMMPlaylist >> name: anObject [
 	name := anObject
 ]
 
 { #category : #accessing }
-EMMMArtist >> songs [
+EMMMPlaylist >> songs [
 	^ songs
 ]
 
 { #category : #accessing }
-EMMMArtist >> songs: anObject [
+EMMMPlaylist >> songs: anObject [
 	songs := anObject
 ]

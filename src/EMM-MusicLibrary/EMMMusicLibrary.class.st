@@ -7,7 +7,8 @@ Class {
 		'songs',
 		'directories',
 		'jingles',
-		'musicPlayer'
+		'musicPlayer',
+		'playlists'
 	],
 	#category : #'EMM-MusicLibrary'
 }
@@ -23,8 +24,13 @@ EMMMusicLibrary >> addJingle: anEMMJingle [
 ]
 
 { #category : #accessing }
+EMMMusicLibrary >> addPlaylist: anEMMMPlaylist [
+	playlists add: anEMMMPlaylist
+]
+
+{ #category : #accessing }
 EMMMusicLibrary >> artists [
-	^ directories
+	^ artists
 ]
 
 { #category : #accessing }
@@ -37,12 +43,18 @@ EMMMusicLibrary >> initialize [
 	songs := Set new.
 	artists := Set new.
 	jingles := Set new.
+	playlists := Set new.
 	directories := Dictionary new
 ]
 
 { #category : #accessing }
 EMMMusicLibrary >> jingles [
 	^ jingles 
+]
+
+{ #category : #accessing }
+EMMMusicLibrary >> playlists [
+	 ^ playlists
 ]
 
 { #category : #accessing }
