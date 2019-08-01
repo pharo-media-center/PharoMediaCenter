@@ -29,7 +29,8 @@ EMMMusicPlayer class >> initialize [
 { #category : #initialization }
 EMMMusicPlayer class >> reset [
 	<script>
-	VLCLibrary reset
+	VLCLibrary reset.
+	self allInstancesDo: #initialize
 ]
 
 { #category : #initialization }
