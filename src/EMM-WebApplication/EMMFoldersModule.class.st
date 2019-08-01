@@ -50,7 +50,13 @@ EMMFoldersModule >> playlistsContentOn: html [
 
 { #category : #rendering }
 EMMFoldersModule >> renderContentOn: html [
-	self artistsContentOn: html.
+	html
+		render:
+			(MDLTabWidget new
+				addTabNamed: 'Folders' content: [ self foldersContentOn: html ];
+				addTabNamed: 'Artists' content: [ self artistsContentOn: html ];
+				addTabNamed: 'Playlists' content: [ self playlistsContentOn: html ];
+				yourself)
 ]
 
 { #category : #rendering }

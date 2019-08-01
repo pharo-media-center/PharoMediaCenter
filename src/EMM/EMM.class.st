@@ -9,6 +9,12 @@ Class {
 	#category : #EMM
 }
 
+{ #category : #initialization }
+EMM class >> resetAll [
+	<script>
+	EMM allInstancesDo: #initialize
+]
+
 { #category : #'api - library' }
 EMM >> addArtist: anEMMArtist [
 	self musicLibrary addArtist: anEMMArtist
@@ -109,6 +115,11 @@ EMM >> playList [
 { #category : #'api - music' }
 EMM >> playList: aListOfPlayable [
 	self musicPlayer musicList: aListOfPlayable
+]
+
+{ #category : #'api - library' }
+EMM >> playlists [
+	^ self musicLibrary playlists
 ]
 
 { #category : #'api - music' }

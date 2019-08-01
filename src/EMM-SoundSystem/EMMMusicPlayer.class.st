@@ -18,9 +18,24 @@ Class {
 }
 
 { #category : #initialization }
+EMMMusicPlayer class >> initialize [
+	"Required to reset the Initialized flag on image startup.
+	Force libgit initialization since we just installed libgit.
+	Otherwise this would cause a libgit crash"
+	
+	Smalltalk addToStartUpList: self.
+]
+
+{ #category : #initialization }
 EMMMusicPlayer class >> reset [
 	<script>
 	VLCLibrary reset
+]
+
+{ #category : #initialization }
+EMMMusicPlayer class >> startUp: isImageStarting [
+
+	isImageStarting ifTrue: [ self reset ]
 ]
 
 { #category : #accessing }

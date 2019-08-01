@@ -7,9 +7,24 @@ Class {
 	#category : #'EMM-SoundSystem-Library'
 }
 
+{ #category : #'class initialization' }
+VLCLibrary class >> initialize [
+	"Required to reset the Initialized flag on image startup.
+	Force libgit initialization since we just installed libgit.
+	Otherwise this would cause a libgit crash"
+	
+	Smalltalk addToStartUpList: self.
+]
+
 { #category : #initialization }
 VLCLibrary class >> reset [ 
 	uniqueInstance := nil
+]
+
+{ #category : #'class initialization' }
+VLCLibrary class >> startUp: isImageStarting [
+
+	isImageStarting ifTrue: [ self reset ]
 ]
 
 { #category : #'media list' }
