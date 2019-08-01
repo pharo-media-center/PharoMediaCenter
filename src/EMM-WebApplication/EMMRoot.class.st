@@ -19,6 +19,8 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #EMMRoot,
 	#superclass : #EMMComponent,
+	#traits : 'TRootDialogRenderer',
+	#classTraits : 'TRootDialogRenderer classTrait',
 	#instVars : [
 		'header',
 		'componentToDisplay',
@@ -175,7 +177,8 @@ EMMRoot >> renderContentOn: html [
 								class: 'emmroot';
 								size: 12;
 								with: [ html render: self componentToDisplay ] ].
-					html render: self footer ] ]
+					html render: self footer ] ].
+	self renderEmptyGenericDialogOn: html
 ]
 
 { #category : #updating }

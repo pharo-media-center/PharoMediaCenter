@@ -12,7 +12,8 @@ Class {
 		'playableToMedia',
 		'currentPlayable',
 		'vlcEventManager',
-		'setCurrentPlayable'
+		'setCurrentPlayable',
+		'mediaList'
 	],
 	#category : #'EMM-SoundSystem-MusicPlayer'
 }
@@ -109,8 +110,7 @@ EMMMusicPlayer >> musicList [
 
 { #category : #accessing }
 EMMMusicPlayer >> musicList: aListOfPlayable [
-	| mediaList |
-	self resetList..
+	self resetList.
 	mediaList := vlc createMediaList.
 	aListOfPlayable collect: [ :aPlayable | self mediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
 	self pause.
