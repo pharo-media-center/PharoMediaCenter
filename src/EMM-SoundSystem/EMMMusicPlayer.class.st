@@ -12,7 +12,6 @@ Class {
 		'playableToMedia',
 		'currentPlayable',
 		'vlcEventManager',
-		'setCurrentPlayable',
 		'mediaList'
 	],
 	#category : #'EMM-SoundSystem-MusicPlayer'
@@ -61,7 +60,16 @@ EMMMusicPlayer >> addAtTheEnd: aPlayable [
 
 { #category : #accessing }
 EMMMusicPlayer >> currentPlayable [
-	^ currentPlayable
+	| mediaPlayer |
+	mediaPlayer := (vlc getCurrentMediaPlayerOfListPlayer: vlcListPlayer).
+	^ (playableToMedia associationsSelect: [ :assoc | assoc value getHandle = (vlc getMediaInsideMediaPlayer: mediaPlayer) getHandle ]) ifNotEmpty: [ :assocCollection | assocCollection keyAtIndex: 1 ] ifEmpty: [ nil ]
+]
+
+{ #category : #accessing }
+EMMMusicPlayer >> currentPosition [
+	| mediaPlayer |
+	mediaPlayer := vlc getCurrentMediaPlayerOfListPlayer: vlcListPlayer.
+	^ vlc positionMediaPlayer: mediaPlayer
 ]
 
 { #category : #initialization }
@@ -75,9 +83,10 @@ EMMMusicPlayer >> initialize [
 ]
 
 { #category : #initialization }
-EMMMusicPlayer >> initializeEvents [
-	| result |
-	"keep setCurrentPlayable in instance var because the gargabe collec must not collect it"
+EMMMusicPlayer >> initializeEventNextMusic [
+	"not use, but we keep the code cause it was cool"
+
+"	| result |
 	setCurrentPlayable := VLCEventCallback
 		on: [ :event :data | 
 			| vlcEvent |
@@ -90,7 +99,12 @@ EMMMusicPlayer >> initializeEvents [
 		forEvent: VLCEventTypeEnumeration libvlc_MediaListPlayerNextItemSet
 		withCallback: setCurrentPlayable
 		andData: 0.0.
-	result ~= 0 ifTrue: [ self error: 'Event Manager not correctly set' ]
+	result ~= 0 ifTrue: [ self error: 'Event Manager not correctly set' ]"
+]
+
+{ #category : #initialization }
+EMMMusicPlayer >> initializeEvents [
+	
 ]
 
 { #category : #accessing }

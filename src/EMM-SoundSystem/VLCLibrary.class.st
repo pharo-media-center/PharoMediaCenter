@@ -103,8 +103,13 @@ VLCLibrary >> eventManagerListPlayer: aListPlayer [
 ]
 
 { #category : #'media list player' }
-VLCLibrary >> getCurrentMediaOfListPlayer: aListPlayer [
+VLCLibrary >> getCurrentMediaPlayerOfListPlayer: aListPlayer [
 	^ self ffiCall: 'void * libvlc_media_list_player_get_media_player (void * aListPlayer)'
+]
+
+{ #category : #'media player' }
+VLCLibrary >> getMediaInsideMediaPlayer: aMediaPlayer [
+	^ self ffiCall: 'void * libvlc_media_player_get_media(void* aMediaPlayer);'
 ]
 
 { #category : #initialization }
