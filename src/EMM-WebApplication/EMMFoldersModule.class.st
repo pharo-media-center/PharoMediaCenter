@@ -20,7 +20,6 @@ EMMFoldersModule >> artistsContentOn: html [
 		with:
 			((MDLNestedList elements: self session model artists asSortedCollection children: [ :child | #() ])
 				format: [ :emmmDirectory | emmmDirectory name ];
-				"helpBlock: [ :fileReference | fileReference fullPath fullName ];"
 				selectedEntity: selectedElement;
 				actionBlock: [ :class | self selectedElement: class ];
 				yourself)
@@ -40,43 +39,47 @@ EMMFoldersModule >> foldersContentOn: html [
 
 { #category : #rendering }
 EMMFoldersModule >> playlistsContentOn: html [
-	html div
-		style: 'height: 100%';
-		with: [ (MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
-				format: [ :emmmDirectory | emmmDirectory name ];
-				"helpBlock: [ :fileReference | fileReference fullPath fullName ];"
-					selectedEntity: selectedElement;
-				actionBlock: [ :class | self selectedElement: class ];
-				yourself.
-			 ].
-		html mdlButton
-				style:
-					'float: right;
+	html mdlButton
+		style:
+			'float: right;
 					right: 0.5em;
 					top: 0.5em';
-				raised;
-				fab;
-				colored;
-				openDialogWithId: self rootDialogOpenId;
-				onClickUpdateRootDialogWith: [ :r | self renderAddPlaylistOn: r ];
-				with: '+'
+		raised;
+		fab;
+		colored;
+		openDialogWithId: self rootDialogOpenId;
+		onClickUpdateRootDialogWith: [ :r | self renderAddPlaylistOn: r ];
+		with: '+'. html div
+			with:
+			((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
+				format: [ :emmmDirectory | emmmDirectory name ];
+				selectedEntity: selectedElement;
+				actionBlock: [ :class | self selectedElement: class ];
+				yourself)
 ]
 
 { #category : #rendering }
 EMMFoldersModule >> renderAddPlaylistOn: html [
-	html mdlDialogTitle: 'Add playlist'.
+	| name |
 	html
-		mdlDialogContent: [ html mdlTextFieldContainer
-				floatingLabel;
-				with: [ html mdlTextFieldLabel
-						for: html nextId;
-						with: 'Name'.
-					html mdlTextFieldInput id: html lastId ] ].
-	html
-		mdlDialogActions: [ html mdlButton: 'Accept'.
-			html mdlButton
-				id: self rootDialogCloseId;
-				with: 'Cancel' ]
+		form: [ html mdlDialogTitle: 'Add playlist'.
+			html
+				mdlDialogContent: [ html mdlTextFieldContainer
+						floatingLabel;
+						with: [ html mdlTextFieldLabel
+								for: html nextId;
+								with: 'Name'.
+							html mdlTextFieldInput
+								id: html lastId;
+								callback: [ :value | name := value ] ] ].
+			html
+				mdlDialogActions: [ html mdlButton
+						beSubmit;
+						callback: [ self session model addPlaylistNamed: name ];
+						with: 'Accept'.
+					html mdlButton
+						id: self rootDialogCloseId;
+						with: 'Cancel' ] ]
 ]
 
 { #category : #rendering }

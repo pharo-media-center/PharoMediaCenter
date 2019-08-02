@@ -26,6 +26,15 @@ EMM >> addJingle: anEMMJingle [
 ]
 
 { #category : #'api - library' }
+EMM >> addPlaylistNamed: playListName [
+	self musicLibrary
+		addPlaylist:
+			(EMMMPlaylist new
+				name: playListName;
+				yourself)
+]
+
+{ #category : #'api - library' }
 EMM >> artists [
 	^ self musicLibrary artists
 ]
