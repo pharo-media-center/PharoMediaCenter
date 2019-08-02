@@ -1,10 +1,8 @@
 Class {
 	#name : #EMMMFolder,
-	#superclass : #Object,
+	#superclass : #EMMMWithPlayable,
 	#instVars : [
-		'parentFolder',
-		'name',
-		'songs'
+		'parentFolder'
 	],
 	#category : #'EMM-MusicLibrary'
 }
@@ -21,11 +19,6 @@ EMMMFolder >> = anObject [
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
 	^ parentFolder = anObject parentFolder and: [ name = anObject name ]
-]
-
-{ #category : #accessing }
-EMMMFolder >> addSong: anEMMMSong [
-	^ songs add: anEMMMSong
 ]
 
 { #category : #comparing }
@@ -46,16 +39,6 @@ EMMMFolder >> initialize [
 ]
 
 { #category : #accessing }
-EMMMFolder >> name [
-	^ name
-]
-
-{ #category : #accessing }
-EMMMFolder >> name: anObject [
-	name := anObject
-]
-
-{ #category : #accessing }
 EMMMFolder >> parentFolder [
 	^ parentFolder
 ]
@@ -63,14 +46,4 @@ EMMMFolder >> parentFolder [
 { #category : #accessing }
 EMMMFolder >> parentFolder: anObject [
 	parentFolder := anObject
-]
-
-{ #category : #accessing }
-EMMMFolder >> songs [
-	^ songs
-]
-
-{ #category : #accessing }
-EMMMFolder >> songs: anObject [
-	songs := anObject
 ]

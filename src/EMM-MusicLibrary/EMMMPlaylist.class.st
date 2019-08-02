@@ -1,10 +1,6 @@
 Class {
 	#name : #EMMMPlaylist,
-	#superclass : #Object,
-	#instVars : [
-		'songs',
-		'name'
-	],
+	#superclass : #EMMMWithPlayable,
 	#category : #'EMM-MusicLibrary'
 }
 
@@ -22,11 +18,6 @@ EMMMPlaylist >> = anObject [
 	^ name = anObject name
 ]
 
-{ #category : #accessing }
-EMMMPlaylist >> addSong: anEMMSong [
-	songs add: anEMMSong
-]
-
 { #category : #comparing }
 EMMMPlaylist >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -37,24 +28,4 @@ EMMMPlaylist >> hash [
 { #category : #accessing }
 EMMMPlaylist >> initialize [
 	songs := OrderedCollection new
-]
-
-{ #category : #accessing }
-EMMMPlaylist >> name [
-	^ name
-]
-
-{ #category : #accessing }
-EMMMPlaylist >> name: anObject [
-	name := anObject
-]
-
-{ #category : #accessing }
-EMMMPlaylist >> songs [
-	^ songs
-]
-
-{ #category : #accessing }
-EMMMPlaylist >> songs: anObject [
-	songs := anObject
 ]

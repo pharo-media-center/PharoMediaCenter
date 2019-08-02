@@ -67,28 +67,24 @@ EMMListModule >> renderContentOn: html [
 { #category : #rendering }
 EMMListModule >> renderDialogOn: html addPlayable: aPlayable [
 	| selected |
-	html mdlDialogTitle: 'Add to Playlist'.
 	html
-		mdlDialogContent: [ html
-				form: [ html
+		form: [ html mdlDialogTitle: 'Add to Playlist'.
+			html
+				mdlDialogContent: [ html
 						render:
-							((MDLSelectWidget
-								possibilities: self session model playlists
+							(MDLSelectWidget
+								possibilities: self session model playlists asOrderedCollection
 								inputLabel: 'Select Playlist'
 								labelBlock: #name
-								callback: [ :input | selected := input ]
-								selectedObject: 3
-								tooltip: 'description'
-								sortBlock: [ :a :b | a <= b ])
-								entryTooltip: [ :number | 'Choose number: ' , number asString ];
-								customizationBlock:
-										[ :textField :renderer | textField onChange: (html jQuery ajax serializeThis onComplete: ((html jQuery id: 'selectWithAjaxId') load html: [ :canvas | canvas text: 'Selected object: ' , selected asString ])) ];
-								yourself) ] ].
-	html
-		mdlDialogActions: [ html mdlButton: 'Accept'.
-			html mdlButton
-				id: self rootDialogCloseId;
-				with: 'Cancel' ]
+								callback: [ :input | selected := input ]) ].
+			html
+				mdlDialogActions: [ html mdlButton
+						beSubmit;
+						callback: [ selected addSong: aPlayable ];
+						with: 'Accept'.
+					html mdlButton
+						id: self rootDialogCloseId;
+						with: 'Cancel' ] ]
 ]
 
 { #category : #rendering }
@@ -106,7 +102,7 @@ EMMListModule >> renderOn: html menuForPlayable: song [
 			html mdlMenuItem
 				openDialogWithId: self rootDialogOpenId;
 				onClickUpdateRootDialogWith: [ :r | self renderDialogOn: r addPlayable: song ];
-				with: 'Open dialog' ]
+				with: 'Add in playlist' ]
 ]
 
 { #category : #accessing }
