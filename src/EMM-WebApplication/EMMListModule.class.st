@@ -102,7 +102,12 @@ EMMListModule >> renderOn: html menuForPlayable: song [
 			html mdlMenuItem
 				openDialogWithId: self rootDialogOpenId;
 				onClickUpdateRootDialogWith: [ :r | self renderDialogOn: r addPlayable: song ];
-				with: 'Add in playlist' ]
+				fullBleedDivider;
+				with: 'Add in playlist'.
+			html mdlMenuItem
+				with: 'Play next'.
+			html mdlMenuItem
+				with: 'Play at the end' ]
 ]
 
 { #category : #accessing }

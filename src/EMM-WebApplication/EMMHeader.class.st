@@ -23,15 +23,15 @@ EMMHeader >> renderContentOn: html [
 						callback: [ "Just refresh" ];
 						with: [ html mdlLayoutTitle: 'Event Music Manager' ].
 					html mdlLayoutSpacer.
-					html mdlAnchorButton
+					"html mdlAnchorButton
 						icon;
 						id: html nextId;
 						callback: [  self session model reset ];
 						with: [ html mdlIcon: 'cached' ].
 					html mdlTooltip
 						for: html lastId;
-						with: 'Reset the SoundPlayer'.
-						 html text: 'Version ', self version ] ].
+						with: 'Reset the SoundPlayer'"
+					html text: 'Version ' , self version ] ].
 	self renderDrawerOn: html
 ]
 
