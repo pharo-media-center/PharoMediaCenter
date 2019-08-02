@@ -39,23 +39,22 @@ EMMFoldersModule >> foldersContentOn: html [
 
 { #category : #rendering }
 EMMFoldersModule >> playlistsContentOn: html [
-	html mdlButton
-		style:
-			'float: right;
-					right: 0.5em;
-					top: 0.5em';
-		raised;
-		fab;
-		colored;
-		openDialogWithId: self rootDialogOpenId;
-		onClickUpdateRootDialogWith: [ :r | self renderAddPlaylistOn: r ];
-		with: '+'. html div
-			with:
-			((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
+	html div
+		style: 'position: relative;';
+		with: [ 
+			html render: ((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
 				format: [ :emmmDirectory | emmmDirectory name ];
 				selectedEntity: selectedElement;
 				actionBlock: [ :class | self selectedElement: class ];
-				yourself)
+				yourself).
+			html mdlButton
+				style: 'z-index: 10; position: absolute; top: 10px; right: 10px;';
+				raised;
+				fab;
+				colored;
+				openDialogWithId: self rootDialogOpenId;
+				onClickUpdateRootDialogWith: [ :r | self renderAddPlaylistOn: r ];
+				with: '+' ]
 ]
 
 { #category : #rendering }
