@@ -38,14 +38,3 @@ EMMJingle >> name [
 EMMJingle >> name: anObject [
 	name := anObject
 ]
-
-{ #category : #playing }
-EMMJingle >> play [
-	| streaming |
-	streaming := StreamingMP3Sound onFileNamed: self path originalString.
-	streaming soundPosition: self from / streaming duration seconds.
-	streaming play.
-	self duration  > 0 seconds
-		ifTrue: [ [ self duration wait.
-			streaming pause ] forkAt: Processor activePriority + 1 ]
-]
