@@ -59,7 +59,27 @@ EMM >> directories [
 	^ self musicLibrary directories
 ]
 
-{ #category : #initialization }
+{ #category : #export }
+EMM >> export [
+	self exportMusicLibrary.
+	self exportSettings
+]
+
+{ #category : #export }
+EMM >> exportMusicLibrary [
+	
+]
+
+{ #category : #export }
+EMM >> exportSettings [
+]
+
+{ #category : #import }
+EMM >> folderImport [
+	^ EMMFolderImporter new importFrom: self rootFolder in: self musicLibrary
+]
+
+{ #category : #import }
 EMM >> import [
 	^ EMMFolderImporter new importFrom: self rootFolder in: self musicLibrary
 ]
