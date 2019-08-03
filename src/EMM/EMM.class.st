@@ -81,7 +81,7 @@ EMM >> folderImport [
 
 { #category : #import }
 EMM >> import [
-	^ EMMSTONImporter new import
+	^ self musicLibrary: EMMImporter new import
 ]
 
 { #category : #initialization }

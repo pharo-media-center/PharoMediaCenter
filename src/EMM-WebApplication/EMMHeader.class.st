@@ -26,7 +26,7 @@ EMMHeader >> renderContentOn: html [
 					html mdlButton
 						icon;
 						id: html nextId;
-						callback: [  ];
+						callback: [ self session model import ];
 						with: [ html mdlIcon: 'cloud_download' ].
 					html mdlTooltip
 						for: html lastId;
@@ -34,7 +34,7 @@ EMMHeader >> renderContentOn: html [
 					html mdlButton
 						icon;
 						id: html nextId;
-						callback: [  ];
+						callback: [ self session model export ];
 						with: [ html mdlIcon: 'cloud_upload' ].
 					html mdlTooltip
 						for: html lastId;
