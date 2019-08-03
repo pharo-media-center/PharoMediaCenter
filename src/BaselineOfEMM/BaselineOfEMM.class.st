@@ -23,7 +23,8 @@ BaselineOfEMM >> defineDependencies: spec [
 		baseline: 'ZincHTTPComponents'
 		with: [ spec
 				loads: #('WebSocket');
-				repository: 'github://svenvc/zinc:v3.0.1/repository' ]
+				repository: 'github://svenvc/zinc:v3.0.1/repository' ].
+	spec baseline: 'VLC' with: [ spec repository: 'github//badetitou/Pharo-LibVLC:master/src' ]
 ]
 
 { #category : #baselines }
