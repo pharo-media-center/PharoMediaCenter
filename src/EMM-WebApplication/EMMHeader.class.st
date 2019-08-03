@@ -23,7 +23,7 @@ EMMHeader >> renderContentOn: html [
 						callback: [ "Just refresh" ];
 						with: [ html mdlLayoutTitle: 'Event Music Manager' ].
 					html mdlLayoutSpacer.
-					html mdlButton
+					html mdlAnchorButton
 						icon;
 						id: html nextId;
 						callback: [ self session model import ];
@@ -31,7 +31,7 @@ EMMHeader >> renderContentOn: html [
 					html mdlTooltip
 						for: html lastId;
 						with: 'Import'.
-					html mdlButton
+					html mdlAnchorButton
 						icon;
 						id: html nextId;
 						callback: [ self session model export ];
