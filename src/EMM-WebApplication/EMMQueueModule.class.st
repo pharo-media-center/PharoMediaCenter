@@ -24,8 +24,8 @@ EMMQueueModule >> renderContentOn: html [
 		shadow: 4;
 		with: [ html mdlCell
 				size: 4;
-				with: [ html mdlAnchorButton
-						callback: [ self session model previous ];
+				with: [ html mdlButton
+						onClick: (html jQuery ajax callback: [ self session model previous ]);
 						icon;
 						with: [ html mdlIcon: 'skip_previous' ].
 					self session model isPlaying
@@ -38,8 +38,8 @@ EMMQueueModule >> renderContentOn: html [
 								icon;
 								with: [ html mdlIcon: 'play_circle_filled' ] ].
 
-					html mdlAnchorButton
-						callback: [ self session model next ];
+					html mdlButton
+						onClick: (html jQuery ajax callback: [ self session model next ]);
 						icon;
 						with: [ html mdlIcon: 'skip_next' ] ].
 			html mdlCell
@@ -94,9 +94,9 @@ if (window.WebSocket === undefined) {
 		musicTitle.innerHTML = "WebSocket: Error"
 	};
 	   
-    /*conn.onclose = function (event) {
+    conn.onclose = function (event) {
       musicTitle.innerHTML = "WebSocket: Closed";
-    };*/
+    };
 };'
 ]
 
