@@ -30,6 +30,11 @@ EMM >> addJingle: anEMMJingle [
 	self musicLibrary addJingle: anEMMJingle
 ]
 
+{ #category : #'api - music' }
+EMM >> addNextPlayable: aPlayable [ 
+	self musicPlayer addNext: aPlayable
+]
+
 { #category : #'api - library' }
 EMM >> addPlaylistNamed: playListName [
 	self musicLibrary

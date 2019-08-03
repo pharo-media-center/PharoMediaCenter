@@ -40,31 +40,48 @@ EMMMusicPlayer class >> startUp: isImageStarting [
 	isImageStarting ifTrue: [ self reset ]
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 EMMMusicPlayer >> add: aPlayable [
 	self addAtTheEnd: aPlayable
 ]
 
-{ #category : #accessing }
-EMMMusicPlayer >> addAtTheBeginning: aPlayable [
-	| media |
-	media := self mediaForPlayable: aPlayable.
-	self flag: #todo
-]
-
-{ #category : #accessing }
+{ #category : #adding }
 EMMMusicPlayer >> addAtTheEnd: aPlayable [
 	| media |
-	media := self mediaForPlayable: aPlayable.
+	media := self createAndAddMediaForPlayable: aPlayable.
 	result := vlc insertInMediaList: mediaList media: media atIndex: playableToMedia size - 1.
 	result ~= 0 ifTrue: [ self error: 'Fail add media at the end of the list' ]
+]
+
+{ #category : #adding }
+EMMMusicPlayer >> addNext: aPlayable [
+	| media index |
+	media := self mediaForPlayable: aPlayable.
+	index := self currentPlayablePosition.
+	playableToMedia add: (aPlayable -> media) afterIndex: index.
+	result := vlc insertInMediaList: mediaList media: media atIndex: index. "we do not do -1 because we want the next entry"
+	result ~= 0 ifTrue: [ self error: 'Fail add media at the end of the list' ]
+]
+
+{ #category : #private }
+EMMMusicPlayer >> createAndAddMediaForPlayable: aPlayable [
+	^ (playableToMedia add: (aPlayable -> (vlc mediaFileFromStringPath: aPlayable path originalString))) value
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> currentPlayable [
 	| mediaPlayer |
 	mediaPlayer := (vlc getCurrentMediaPlayerOfListPlayer: vlcListPlayer).
-	^ (playableToMedia associationsSelect: [ :assoc | assoc value getHandle = (vlc getMediaInsideMediaPlayer: mediaPlayer) getHandle ]) ifNotEmpty: [ :assocCollection | assocCollection keyAtIndex: 1 ] ifEmpty: [ nil ]
+	^ (playableToMedia select: [ :assoc | assoc value getHandle = (vlc getMediaInsideMediaPlayer: mediaPlayer) getHandle ]) ifNotEmpty: [ :assocCollection | assocCollection first key ] ifEmpty: [ nil ]
+]
+
+{ #category : #accessing }
+EMMMusicPlayer >> currentPlayablePosition [
+	| mediaPlayer currentMedia |
+	mediaPlayer := vlc getCurrentMediaPlayerOfListPlayer: vlcListPlayer.
+	currentMedia := vlc getMediaInsideMediaPlayer: mediaPlayer.
+	playableToMedia doWithIndex: [ :el :index | el value getHandle = currentMedia getHandle ifTrue: [ ^ index ] ].
+	^ 0
 ]
 
 { #category : #accessing }
@@ -80,7 +97,7 @@ EMMMusicPlayer >> initialize [
 	vlc := VLCLibrary uniqueInstance.
 	vlcListPlayer := vlc createListPlayer.
 	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
-	playableToMedia := OrderedDictionary new.
+	playableToMedia := OrderedCollection new.
 	self initializeEvents	
 ]
 
@@ -116,20 +133,19 @@ EMMMusicPlayer >> isPlaying [
 
 { #category : #private }
 EMMMusicPlayer >> mediaForPlayable: aPlayable [
-	^ playableToMedia at: aPlayable ifAbsentPut: [ vlc mediaFileFromStringPath: aPlayable path originalString ]
+	^ vlc mediaFileFromStringPath: aPlayable path originalString
 ]
 
 { #category : #accessing }
 EMMMusicPlayer >> musicList [
-	^ playableToMedia keys
+	^ playableToMedia collect: #key
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 EMMMusicPlayer >> musicList: aListOfPlayable [
 	self resetList.
 	mediaList := vlc createMediaList.
-	aListOfPlayable collect: [ :aPlayable | self mediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
-	self pause.
+	aListOfPlayable collect: [ :aPlayable | self createAndAddMediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
 	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
 	self play
 ]

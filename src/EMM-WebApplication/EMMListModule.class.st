@@ -104,7 +104,9 @@ EMMListModule >> renderOn: html menuForPlayable: song [
 				onClickUpdateRootDialogWith: [ :r | self renderDialogOn: r addPlayable: song ];
 				fullBleedDivider;
 				with: 'Add in playlist'.
-			html mdlMenuItem with: 'Play next'.
+			html mdlMenuItem 
+				onClick: (html jQuery ajax callback: [ self session model addNextPlayable: song ]);
+				with: [ html text: 'Play next'].
 			html mdlMenuItem
 				onClick: (html jQuery ajax callback: [ self session model addAtTheEndPlayable: song ]);
 				with: [ html text: 'Play at the end' ] ]
