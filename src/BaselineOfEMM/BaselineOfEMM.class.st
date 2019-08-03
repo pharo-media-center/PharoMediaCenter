@@ -20,12 +20,6 @@ BaselineOfEMM >> defineDependencies: spec [
 	spec baseline: 'MaterialDesignLite' with: [ spec repository: 'github://DuneSt/MaterialDesignLite:master/src' ].
 	spec baseline: 'ID3' with: [ spec repository: 'github://badetitou/id3-pharo:master/repository' ].
 	spec
-		project: 'PharoSound'
-		with: [ spec
-				className: #ConfigurationOfPharoSound;
-				versionString: #stable;
-				repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main/' ].
-	spec
 		baseline: 'ZincHTTPComponents'
 		with: [ spec
 				loads: #('WebSocket');
