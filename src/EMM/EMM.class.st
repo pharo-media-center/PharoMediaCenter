@@ -67,7 +67,7 @@ EMM >> export [
 
 { #category : #export }
 EMM >> exportMusicLibrary [
-	
+	EMMExporter new exportLibrary: self musicLibrary
 ]
 
 { #category : #export }
@@ -81,7 +81,7 @@ EMM >> folderImport [
 
 { #category : #import }
 EMM >> import [
-	^ EMMFolderImporter new importFrom: self rootFolder in: self musicLibrary
+	^ EMMSTONImporter new import
 ]
 
 { #category : #initialization }
