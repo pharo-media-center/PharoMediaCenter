@@ -24,7 +24,7 @@ BaselineOfEMM >> defineDependencies: spec [
 		with: [ spec
 				loads: #('WebSocket');
 				repository: 'github://svenvc/zinc:v3.0.1/repository' ].
-	spec baseline: 'VLC' with: [ spec repository: 'github//badetitou/Pharo-LibVLC:master/src' ]
+	spec baseline: 'VLC' with: [ spec repository: 'github://badetitou/Pharo-LibVLC:master/src' ]
 ]
 
 { #category : #baselines }
@@ -38,7 +38,7 @@ BaselineOfEMM >> definePackages: spec [
 	spec
 		package: 'EMM' with: [ spec requires: #('EMM-MusicLibrary' 'EMM-SoundSystem') ];
 		package: 'EMM-MusicLibrary';
-		package: 'EMM-SoundSystem' with: [ spec requires: #('EMM-MusicLibrary') ];
+		package: 'EMM-SoundSystem' with: [ spec requires: #('EMM-MusicLibrary' 'VLC') ];
 		package: 'EMM-Tests' with: [ spec requires: #('EMM') ];
 		package: 'EMM-ImportExport' with: [ spec requires: #('EMM-MusicLibrary') ];
 		package: 'EMM-FolderImporter' with: [ spec requires: #('EMM-ImportExport' 'ID3') ];
