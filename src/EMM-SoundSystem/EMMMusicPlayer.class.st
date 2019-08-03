@@ -12,7 +12,8 @@ Class {
 		'playableToMedia',
 		'currentPlayable',
 		'vlcEventManager',
-		'mediaList'
+		'mediaList',
+		'result'
 	],
 	#category : #'EMM-SoundSystem-MusicPlayer'
 }
@@ -55,7 +56,8 @@ EMMMusicPlayer >> addAtTheBeginning: aPlayable [
 EMMMusicPlayer >> addAtTheEnd: aPlayable [
 	| media |
 	media := self mediaForPlayable: aPlayable.
-	self flag: #todo
+	result := vlc insertInMediaList: mediaList media: media atIndex: playableToMedia size - 1.
+	result ~= 0 ifTrue: [ self error: 'Fail add media at the end of the list' ]
 ]
 
 { #category : #accessing }

@@ -20,6 +20,11 @@ EMM >> addArtist: anEMMArtist [
 	self musicLibrary addArtist: anEMMArtist
 ]
 
+{ #category : #'api - music' }
+EMM >> addAtTheEndPlayable: aPlayable [ 
+	self musicPlayer addAtTheEnd: aPlayable
+]
+
 { #category : #'api - library' }
 EMM >> addJingle: anEMMJingle [
 	self musicLibrary addJingle: anEMMJingle

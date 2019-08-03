@@ -41,12 +41,22 @@ EMMFoldersModule >> foldersContentOn: html [
 EMMFoldersModule >> playlistsContentOn: html [
 	html div
 		style: 'position: relative;';
-		with: [ 
-			html render: ((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
-				format: [ :emmmDirectory | emmmDirectory name ];
-				selectedEntity: selectedElement;
-				actionBlock: [ :class | self selectedElement: class ];
-				yourself).
+		with: [ html
+				render:
+					((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
+						format: [ :emmmDirectory | emmmDirectory name ];
+						selectedEntity: selectedElement;
+						actionBlock: [ :class | self selectedElement: class ];
+						iconBlock: [ :entity | 
+							html mdlButton icon
+								id: html nextId;
+								with: [ html mdlIcon: #more_vert ].
+							html mdlMenu
+								bottomRight;
+								for: html lastId;
+								with: [ html mdlMenuItem with: 'Play at the end' ].
+								'' ];
+						yourself).
 			html mdlButton
 				style: 'z-index: 10; position: absolute; top: 10px; right: 10px;';
 				raised;
