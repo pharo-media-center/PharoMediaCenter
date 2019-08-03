@@ -19,7 +19,7 @@ EMMJingleModule >> renderContentOn: html [
 					html mdlCell
 						size: 1;
 						with: [ html mdlAnchorButton
-								callback: [ jingle play ];
+								callback: [ jingle ];
 								primaryColor;
 								with: jingle name ] ] ]
 ]
