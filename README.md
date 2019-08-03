@@ -3,14 +3,15 @@ Event Music Manager
 
 ## Installation
 
-On Linux you must install and activate the service osspd.
 
-On archlinux:
-```
-yay -S oosp
-systemctl start osspd.service
-```
+**You have to install libvlc!**
 
+```Smalltalk
+ Metacello new
+    	githubUser: 'badetitou' project: 'EMM' commitish: 'v0.3.0' path: 'src';
+    	baseline: 'EMM';
+    	load
+```
 
 ## Thanks
 
