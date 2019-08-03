@@ -61,5 +61,5 @@ EMMHeader >> renderDrawerOn: html [
 
 { #category : #rendering }
 EMMHeader >> version [
-	^ 'v0.2.0'
+	^ 'v0.3.0'
 ]
