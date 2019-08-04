@@ -41,7 +41,7 @@ EMMFolderImporter >> createSongFromFile: file [
 	[ song length: id3parser id3v2Tag length ]
 		on: FrameNotFoundError
 		do: [ song length: self notDefineTextValue ].
-	song stringPath: file asString.
+	song stringPath: file originalString.
 	^ song
 ]
 

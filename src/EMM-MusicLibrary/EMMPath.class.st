@@ -14,11 +14,6 @@ EMMPath class >> newWithPath: aPath [
 		yourself
 ]
 
-{ #category : #accessing }
-EMMPath >> createMediaWithVLC: vlc [
-	^ self subclassResponsibility 
-]
-
 { #category : #testing }
 EMMPath >> isDistantPath [
 	^ false
