@@ -2,10 +2,16 @@ Class {
 	#name : #EMMMSettings,
 	#superclass : #Object,
 	#instVars : [
-		'rootFolder'
+		'rootFolder',
+		'withVideo'
 	],
-	#category : #'EMM-MusicLibrary'
+	#category : #EMM
 }
+
+{ #category : #accessing }
+EMMMSettings >> initialize [
+	withVideo := false
+]
 
 { #category : #accessing }
 EMMMSettings >> rootFolder [
@@ -15,4 +21,14 @@ EMMMSettings >> rootFolder [
 { #category : #accessing }
 EMMMSettings >> rootFolder: anObject [
 	rootFolder := anObject
+]
+
+{ #category : #accessing }
+EMMMSettings >> withVideo [
+	^ withVideo
+]
+
+{ #category : #accessing }
+EMMMSettings >> withVideo: anObject [
+	withVideo := anObject
 ]

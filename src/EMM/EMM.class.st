@@ -138,7 +138,7 @@ EMM >> musicPlayer: anObject [
 
 { #category : #initialization }
 EMM >> newDefaultMusicPlayer [
-	^ EMMMusicPlayer withVideo: false
+	^ EMMMusicPlayer withVideo: self settings withVideo
 ]
 
 { #category : #'api - music' }
@@ -216,4 +216,16 @@ EMM >> settings: anObject [
 { #category : #'api - library' }
 EMM >> songs [
 	^ self musicLibrary songs
+]
+
+{ #category : #settings }
+EMM >> withVideo [
+	self settings withVideo
+]
+
+{ #category : #settings }
+EMM >> withVideo: aBoolean [
+	self musicPlayer isPlaying ifTrue: [ self musicPlayer pause ].
+	self settings withVideo: aBoolean.
+	self musicPlayer: self newDefaultMusicPlayer
 ]
