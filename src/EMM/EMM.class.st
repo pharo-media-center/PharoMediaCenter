@@ -138,7 +138,7 @@ EMM >> musicPlayer: anObject [
 
 { #category : #initialization }
 EMM >> newDefaultMusicPlayer [
-	^ EMMMusicPlayer new withVideo: false
+	^ EMMMusicPlayer withVideo: false
 ]
 
 { #category : #'api - music' }
