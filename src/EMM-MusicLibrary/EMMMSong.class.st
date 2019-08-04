@@ -3,7 +3,6 @@ Class {
 	#superclass : #EMMPlayable,
 	#instVars : [
 		'folder',
-		'name',
 		'artists',
 		'title',
 		'track',
@@ -46,16 +45,6 @@ EMMMSong >> length [
 { #category : #accessing }
 EMMMSong >> length: anObject [
 	length := anObject
-]
-
-{ #category : #accessing }
-EMMMSong >> name [
-	^ name
-]
-
-{ #category : #accessing }
-EMMMSong >> name: anObject [
-	name := anObject
 ]
 
 { #category : #printing }

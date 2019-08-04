@@ -65,7 +65,7 @@ EMMMusicPlayer >> addNext: aPlayable [
 
 { #category : #private }
 EMMMusicPlayer >> createAndAddMediaForPlayable: aPlayable [
-	^ (playableToMedia add: (aPlayable -> (vlc mediaFileFromStringPath: aPlayable path originalString))) value
+	^ (playableToMedia add: aPlayable -> (self mediaForPlayable: aPlayable)) value
 ]
 
 { #category : #accessing }
@@ -133,7 +133,7 @@ EMMMusicPlayer >> isPlaying [
 
 { #category : #private }
 EMMMusicPlayer >> mediaForPlayable: aPlayable [
-	^ vlc mediaFileFromStringPath: aPlayable path originalString
+	^ aPlayable path createMediaWithVLC: vlc
 ]
 
 { #category : #accessing }

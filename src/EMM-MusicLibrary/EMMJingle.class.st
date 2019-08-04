@@ -28,13 +28,3 @@ EMMJingle >> from [
 EMMJingle >> from: anObject [
 	from := anObject
 ]
-
-{ #category : #accessing }
-EMMJingle >> name [
-	^ name
-]
-
-{ #category : #accessing }
-EMMJingle >> name: anObject [
-	name := anObject
-]
