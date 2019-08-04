@@ -21,7 +21,7 @@ EMMJingleModule >> renderContentOn: html [
 				with: [ self session model jingles
 						do: [ :jingle | 
 							html mdlCell
-								size: 1;
+								size: 3;
 								with: [ html mdlAnchorButton
 										callback: [ self session model playJingle: jingle ];
 										primaryColor;
