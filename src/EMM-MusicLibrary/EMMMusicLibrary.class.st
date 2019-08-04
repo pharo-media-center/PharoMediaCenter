@@ -63,6 +63,11 @@ EMMMusicLibrary >> playlists [
 ]
 
 { #category : #accessing }
+EMMMusicLibrary >> removePlaylist: anEMMMPlaylist [
+	playlists remove: anEMMMPlaylist
+]
+
+{ #category : #accessing }
 EMMMusicLibrary >> songs [
 	^ songs
 ]

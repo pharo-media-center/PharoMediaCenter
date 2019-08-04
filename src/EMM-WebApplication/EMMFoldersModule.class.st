@@ -54,10 +54,15 @@ EMMFoldersModule >> playlistsContentOn: html [
 							r mdlMenu
 								bottomLeft;
 								for: r lastId;
-								style: 'display: block;';
+								"remove the css deleted by the fact we are in a list"
+									style: 'display: block; width: auto';
 								with: [ r mdlMenuItem
 										style: 'line-height: 48px; width: auto';
-										with: 'Play at the end' ].
+										onClick: (html jQuery ajax callback: [ self session model removePlaylist: entity ]);
+										with: 'Remove'.
+									r mdlMenuItem
+										style: 'line-height: 48px; width: auto';
+										with: 'Rename' ].
 							'' ];
 						yourself).
 			html mdlButton

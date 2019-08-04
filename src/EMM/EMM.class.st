@@ -176,6 +176,12 @@ EMM >> previous [
 	self musicPlayer previousSound
 ]
 
+{ #category : #'api - library' }
+EMM >> removePlaylist: aPlaylist [
+	self musicLibrary
+		removePlaylist: aPlaylist
+]
+
 { #category : #api }
 EMM >> reset [
 	self musicPlayer reset
