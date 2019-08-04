@@ -17,11 +17,11 @@ Class {
 
 { #category : #initialization }
 EMMSession >> currentEMM [
+	| emm |
 	EMM allInstancesDo: [ :a | ^ a ].
-
-	^ EMM new import;
-		musicPlayer: self defaultMusicPlayer new;
-		yourself
+	emm := EMM new.
+	[emm import] on: Error do: [ emm folderImport ].
+	^ emm
 ]
 
 { #category : #accessing }
