@@ -29,6 +29,11 @@ EMMMusicLibrary >> addPlaylist: anEMMMPlaylist [
 ]
 
 { #category : #accessing }
+EMMMusicLibrary >> addSong: aSong [
+	songs add: aSong
+]
+
+{ #category : #accessing }
 EMMMusicLibrary >> artists [
 	^ artists
 ]

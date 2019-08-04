@@ -63,10 +63,10 @@ EMMQueueModule >> renderContentOn: html [
 							html
 								tableRow: [ html mdlTableCell
 										nonNumerical;
-										with: song title.
+										with: (song title ifNil: [ song name ]).
 									html mdlTableCell
 										nonNumerical;
-										with: song artists asOrderedCollection first name.
+										with: [ html text: (song artists asOrderedCollection ifNotEmpty: [ :col | col first name ] ifEmpty: [ 'No Author' ]) ].
 									html mdlTableCell with: song length ] ] ] ].
 
 	self renderJavaScriptOn: html

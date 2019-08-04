@@ -7,6 +7,8 @@ I am the reader of the application.
 Class {
 	#name : #EMMHeader,
 	#superclass : #EMMComponent,
+	#traits : 'TWithRootDialogComponent',
+	#classTraits : 'TWithRootDialogComponent classTrait',
 	#category : #'EMM-WebApplication-Core'
 }
 
@@ -23,6 +25,17 @@ EMMHeader >> renderContentOn: html [
 						callback: [ "Just refresh" ];
 						with: [ html mdlLayoutTitle: 'Event Music Manager' ].
 					html mdlLayoutSpacer.
+
+					html mdlAnchorButton
+						icon;
+						id: html nextId;
+						openDialogWithId: self rootDialogOpenId;
+						onClickUpdateRootDialogWith: [ :r | self renderDialogCreatePlayableOn: r ];
+						with: [ html mdlIcon: 'library_add' ].
+					html mdlTooltip
+						for: html lastId;
+						with: 'Add Playable'.
+
 					html mdlAnchorButton
 						icon;
 						id: html nextId;
@@ -43,6 +56,39 @@ EMMHeader >> renderContentOn: html [
 
 					html text: 'Version ' , self version ] ].
 	self renderDrawerOn: html
+]
+
+{ #category : #accessing }
+EMMHeader >> renderDialogCreatePlayableOn: html [
+	| name path |
+	html
+		form: [ html mdlDialogTitle: 'Create Playable'.
+			html
+				mdlDialogContent: [ html mdlTextFieldContainer
+						floatingLabel;
+						with: [ html mdlTextFieldLabel
+								for: html nextId;
+								with: 'Name'.
+							html mdlTextFieldInput
+								id: html lastId;
+								callback: [ :input | name := input ] ].
+					html mdlTextFieldContainer
+						floatingLabel;
+						with: [ html mdlTextFieldLabel
+								for: html nextId;
+								with: 'Path'.
+							html mdlTextFieldInput
+								id: html lastId;
+								callback: [ :input | path := input ] ] ].
+
+			html
+				mdlDialogActions: [ html mdlButton
+						beSubmit;
+						callback: [ self session model addSong: (EMMMSong newWithName: name stringPath: path) ];
+						with: 'Accept'.
+					html mdlButton
+						id: self rootDialogCloseId;
+						with: 'Cancel' ] ]
 ]
 
 { #category : #rendering }

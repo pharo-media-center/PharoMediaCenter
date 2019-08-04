@@ -102,6 +102,7 @@ EMMFoldersModule >> renderContentOn: html [
 				addTabNamed: 'Folders' content: [ self foldersContentOn: html ];
 				addTabNamed: 'Artists' content: [ self artistsContentOn: html ];
 				addTabNamed: 'Playlists' content: [ self playlistsContentOn: html ];
+				addTabNamed: 'Songs' content: [ self songsContentOn: html ];
 				yourself)
 ]
 
@@ -109,4 +110,13 @@ EMMFoldersModule >> renderContentOn: html [
 EMMFoldersModule >> selectedElement: class [
 	selectedElement := class.
 	SystemAnnouncer uniqueInstance announce: (EMMFolderSelectedAnnouncement new folder: class; yourself )
+]
+
+{ #category : #rendering }
+EMMFoldersModule >> songsContentOn: html [
+	html div
+		style: 'position: relative;';
+		with: [ html mdlAnchorButton
+				callback: [ self selectedElement: self session model musicLibrary ];
+				with: [ html text: 'All songs' ] ]
 ]

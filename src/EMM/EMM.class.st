@@ -45,6 +45,11 @@ EMM >> addPlaylistNamed: playListName [
 ]
 
 { #category : #'api - library' }
+EMM >> addSong: aSong [
+	self musicLibrary addSong: aSong
+]
+
+{ #category : #'api - library' }
 EMM >> artists [
 	^ self musicLibrary artists
 ]

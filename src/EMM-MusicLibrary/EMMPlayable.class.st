@@ -8,6 +8,14 @@ Class {
 	#category : #'EMM-MusicLibrary'
 }
 
+{ #category : #'instance creation' }
+EMMPlayable class >> newWithName: aName stringPath: aPath [
+	^ self new
+		name: aName;
+		stringPath: aPath;
+		yourself
+]
+
 { #category : #accessing }
 EMMPlayable >> <= aPlayable [
 	^ self name <= aPlayable name
