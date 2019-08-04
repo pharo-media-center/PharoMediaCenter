@@ -1,6 +1,6 @@
 Extension { #name : #EMMLocalPath }
 
 { #category : #'*EMM-SoundSystem' }
-EMMLocalPath >> createMediaWithVLC: vlc [
-	^ vlc mediaFileFromStringPath: self path
+EMMLocalPath >> createMediaWithVLC: vlc forInstance: anInstance [
+	^ vlc mediaFileForInstance: anInstance fromStringPath: self path
 ]

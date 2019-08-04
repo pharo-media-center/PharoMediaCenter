@@ -8,6 +8,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'vlc',
+		'vlcInstance',
 		'vlcListPlayer',
 		'playableToMedia',
 		'currentPlayable',
@@ -100,9 +101,7 @@ EMMMusicPlayer >> currentPosition [
 EMMMusicPlayer >> initialize [
 	super initialize.
 	vlc := VLCLibrary uniqueInstance.
-	vlcListPlayer := vlc createListPlayer.
-	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
-	playableToMedia := OrderedCollection new.
+	self initializeVLCWithVideo: false.
 	self initializeEvents	
 ]
 
@@ -135,11 +134,12 @@ EMMMusicPlayer >> initializeEvents [
 EMMMusicPlayer >> initializeVLCWithVideo: withVideoBoolean [
 	VLCLibrary reset.
 	withVideoBoolean
-		ifTrue: [ vlc := VLCLibrary uniqueInstance ]
+		ifTrue: [
+			vlcInstance := vlc createVLCInstance ]
 		ifFalse: [ | colArguments |
-			colArguments := { '--no-video'"'--vout' . 'none'."}.
-			vlc := VLCLibrary uniqueInstance initializeVLCWithArguments: colArguments ].
-	vlcListPlayer := vlc createListPlayer.
+			colArguments := {'--no-video'}.
+			vlcInstance := vlc createVLCWithArguments: colArguments ].
+	vlcListPlayer := vlc createListPlayerForInstance: vlcInstance.
 	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
 	playableToMedia := OrderedCollection new.
 	self initializeEvents
@@ -152,7 +152,7 @@ EMMMusicPlayer >> isPlaying [
 
 { #category : #private }
 EMMMusicPlayer >> mediaForPlayable: aPlayable [
-	^ aPlayable path createMediaWithVLC: vlc
+	^ aPlayable path createMediaWithVLC: vlc forInstance: vlcInstance
 ]
 
 { #category : #accessing }
@@ -163,7 +163,7 @@ EMMMusicPlayer >> musicList [
 { #category : #adding }
 EMMMusicPlayer >> musicList: aListOfPlayable [
 	self resetList.
-	mediaList := vlc createMediaList.
+	mediaList := vlc createMediaListFromInstance: vlcInstance.
 	aListOfPlayable collect: [ :aPlayable | self createAndAddMediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
 	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
 	self play

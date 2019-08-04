@@ -14,6 +14,11 @@ EMMPath class >> newWithPath: aPath [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+EMMPath >> createMediaWithVLC: vlc forInstance: anInstance [
+	 ^ self subclassResponsibility
+]
+
 { #category : #testing }
 EMMPath >> isDistantPath [
 	^ false
