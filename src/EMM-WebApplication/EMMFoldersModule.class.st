@@ -43,7 +43,7 @@ EMMFoldersModule >> playlistsContentOn: html [
 		style: 'position: relative;';
 		with: [ html
 				render:
-					((MDLNestedList elements: self session model playlists asSortedCollection children: [ :child | #() ])
+					((MDLNestedList elements: (self session model playlists asSortedCollection: [ :a :b | a name <= b name ]) children: [ :child | #() ])
 						format: [ :emmmDirectory | emmmDirectory name ];
 						selectedEntity: selectedElement;
 						actionBlock: [ :class | self selectedElement: class ];
@@ -55,13 +55,15 @@ EMMFoldersModule >> playlistsContentOn: html [
 								bottomLeft;
 								for: r lastId;
 								"remove the css deleted by the fact we are in a list"
-									style: 'display: block; width: auto';
+									style: 'display: block; width: auto; z-position: 999;';
 								with: [ r mdlMenuItem
 										style: 'line-height: 48px; width: auto';
 										onClick: (html jQuery ajax callback: [ self session model removePlaylist: entity ]);
 										with: 'Remove'.
 									r mdlMenuItem
 										style: 'line-height: 48px; width: auto';
+										openDialogWithId: self rootDialogOpenId;
+										onClickUpdateRootDialogWith: [ :r2 | self renderRenamePlaylist: entity on: r2 ];
 										with: 'Rename' ].
 							'' ];
 						yourself).
@@ -109,6 +111,31 @@ EMMFoldersModule >> renderContentOn: html [
 				addTabNamed: 'Playlists' content: [ self playlistsContentOn: html ];
 				addTabNamed: 'Songs' content: [ self songsContentOn: html ];
 				yourself)
+]
+
+{ #category : #rendering }
+EMMFoldersModule >> renderRenamePlaylist: aPlaylist on: html [
+	| name |
+	html
+		form: [ html mdlDialogTitle: 'Rename playlist'.
+			html
+				mdlDialogContent: [ html mdlTextFieldContainer
+						floatingLabel;
+						with: [ html mdlTextFieldLabel
+								for: html nextId;
+								with: 'Name'.
+							html mdlTextFieldInput
+								id: html lastId;
+								value: aPlaylist name;
+								callback: [ :value | name := value ] ] ].
+			html
+				mdlDialogActions: [ html mdlButton
+						beSubmit;
+						callback: [ self session model renamePlaylist: aPlaylist with: name ];
+						with: 'Accept'.
+					html mdlButton
+						id: self rootDialogCloseId;
+						with: 'Cancel' ] ]
 ]
 
 { #category : #rendering }

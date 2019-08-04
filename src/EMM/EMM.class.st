@@ -182,6 +182,12 @@ EMM >> removePlaylist: aPlaylist [
 		removePlaylist: aPlaylist
 ]
 
+{ #category : #'api - library' }
+EMM >> renamePlaylist: aPlaylist with: aNewName [
+	self musicLibrary
+		renamePlaylist: aPlaylist with: aNewName
+]
+
 { #category : #api }
 EMM >> reset [
 	self musicPlayer reset

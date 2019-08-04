@@ -68,6 +68,11 @@ EMMMusicLibrary >> removePlaylist: anEMMMPlaylist [
 ]
 
 { #category : #accessing }
+EMMMusicLibrary >> renamePlaylist: aPlaylist with: aNewName [
+	aPlaylist name: aNewName
+]
+
+{ #category : #accessing }
 EMMMusicLibrary >> songs [
 	^ songs
 ]
