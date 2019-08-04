@@ -60,11 +60,12 @@ EMMSession >> rootComponent: aRootComponent [
 
 { #category : #initialization }
 EMMSession >> startSocketFor: emm [
+	ZnServer default
+		ifNil: [ ZnServer stopDefault.
+			ZnServer startDefaultOn: 8041 ].
 	ZnServer default delegate prefixMap
 		at: 'emm'
-		ifAbsent: [ ZnServer stopDefault.
-			ZnServer startDefaultOn: 8041.
-			ZnServer default logToTranscript.
+		ifAbsent: [ ZnServer default logToTranscript.
 			ZnServer default delegate
 				map: 'emm'
 				to:
