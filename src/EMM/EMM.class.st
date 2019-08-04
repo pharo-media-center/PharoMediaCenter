@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'settings',
 		'musicPlayer',
-		'musicLibrary'
+		'musicLibrary',
+		'aListOfPlayable'
 	],
 	#category : #EMM
 }
@@ -154,6 +155,11 @@ EMM >> pause [
 { #category : #'api - music' }
 EMM >> play [
 	self musicPlayer play
+]
+
+{ #category : #'api - music' }
+EMM >> playJingle: aJingle [
+	self newDefaultMusicPlayer musicList: { aJingle }
 ]
 
 { #category : #'api - music' }
