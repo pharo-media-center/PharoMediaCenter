@@ -183,6 +183,12 @@ EMM >> previous [
 ]
 
 { #category : #'api - library' }
+EMM >> removeJingle: aJingle [
+	self musicLibrary
+		removeJingle: aJingle
+]
+
+{ #category : #'api - library' }
 EMM >> removePlaylist: aPlaylist [
 	self musicLibrary
 		removePlaylist: aPlaylist

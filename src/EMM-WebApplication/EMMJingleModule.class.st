@@ -25,7 +25,10 @@ EMMJingleModule >> renderContentOn: html [
 								with: [ html mdlAnchorButton
 										callback: [ self session model playJingle: jingle ];
 										primaryColor;
-										with: jingle name ] ] ].
+										with: jingle name.
+									html mdlAnchorButton
+										callback: [ self session model removeJingle: jingle ];
+										with: [ html mdlIcon: 'delete_forever' ] ] ] ].
 			html mdlButton
 				style: 'z-index: 10; position: absolute; top: 10px; right: 10px;';
 				raised;
