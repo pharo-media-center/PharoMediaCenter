@@ -220,7 +220,7 @@ EMM >> songs [
 
 { #category : #settings }
 EMM >> withVideo [
-	self settings withVideo
+	^ self settings withVideo
 ]
 
 { #category : #settings }

@@ -16,5 +16,26 @@ EMMSettingsPage class >> priority [
 
 { #category : #rendering }
 EMMSettingsPage >> renderContentOn: html [
-	html div style: 'min-height: 400px;'; with: 'Settings'
+	html mdlGrid
+		with: [ 
+			html mdlCell
+				desktopOffset: 3;
+				tabletOffset: 3;
+				phoneOffset: 0;
+				desktopSize: 6;
+				tabletSize: 6;
+				phoneSize: 12;
+				shadow: 2;
+				style: 'padding: 10px;';
+				with: [ 
+					html heading: 'Settings'.
+					html mdlSwitchContainer
+						rippleEffect;
+						style: 'width: 150px;';
+						for: html nextId;
+						with: [ html mdlSwitch
+								value: self session model withVideo;
+								onClick: (html jQuery ajax callback: [ self session model withVideo: self session model withVideo not ]);
+								id: html lastId.
+							html mdlSwitchLabel: 'With video' ] ] ]
 ]
