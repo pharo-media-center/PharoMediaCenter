@@ -40,6 +40,11 @@ EMMMusicPlayer class >> startUp: isImageStarting [
 	isImageStarting ifTrue: [ self reset ]
 ]
 
+{ #category : #initialization }
+EMMMusicPlayer class >> withVideo: withVideo [
+	^ self new initializeVLCWithVideo: withVideo
+]
+
 { #category : #adding }
 EMMMusicPlayer >> add: aPlayable [
 	self addAtTheEnd: aPlayable
@@ -124,6 +129,20 @@ EMMMusicPlayer >> initializeEventNextMusic [
 { #category : #initialization }
 EMMMusicPlayer >> initializeEvents [
 	
+]
+
+{ #category : #initialization }
+EMMMusicPlayer >> initializeVLCWithVideo: withVideoBoolean [
+	VLCLibrary reset.
+	withVideoBoolean
+		ifTrue: [ vlc := VLCLibrary uniqueInstance ]
+		ifFalse: [ | colArguments |
+			colArguments := {'--vout' . 'none'}.
+			vlc := VLCLibrary uniqueInstance initializeVLCWithArguments: colArguments ].
+	vlcListPlayer := vlc createListPlayer.
+	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
+	playableToMedia := OrderedCollection new.
+	self initializeEvents
 ]
 
 { #category : #accessing }

@@ -103,7 +103,7 @@ EMM >> import [
 EMM >> initialize [
 	self settings: EMMMSettings new.
 	self musicLibrary: self defaultMusicLibrary new.
-	self musicPlayer: self defaultMusicPlayer new.
+	self musicPlayer: self newDefaultMusicPlayer.
 ]
 
 { #category : #'api - music' }
@@ -134,6 +134,11 @@ EMM >> musicPlayer [
 { #category : #accessing }
 EMM >> musicPlayer: anObject [
 	musicPlayer := anObject
+]
+
+{ #category : #initialization }
+EMM >> newDefaultMusicPlayer [
+	^ EMMMusicPlayer new withVideo: false
 ]
 
 { #category : #'api - music' }
