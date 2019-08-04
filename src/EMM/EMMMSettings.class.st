@@ -3,14 +3,26 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'rootFolder',
-		'withVideo'
+		'withVideo',
+		'jingleWithVideo'
 	],
 	#category : #EMM
 }
 
 { #category : #accessing }
 EMMMSettings >> initialize [
-	withVideo := false
+	withVideo := false.
+	jingleWithVideo := false
+]
+
+{ #category : #accessing }
+EMMMSettings >> jingleWithVideo [
+	^ jingleWithVideo
+]
+
+{ #category : #accessing }
+EMMMSettings >> jingleWithVideo: anObject [
+	jingleWithVideo := anObject
 ]
 
 { #category : #accessing }

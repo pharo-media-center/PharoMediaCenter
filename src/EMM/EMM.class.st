@@ -137,9 +137,14 @@ EMM >> musicPlayer: anObject [
 	musicPlayer := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #creating }
 EMM >> newDefaultMusicPlayer [
 	^ EMMMusicPlayer withVideo: self settings withVideo
+]
+
+{ #category : #creating }
+EMM >> newDefaultMusicPlayerForJingle [
+	^ EMMMusicPlayer withVideo: self settings jingleWithVideo
 ]
 
 { #category : #'api - music' }
@@ -159,7 +164,7 @@ EMM >> play [
 
 { #category : #'api - music' }
 EMM >> playJingle: aJingle [
-	self newDefaultMusicPlayer musicList: { aJingle }
+	self newDefaultMusicPlayerForJingle musicList: { aJingle }
 ]
 
 { #category : #'api - music' }

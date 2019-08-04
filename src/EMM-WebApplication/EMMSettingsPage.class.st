@@ -29,7 +29,26 @@ EMMSettingsPage >> renderContentOn: html [
 				style: 'padding: 10px;';
 				with: [ 
 					html heading: 'Settings'.
-					html mdlSwitchContainer
+					self settingVideoMainPlayerOn: html.
+					self settingVideoJingleOn: html ] ]
+]
+
+{ #category : #rendering }
+EMMSettingsPage >> settingVideoJingleOn: html [
+	html mdlSwitchContainer
+						rippleEffect;
+						style: 'width: 150px;';
+						for: html nextId;
+						with: [ html mdlSwitch
+								value: self session model jingleWithVideo;
+								onClick: (html jQuery ajax callback: [ self session model jingleWithVideo: self session model jingleWithVideo not ]);
+								id: html lastId.
+							html mdlSwitchLabel: 'Jingle with video' ]
+]
+
+{ #category : #rendering }
+EMMSettingsPage >> settingVideoMainPlayerOn: html [
+	html mdlSwitchContainer
 						rippleEffect;
 						style: 'width: 150px;';
 						for: html nextId;
@@ -37,5 +56,5 @@ EMMSettingsPage >> renderContentOn: html [
 								value: self session model withVideo;
 								onClick: (html jQuery ajax callback: [ self session model withVideo: self session model withVideo not ]);
 								id: html lastId.
-							html mdlSwitchLabel: 'With video' ] ] ]
+							html mdlSwitchLabel: 'With video' ]
 ]
