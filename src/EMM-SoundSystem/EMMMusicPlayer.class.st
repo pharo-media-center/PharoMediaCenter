@@ -12,7 +12,6 @@ Class {
 		'vlcListPlayer',
 		'playableToMedia',
 		'currentPlayable',
-		'vlcEventManager',
 		'mediaList',
 		'result'
 	],
@@ -140,7 +139,6 @@ EMMMusicPlayer >> initializeVLCWithVideo: withVideoBoolean [
 			colArguments := {'--no-video'}.
 			vlcInstance := vlc createVLCWithArguments: colArguments ].
 	vlcListPlayer := vlc createListPlayerForInstance: vlcInstance.
-	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
 	playableToMedia := OrderedCollection new.
 	self initializeEvents
 ]
