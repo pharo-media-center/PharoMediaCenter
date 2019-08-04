@@ -47,15 +47,18 @@ EMMFoldersModule >> playlistsContentOn: html [
 						format: [ :emmmDirectory | emmmDirectory name ];
 						selectedEntity: selectedElement;
 						actionBlock: [ :class | self selectedElement: class ];
-						iconBlock: [ :entity | 
-							html mdlButton icon
-								id: html nextId;
-								with: [ html mdlIcon: #more_vert ].
-							html mdlMenu
-								bottomRight;
-								for: html lastId;
-								with: [ html mdlMenuItem with: 'Play at the end' ].
-								'' ];
+						iconBlock: [ :entity :r | 
+							r mdlButton icon
+								id: r nextId;
+								with: [ r mdlIcon: #more_vert ].
+							r mdlMenu
+								bottomLeft;
+								for: r lastId;
+								style: 'display: block;';
+								with: [ r mdlMenuItem
+										style: 'line-height: 48px; width: auto';
+										with: 'Play at the end' ].
+							'' ];
 						yourself).
 			html mdlButton
 				style: 'z-index: 10; position: absolute; top: 10px; right: 10px;';
