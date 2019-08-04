@@ -137,7 +137,7 @@ EMMMusicPlayer >> initializeVLCWithVideo: withVideoBoolean [
 	withVideoBoolean
 		ifTrue: [ vlc := VLCLibrary uniqueInstance ]
 		ifFalse: [ | colArguments |
-			colArguments := {'--vout' . 'none'}.
+			colArguments := { '--no-video'"'--vout' . 'none'."}.
 			vlc := VLCLibrary uniqueInstance initializeVLCWithArguments: colArguments ].
 	vlcListPlayer := vlc createListPlayer.
 	vlcEventManager := vlc eventManagerListPlayer: vlcListPlayer.
