@@ -112,6 +112,16 @@ EMM >> isPlaying [
 	^ self musicPlayer isPlaying
 ]
 
+{ #category : #settings }
+EMM >> jingleWithVideo [
+	^ self settings jingleWithVideo
+]
+
+{ #category : #settings }
+EMM >> jingleWithVideo: aBoolean [
+	self settings jingleWithVideo: aBoolean
+]
+
 { #category : #'api - library' }
 EMM >> jingles [
 	^ self musicLibrary jingles 
