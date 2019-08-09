@@ -1,8 +1,8 @@
 Class {
 	#name : #EMMListModule,
 	#superclass : #EMMModule,
-	#traits : 'TWithRootDialogComponent',
-	#classTraits : 'TWithRootDialogComponent classTrait',
+	#traits : 'TWithRootDialogComponent + EMMTDisplayList',
+	#classTraits : 'TWithRootDialogComponent classTrait + EMMTDisplayList classTrait',
 	#instVars : [
 		'datas'
 	],
@@ -104,11 +104,22 @@ EMMListModule >> renderOn: html menuForPlayable: song [
 				onClickUpdateRootDialogWith: [ :r | self renderDialogOn: r addPlayable: song ];
 				fullBleedDivider;
 				with: 'Add in playlist'.
-			html mdlMenuItem 
-				onClick: (html jQuery ajax callback: [ self session model addNextPlayable: song ]);
-				with: [ html text: 'Play next'].
 			html mdlMenuItem
-				onClick: (html jQuery ajax callback: [ self session model addAtTheEndPlayable: song ]);
+				onClick:
+					((html jQuery id: self listId) load
+						html: [ :canvas | 
+							self session model addNextPlayable: song.
+							self renderListOn: canvas ];
+						onComplete: 'componentHandler.upgradeDom();' js);
+				"onClick: (html jQuery ajax callback: [ self session model addNextPlayable: song ]);"
+					with: [ html text: 'Play next' ].
+			html mdlMenuItem
+				onClick:
+					((html jQuery id: self listId) load
+						html: [ :canvas | 
+							self session model addAtTheEndPlayable: song.
+							self renderListOn: canvas ];
+						onComplete: 'componentHandler.upgradeDom();' js);
 				with: [ html text: 'Play at the end' ] ]
 ]
 

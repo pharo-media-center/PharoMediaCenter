@@ -1,6 +1,8 @@
 Class {
 	#name : #EMMQueueModule,
 	#superclass : #EMMModule,
+	#traits : 'EMMTDisplayList',
+	#classTraits : 'EMMTDisplayList classTrait',
 	#category : #'EMM-WebApplication-Core'
 }
 
@@ -46,28 +48,12 @@ EMMQueueModule >> renderContentOn: html [
 				size: 6;
 				with: [ html paragraph
 						id: self musicTitleId;
-						with: (self session model currentPlayable ifNotNil: [ :song | (song title) ifNil: [ song name ] ] ifNil: [ '' ]) ] ].
+						with: (self session model currentPlayable ifNotNil: [ :song | song title ifNil: [ song name ] ] ifNil: [ '' ]) ] ].
 	html render: (MDLProgressBarWidget progression: [ self session model musicPlayer currentPosition ]).
-	html mdlTable
-		attributeAt: 'width' put: '100%';
-		with: [ html
-				tableHead: [ html
-						tableRow: [ html mdlTableHeading
-								nonNumerical;
-								with: 'Title'.
-							html mdlTableHeading: 'Lenght'.
-							html mdlTableHeading: 'Author' ] ].
-			html
-				tableBody: [ datas
-						do: [ :song | 
-							html
-								tableRow: [ html mdlTableCell
-										nonNumerical;
-										with: (song title ifNil: [ song name ]).
-									html mdlTableCell
-										nonNumerical;
-										with: [ html text: (song artists asOrderedCollection ifNotEmpty: [ :col | col first name ] ifEmpty: [ 'No Author' ]) ].
-									html mdlTableCell with: song length ] ] ] ].
+
+	html div
+		id: self listId;
+		with: [ self renderListOn: html ].
 
 	self renderJavaScriptOn: html
 ]
