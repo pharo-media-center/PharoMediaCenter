@@ -41,7 +41,7 @@ PMCListModule >> renderContentOn: html [
 								nonNumerical;
 								with: 'Author'.
 							html mdlTableHeading with: 'Length'.
-							html mdlTableHeading. ] ].
+							html mdlTableHeading ] ].
 			html
 				tableBody: [ datas
 						doWithIndex: [ :song :index | 
@@ -49,15 +49,19 @@ PMCListModule >> renderContentOn: html [
 								tableRow: [ html mdlTableCell with: song track.
 									html mdlTableCell
 										nonNumerical;
-										with: (song title ifNil: [song name]).
+										with: (song title ifNil: [ song name ]).
 									html mdlTableCell
 										nonNumerical;
-										with: [ html text: ((song artists asOrderedCollection) ifNotEmpty: [ :col | col first name ] ifEmpty: ['No Author']) ].
+										with: [ html text: (song artists asOrderedCollection ifNotEmpty: [ :col | col first name ] ifEmpty: [ 'No Author' ]) ].
 									html mdlTableCell with: song length.
 									html mdlTableCell
 										nonNumerical;
-										with: [ html mdlAnchorButton
-												callback: [ self session model playList: (datas copyFrom: index to: datas size) ];
+										with: [ html mdlButton
+												onClick: ((html jQuery id: self listId) load
+														html: [ :canvas | 
+															self session model playList: (datas copyFrom: index to: datas size).
+															self renderListOn: canvas ];
+														onComplete: 'componentHandler.upgradeDom();' js);
 												colored;
 												icon;
 												with: [ html mdlIcon: 'play_arrow' ].
