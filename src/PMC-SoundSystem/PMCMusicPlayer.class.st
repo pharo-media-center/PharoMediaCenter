@@ -161,6 +161,7 @@ PMCMusicPlayer >> musicList [
 { #category : #adding }
 PMCMusicPlayer >> musicList: aListOfPlayable [
 	self resetList.
+	self stop.
 	mediaList := vlc createMediaListFromInstance: vlcInstance.
 	aListOfPlayable collect: [ :aPlayable | self createAndAddMediaForPlayable: aPlayable ] thenDo: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
 	vlc setMediaList: mediaList forListPlayer: vlcListPlayer.
@@ -196,4 +197,9 @@ PMCMusicPlayer >> reset [
 { #category : #private }
 PMCMusicPlayer >> resetList [
 	playableToMedia removeAll
+]
+
+{ #category : #adding }
+PMCMusicPlayer >> stop [
+	vlc stopListPlayer: vlcListPlayer
 ]

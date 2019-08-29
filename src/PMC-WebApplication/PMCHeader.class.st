@@ -23,7 +23,7 @@ PMCHeader >> renderContentOn: html [
 		mdlLayoutHeader: [ html
 				mdlLayoutHeaderRow: [ html mdlNavigationLink
 						callback: [ "Just refresh" ];
-						with: [ html mdlLayoutTitle: 'Event Music Manager' ].
+						with: [ html mdlLayoutTitle: 'Pharo Media Center' ].
 					html mdlLayoutSpacer.
 
 					html mdlAnchorButton

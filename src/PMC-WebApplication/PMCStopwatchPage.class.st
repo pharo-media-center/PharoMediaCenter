@@ -16,5 +16,6 @@ PMCStopwatchPage class >> priority [
 
 { #category : #rendering }
 PMCStopwatchPage >> renderContentOn: html [
-	html div style: 'min-height: 400px;'; with: 'Hello world'
+	html div style: 'min-height: 400px;'; with: 'Hello world'.
+	html render: (PMCVideo new).
 ]

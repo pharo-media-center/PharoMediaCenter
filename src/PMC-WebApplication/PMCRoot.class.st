@@ -174,7 +174,7 @@ PMCRoot >> renderContentOn: html [
 				with: [ html mdlGrid
 						noSpacing;
 						with: [ html mdlCell
-								class: 'emmroot';
+								class: 'pmcroot';
 								size: 12;
 								with: [ html render: self componentToDisplay ] ].
 					html render: self footer ] ].
