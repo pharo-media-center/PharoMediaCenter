@@ -9,7 +9,7 @@ I provide some conveniance methods to be used during the redering of the compone
 Class {
 	#name : #EMMComponent,
 	#superclass : #WAComponent,
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #convenience }

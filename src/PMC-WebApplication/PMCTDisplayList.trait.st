@@ -1,20 +1,20 @@
 Trait {
-	#name : #EMMTDisplayList,
-	#category : #'EMM-WebApplication'
+	#name : #PMCTDisplayList,
+	#category : #'PMC-WebApplication'
 }
 
 { #category : #rendering }
-EMMTDisplayList >> dataPlaylist [
+PMCTDisplayList >> dataPlaylist [
 	^ self session model playList.
 ]
 
 { #category : #rendering }
-EMMTDisplayList >> listId [
+PMCTDisplayList >> listId [
 	^ #listID
 ]
 
 { #category : #rendering }
-EMMTDisplayList >> renderListOn: html [
+PMCTDisplayList >> renderListOn: html [
 	| datas |
 	datas := self dataPlaylist.
 	html mdlTable

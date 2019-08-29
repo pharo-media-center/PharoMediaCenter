@@ -2,13 +2,13 @@
 TODO
 "
 Class {
-	#name : #EMMLibrary,
+	#name : #PMCLibrary,
 	#superclass : #WAFileLibrary,
-	#category : #'EMM-WebApplication-Utils'
+	#category : #'PMC-WebApplication-Utils'
 }
 
 { #category : #uploaded }
-EMMLibrary >> materialorangepurpleminCss [
+PMCLibrary >> materialorangepurpleminCss [
 	^ '/**
  * material-design-lite - Material Design Components in CSS, JS and HTML
  * @version v1.3.0
@@ -20,13 +20,13 @@ EMMLibrary >> materialorangepurpleminCss [
 ]
 
 { #category : #css }
-EMMLibrary >> projectCss [
+PMCLibrary >> projectCss [
 	^ '.mdl-pagination__current{
         box-shadow: inset 0px -4px 0px 0px rgba(156,39,176,1) !important;
     }'
 ]
 
 { #category : #accessing }
-EMMLibrary >> selectorsToInclude [
+PMCLibrary >> selectorsToInclude [
 	^ #(#projectCss #materialorangepurpleminCss)
 ]

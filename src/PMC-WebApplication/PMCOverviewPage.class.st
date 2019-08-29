@@ -1,49 +1,49 @@
 Class {
-	#name : #EMMOverviewPage,
-	#superclass : #EMMPage,
+	#name : #PMCOverviewPage,
+	#superclass : #PMCPage,
 	#instVars : [
 		'moduleInstances'
 	],
-	#category : #'EMM-WebApplication-Pages'
+	#category : #'PMC-WebApplication-Pages'
 }
 
 { #category : #accessing }
-EMMOverviewPage class >> pageName [
+PMCOverviewPage class >> pageName [
 	^ 'Overview'
 ]
 
 { #category : #accessing }
-EMMOverviewPage class >> priority [
+PMCOverviewPage class >> priority [
 	^ 1
 ]
 
 { #category : #accessing }
-EMMOverviewPage >> initialize [
+PMCOverviewPage >> initialize [
 	super initialize.
 	self moduleInstances: Dictionary new
 ]
 
 { #category : #accessing }
-EMMOverviewPage >> moduleInstanceOf: aComponentClass [
+PMCOverviewPage >> moduleInstanceOf: aComponentClass [
 	^ self moduleInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ]
 ]
 
 { #category : #accessing }
-EMMOverviewPage >> moduleInstances [
+PMCOverviewPage >> moduleInstances [
 	"I return a dictionary with browsers as keys and their instances as value if they were instantiated at least once."
 
 	^ moduleInstances
 ]
 
 { #category : #accessing }
-EMMOverviewPage >> moduleInstances: aDictionary [
+PMCOverviewPage >> moduleInstances: aDictionary [
 	moduleInstances := aDictionary
 ]
 
 { #category : #rendering }
-EMMOverviewPage >> renderContentOn: html [
+PMCOverviewPage >> renderContentOn: html [
 	html mdlGrid
-		with: [ EMMModule modulesToDisplay
+		with: [ PMCModule modulesToDisplay
 				do: [ :module | 
 					html mdlCell
 						style: 'height: 400px; overflow: auto';

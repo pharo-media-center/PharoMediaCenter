@@ -1,25 +1,25 @@
 Class {
-	#name : #EMMModule,
+	#name : #PMCModule,
 	#superclass : #EMMComponent,
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #testing }
-EMMModule class >> isAbstract [
-	^ self = EMMModule
+PMCModule class >> isAbstract [
+	^ self = PMCModule
 ]
 
 { #category : #accessing }
-EMMModule class >> modulesToDisplay [
+PMCModule class >> modulesToDisplay [
 	^ (self allSubclasses reject: [ :module | module isAbstract or: [ module priority < 0 ] ]) sorted: #priority ascending
 ]
 
 { #category : #accessing }
-EMMModule class >> priority [
+PMCModule class >> priority [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-EMMModule >> size [
+PMCModule >> size [
 	^ 4
 ]

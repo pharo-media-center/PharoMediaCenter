@@ -17,7 +17,7 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #EMMRoot,
+	#name : #PMCRoot,
 	#superclass : #EMMComponent,
 	#traits : 'TRootDialogRenderer',
 	#classTraits : 'TRootDialogRenderer classTrait',
@@ -27,27 +27,27 @@ Class {
 		'componentInstances',
 		'footer'
 	],
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #testing }
-EMMRoot class >> canBeRoot [
+PMCRoot class >> canBeRoot [
 	^ true
 ]
 
 { #category : #initialization }
-EMMRoot class >> initialize [
+PMCRoot class >> initialize [
 		self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults removeParent: class instance ]. "Remove development tools."
 	^ (WAAdmin register: self asApplicationAt: 'Event Music Manager')
-		preferenceAt: #sessionClass put: EMMSession;
+		preferenceAt: #sessionClass put: PMCSession;
 		addLibrary: JQDeploymentLibrary;
 		addLibrary: MDLLibrary;
-		addLibrary: EMMLibrary;
+		addLibrary: PMCLibrary;
 		yourself
 ]
 
 { #category : #'world menu' }
-EMMRoot class >> menuCommandOn: aBuilder [
+PMCRoot class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Event Music Manager')
 		order: 20;
@@ -59,7 +59,7 @@ EMMRoot class >> menuCommandOn: aBuilder [
 ]
 
 { #category : #'instance creation' }
-EMMRoot class >> open [
+PMCRoot class >> open [
 	<script>
 	| port |
 	WAServerManager default adaptors
@@ -73,69 +73,69 @@ EMMRoot class >> open [
 ]
 
 { #category : #hooks }
-EMMRoot >> children [
+PMCRoot >> children [
 	^ { self header. self componentToDisplay. self footer }
 ]
 
 { #category : #accessing }
-EMMRoot >> componentInstances [
+PMCRoot >> componentInstances [
 	^ componentInstances
 ]
 
 { #category : #accessing }
-EMMRoot >> componentInstances: anObject [
+PMCRoot >> componentInstances: anObject [
 	componentInstances := anObject
 ]
 
 { #category : #accessing }
-EMMRoot >> componentToDisplay [
+PMCRoot >> componentToDisplay [
 	"Component instance to display in the application."
 	
 	^ componentToDisplay
 ]
 
 { #category : #accessing }
-EMMRoot >> componentToDisplay: aComponent [
+PMCRoot >> componentToDisplay: aComponent [
 	componentToDisplay := aComponent
 ]
 
 { #category : #components }
-EMMRoot >> defaultFooter [
-	^ EMMFooter new
+PMCRoot >> defaultFooter [
+	^ PMCFooter new
 ]
 
 { #category : #components }
-EMMRoot >> defaultHeader [
-	^ EMMHeader new
+PMCRoot >> defaultHeader [
+	^ PMCHeader new
 ]
 
 { #category : #updating }
-EMMRoot >> displayInstanceOf: aComponentClass [
+PMCRoot >> displayInstanceOf: aComponentClass [
 	self componentToDisplay: (self componentInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ])
 ]
 
 { #category : #accessing }
-EMMRoot >> footer [
+PMCRoot >> footer [
 	^ footer
 ]
 
 { #category : #accessing }
-EMMRoot >> footer: aComponent [
+PMCRoot >> footer: aComponent [
 	footer := aComponent
 ]
 
 { #category : #accessing }
-EMMRoot >> header [
+PMCRoot >> header [
 	^ header
 ]
 
 { #category : #accessing }
-EMMRoot >> header: aComponent [
+PMCRoot >> header: aComponent [
 	header := aComponent
 ]
 
 { #category : #hooks }
-EMMRoot >> initialRequest: aRequest [
+PMCRoot >> initialRequest: aRequest [
 	| consumer pageName |
 	super initialRequest: aRequest.
 	consumer := self requestContext consumer.
@@ -156,7 +156,7 @@ EMMRoot >> initialRequest: aRequest [
 ]
 
 { #category : #initialization }
-EMMRoot >> initialize [
+PMCRoot >> initialize [
 	super initialize.
 	self header: self defaultHeader.
 	self footer: self defaultFooter.
@@ -166,7 +166,7 @@ EMMRoot >> initialize [
 ]
 
 { #category : #rendering }
-EMMRoot >> renderContentOn: html [
+PMCRoot >> renderContentOn: html [
 	html
 		mdlLayout: [ html render: self header.
 			html mdlLayoutContent
@@ -182,7 +182,7 @@ EMMRoot >> renderContentOn: html [
 ]
 
 { #category : #updating }
-EMMRoot >> updateRoot: anHtmlRoot [
+PMCRoot >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
 	anHtmlRoot beHtml5.
 	anHtmlRoot title: 'Event Music Manager'.
@@ -192,7 +192,7 @@ EMMRoot >> updateRoot: anHtmlRoot [
 ]
 
 { #category : #updating }
-EMMRoot >> updateUrl: aUrl [
+PMCRoot >> updateUrl: aUrl [
 	super updateUrl: aUrl.
 	aUrl addToPath: (self componentToDisplay pathName)
 ]

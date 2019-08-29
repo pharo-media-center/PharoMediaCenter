@@ -1,46 +1,46 @@
 Class {
-	#name : #EMMJinglesPage,
-	#superclass : #EMMPage,
+	#name : #PMCJinglesPage,
+	#superclass : #PMCPage,
 	#instVars : [
 		'moduleInstances'
 	],
-	#category : #'EMM-WebApplication-Pages'
+	#category : #'PMC-WebApplication-Pages'
 }
 
 { #category : #accessing }
-EMMJinglesPage class >> pageName [
+PMCJinglesPage class >> pageName [
 	^ 'Jingles'
 ]
 
 { #category : #accessing }
-EMMJinglesPage class >> priority [
+PMCJinglesPage class >> priority [
 	^ 2
 ]
 
 { #category : #accessing }
-EMMJinglesPage >> initialize [
+PMCJinglesPage >> initialize [
 	super initialize.
 	self moduleInstances: Dictionary new
 ]
 
 { #category : #accessing }
-EMMJinglesPage >> moduleInstanceOf: aComponentClass [
+PMCJinglesPage >> moduleInstanceOf: aComponentClass [
 	^ self moduleInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ]
 ]
 
 { #category : #accessing }
-EMMJinglesPage >> moduleInstances [
+PMCJinglesPage >> moduleInstances [
 	"I return a dictionary with browsers as keys and their instances as value if they were instantiated at least once."
 
 	^ moduleInstances
 ]
 
 { #category : #accessing }
-EMMJinglesPage >> moduleInstances: aDictionary [
+PMCJinglesPage >> moduleInstances: aDictionary [
 	moduleInstances := aDictionary
 ]
 
 { #category : #rendering }
-EMMJinglesPage >> renderContentOn: html [
-	html render: (self moduleInstanceOf: EMMJingleModule)
+PMCJinglesPage >> renderContentOn: html [
+	html render: (self moduleInstanceOf: PMCJingleModule)
 ]

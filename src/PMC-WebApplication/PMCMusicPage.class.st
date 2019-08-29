@@ -1,20 +1,20 @@
 Class {
-	#name : #EMMMusicPage,
-	#superclass : #EMMPage,
-	#category : #'EMM-WebApplication-Pages'
+	#name : #PMCMusicPage,
+	#superclass : #PMCPage,
+	#category : #'PMC-WebApplication-Pages'
 }
 
 { #category : #accessing }
-EMMMusicPage class >> pageName [
+PMCMusicPage class >> pageName [
 	^ 'Music'
 ]
 
 { #category : #accessing }
-EMMMusicPage class >> priority [
+PMCMusicPage class >> priority [
 	^ 10
 ]
 
 { #category : #rendering }
-EMMMusicPage >> renderContentOn: html [
+PMCMusicPage >> renderContentOn: html [
 	html div style: 'min-height: 400px;'; with:  self session model settings rootFolder asString.
 ]

@@ -5,61 +5,61 @@
 WAAdmin clearSessions
 "
 Class {
-	#name : #EMMSession,
+	#name : #PMCSession,
 	#superclass : #WASession,
 	#instVars : [
 		'rootComponent',
 		'model',
 		'musicPlayer'
 	],
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #initialization }
-EMMSession >> currentEMM [
+PMCSession >> currentPMC [
 	| emm |
-	EMM allInstancesDo: [ :a | ^ a ].
-	emm := EMM new.
+	PMC allInstancesDo: [ :a | ^ a ].
+	emm := PMC new.
 	[emm import] on: Error do: [ emm folderImport ].
 	^ emm
 ]
 
 { #category : #accessing }
-EMMSession >> defaultMusicPlayer [
-	^ EMMMusicPlayer 
+PMCSession >> defaultMusicPlayer [
+	^ PMCMusicPlayer 
 ]
 
 { #category : #initialization }
-EMMSession >> initialize [
+PMCSession >> initialize [
 	| emm | 
 	super initialize.
-	emm := self currentEMM.
+	emm := self currentPMC.
 	self model: emm.
 	self startSocketFor: emm
 ]
 
 { #category : #accessing }
-EMMSession >> model [
+PMCSession >> model [
 	^ model
 ]
 
 { #category : #accessing }
-EMMSession >> model: anObject [
+PMCSession >> model: anObject [
 	model := anObject
 ]
 
 { #category : #accessing }
-EMMSession >> rootComponent [
+PMCSession >> rootComponent [
 	^ rootComponent
 ]
 
 { #category : #accessing }
-EMMSession >> rootComponent: aRootComponent [
+PMCSession >> rootComponent: aRootComponent [
 	rootComponent := aRootComponent
 ]
 
 { #category : #initialization }
-EMMSession >> startSocketFor: emm [
+PMCSession >> startSocketFor: emm [
 	ZnServer default
 		ifNil: [ ZnServer stopDefault.
 			ZnServer startDefaultOn: 8041 ].
@@ -72,7 +72,7 @@ EMMSession >> startSocketFor: emm [
 					(ZnWebSocketDelegate
 						map: 'emm'
 						to:
-							(EMMWebSocket new
+							(PMCWebSocket new
 								emm: emm;
 								yourself)) ]
 ]

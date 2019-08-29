@@ -1,21 +1,21 @@
 Class {
-	#name : #EMMFoldersModule,
-	#superclass : #EMMModule,
+	#name : #PMCFoldersModule,
+	#superclass : #PMCModule,
 	#traits : 'TWithRootDialogComponent',
 	#classTraits : 'TWithRootDialogComponent classTrait',
 	#instVars : [
 		'selectedElement'
 	],
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #accessing }
-EMMFoldersModule class >> priority [
+PMCFoldersModule class >> priority [
 	^ 1
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> artistsContentOn: html [
+PMCFoldersModule >> artistsContentOn: html [
 	html div
 		with:
 			((MDLNestedList elements: self session model artists asSortedCollection children: [ :child | #() ])
@@ -26,7 +26,7 @@ EMMFoldersModule >> artistsContentOn: html [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> foldersContentOn: html [
+PMCFoldersModule >> foldersContentOn: html [
 	html div
 		with:
 			((MDLNestedList elements: self session model directories values children: [ :child | #() ])
@@ -38,7 +38,7 @@ EMMFoldersModule >> foldersContentOn: html [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> playlistsContentOn: html [
+PMCFoldersModule >> playlistsContentOn: html [
 	html div
 		style: 'position: relative;';
 		with: [ html
@@ -78,7 +78,7 @@ EMMFoldersModule >> playlistsContentOn: html [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> renderAddPlaylistOn: html [
+PMCFoldersModule >> renderAddPlaylistOn: html [
 	| name |
 	html
 		form: [ html mdlDialogTitle: 'Add playlist'.
@@ -102,7 +102,7 @@ EMMFoldersModule >> renderAddPlaylistOn: html [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> renderContentOn: html [
+PMCFoldersModule >> renderContentOn: html [
 	html
 		render:
 			(MDLTabWidget new
@@ -114,7 +114,7 @@ EMMFoldersModule >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> renderRenamePlaylist: aPlaylist on: html [
+PMCFoldersModule >> renderRenamePlaylist: aPlaylist on: html [
 	| name |
 	html
 		form: [ html mdlDialogTitle: 'Rename playlist'.
@@ -139,13 +139,13 @@ EMMFoldersModule >> renderRenamePlaylist: aPlaylist on: html [
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> selectedElement: class [
+PMCFoldersModule >> selectedElement: class [
 	selectedElement := class.
-	SystemAnnouncer uniqueInstance announce: (EMMFolderSelectedAnnouncement new folder: class; yourself )
+	SystemAnnouncer uniqueInstance announce: (PMCFolderSelectedAnnouncement new folder: class; yourself )
 ]
 
 { #category : #rendering }
-EMMFoldersModule >> songsContentOn: html [
+PMCFoldersModule >> songsContentOn: html [
 	html div
 		style: 'position: relative;';
 		with: [ html mdlAnchorButton

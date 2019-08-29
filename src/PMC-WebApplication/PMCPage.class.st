@@ -7,41 +7,41 @@ I am an abstract component. My subclasses represent the main pages of the applic
 Each page should have a name that will be used in the URLs and a priority for the menus.
 "
 Class {
-	#name : #EMMPage,
+	#name : #PMCPage,
 	#superclass : #EMMComponent,
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #testing }
-EMMPage class >> isAbstract [
-	^ self = EMMPage
+PMCPage class >> isAbstract [
+	^ self = PMCPage
 ]
 
 { #category : #accessing }
-EMMPage class >> pageName [
+PMCPage class >> pageName [
 	"Title of the page that will be used in menus and URLs."
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-EMMPage class >> pagesToDisplay [
+PMCPage class >> pagesToDisplay [
 	^ (self allSubclasses reject: #isAbstract) sorted: #priority ascending
 ]
 
 { #category : #accessing }
-EMMPage class >> pathName [
+PMCPage class >> pathName [
 	"Use to define the URL name"
 
 	^ self pageName copyWithout: $  
 ]
 
 { #category : #accessing }
-EMMPage class >> priority [
+PMCPage class >> priority [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-EMMPage >> pathName [
+PMCPage >> pathName [
 	^ self class pathName
 ]

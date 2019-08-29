@@ -1,21 +1,21 @@
 Class {
-	#name : #EMMSettingsPage,
-	#superclass : #EMMPage,
-	#category : #'EMM-WebApplication-Pages'
+	#name : #PMCSettingsPage,
+	#superclass : #PMCPage,
+	#category : #'PMC-WebApplication-Pages'
 }
 
 { #category : #accessing }
-EMMSettingsPage class >> pageName [
+PMCSettingsPage class >> pageName [
 	^ 'Settings'
 ]
 
 { #category : #accessing }
-EMMSettingsPage class >> priority [
+PMCSettingsPage class >> priority [
 	^ 999
 ]
 
 { #category : #rendering }
-EMMSettingsPage >> renderContentOn: html [
+PMCSettingsPage >> renderContentOn: html [
 	html mdlGrid
 		with: [ 
 			html mdlCell
@@ -34,7 +34,7 @@ EMMSettingsPage >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-EMMSettingsPage >> settingVideoJingleOn: html [
+PMCSettingsPage >> settingVideoJingleOn: html [
 	html mdlSwitchContainer
 						rippleEffect;
 						style: 'width: 150px;';
@@ -47,7 +47,7 @@ EMMSettingsPage >> settingVideoJingleOn: html [
 ]
 
 { #category : #rendering }
-EMMSettingsPage >> settingVideoMainPlayerOn: html [
+PMCSettingsPage >> settingVideoMainPlayerOn: html [
 	html mdlSwitchContainer
 						rippleEffect;
 						style: 'width: 150px;';

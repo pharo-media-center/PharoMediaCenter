@@ -1,18 +1,18 @@
 Class {
-	#name : #EMMPauseSong,
+	#name : #PMCPauseSong,
 	#superclass : #Announcement,
 	#instVars : [
 		'song'
 	],
-	#category : #'EMM-WebApplication-Announcement'
+	#category : #'PMC-WebApplication-Announcement'
 }
 
 { #category : #accessing }
-EMMPauseSong >> song [
+PMCPauseSong >> song [
 	^ song
 ]
 
 { #category : #accessing }
-EMMPauseSong >> song: anObject [
+PMCPauseSong >> song: anObject [
 	song := anObject
 ]

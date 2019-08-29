@@ -1,23 +1,23 @@
 Class {
-	#name : #EMMQueueModule,
-	#superclass : #EMMModule,
-	#traits : 'EMMTDisplayList',
-	#classTraits : 'EMMTDisplayList classTrait',
-	#category : #'EMM-WebApplication-Core'
+	#name : #PMCQueueModule,
+	#superclass : #PMCModule,
+	#traits : 'PMCTDisplayList',
+	#classTraits : 'PMCTDisplayList classTrait',
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #accessing }
-EMMQueueModule class >> priority [
+PMCQueueModule class >> priority [
 	^ 4
 ]
 
 { #category : #rendering }
-EMMQueueModule >> musicTitleId [
+PMCQueueModule >> musicTitleId [
 	^ 'musicTitleId'
 ]
 
 { #category : #rendering }
-EMMQueueModule >> renderContentOn: html [
+PMCQueueModule >> renderContentOn: html [
 	| datas |
 	datas := self session model playList.
 
@@ -59,7 +59,7 @@ EMMQueueModule >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-EMMQueueModule >> renderJavaScriptOn: html [
+PMCQueueModule >> renderJavaScriptOn: html [
 	html script: '
 var conn = {};
 var musicTitle = document.getElementById("', self musicTitleId , '");
@@ -87,6 +87,6 @@ if (window.WebSocket === undefined) {
 ]
 
 { #category : #accessing }
-EMMQueueModule >> size [
+PMCQueueModule >> size [
 	^ 8
 ]

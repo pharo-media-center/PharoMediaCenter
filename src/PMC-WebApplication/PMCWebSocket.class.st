@@ -7,31 +7,31 @@ ZnServer default delegate
    to: (ZnWebSocketDelegate map: 'emm' to: EMMWebSocketDelegate new).
 "
 Class {
-	#name : #EMMWebSocket,
+	#name : #PMCWebSocket,
 	#superclass : #Object,
 	#instVars : [
 		'emm'
 	],
-	#category : #'EMM-WebApplication-WebSocket'
+	#category : #'PMC-WebApplication-WebSocket'
 }
 
 { #category : #accessing }
-EMMWebSocket >> emm [
+PMCWebSocket >> emm [
 	^ emm
 ]
 
 { #category : #accessing }
-EMMWebSocket >> emm: anObject [
+PMCWebSocket >> emm: anObject [
 	emm := anObject
 ]
 
 { #category : #initialization }
-EMMWebSocket >> initialize [
+PMCWebSocket >> initialize [
 	super initialize.
 ]
 
 { #category : #initialization }
-EMMWebSocket >> value: webSocket [
+PMCWebSocket >> value: webSocket [
 	"I stream status messages to a WebSocket client, once every second 
 	until ConnectionClosed or no longer isConnected"
 

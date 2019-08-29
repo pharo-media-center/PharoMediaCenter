@@ -1,34 +1,34 @@
 Class {
-	#name : #EMMListModule,
-	#superclass : #EMMModule,
-	#traits : 'TWithRootDialogComponent + EMMTDisplayList',
-	#classTraits : 'TWithRootDialogComponent classTrait + EMMTDisplayList classTrait',
+	#name : #PMCListModule,
+	#superclass : #PMCModule,
+	#traits : 'TWithRootDialogComponent + PMCTDisplayList',
+	#classTraits : 'TWithRootDialogComponent classTrait + PMCTDisplayList classTrait',
 	#instVars : [
 		'datas'
 	],
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #accessing }
-EMMListModule class >> priority [
+PMCListModule class >> priority [
 	^ 2
 ]
 
 { #category : #rendering }
-EMMListModule >> folderChanged: anEMMFolderSelectedAnnouncement [
+PMCListModule >> folderChanged: anEMMFolderSelectedAnnouncement [
 	datas := anEMMFolderSelectedAnnouncement folder songs asSortedCollection: [:a :b | a name < b name ].
 ]
 
 { #category : #rendering }
-EMMListModule >> initialize [
+PMCListModule >> initialize [
 	datas := OrderedCollection new.
-	SystemAnnouncer uniqueInstance weak subscribe: EMMFolderSelectedAnnouncement
+	SystemAnnouncer uniqueInstance weak subscribe: PMCFolderSelectedAnnouncement
 			send: #folderChanged:
 			to: self.
 ]
 
 { #category : #rendering }
-EMMListModule >> renderContentOn: html [
+PMCListModule >> renderContentOn: html [
 	html mdlTable
 		attributeAt: 'width' put: '100%';
 		with: [ html
@@ -65,7 +65,7 @@ EMMListModule >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-EMMListModule >> renderDialogOn: html addPlayable: aPlayable [
+PMCListModule >> renderDialogOn: html addPlayable: aPlayable [
 	| selected |
 	html
 		form: [ html mdlDialogTitle: 'Add to Playlist'.
@@ -88,7 +88,7 @@ EMMListModule >> renderDialogOn: html addPlayable: aPlayable [
 ]
 
 { #category : #rendering }
-EMMListModule >> renderOn: html menuForPlayable: song [
+PMCListModule >> renderOn: html menuForPlayable: song [
 	html mdlButton icon
 		id: html nextId;
 		with: [ html mdlIcon: #more_vert ].
@@ -124,6 +124,6 @@ EMMListModule >> renderOn: html menuForPlayable: song [
 ]
 
 { #category : #accessing }
-EMMListModule >> size [
+PMCListModule >> size [
 	^ 8
 ]

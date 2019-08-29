@@ -1,18 +1,18 @@
 Class {
-	#name : #EMMJingleModule,
-	#superclass : #EMMModule,
+	#name : #PMCJingleModule,
+	#superclass : #PMCModule,
 	#traits : 'TWithRootDialogComponent',
 	#classTraits : 'TWithRootDialogComponent classTrait',
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #accessing }
-EMMJingleModule class >> priority [
+PMCJingleModule class >> priority [
 	^ 3
 ]
 
 { #category : #rendering }
-EMMJingleModule >> renderContentOn: html [
+PMCJingleModule >> renderContentOn: html [
 	html div
 		style: 'position: relative; height: 100%';
 		shadow: 2;
@@ -40,7 +40,7 @@ EMMJingleModule >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-EMMJingleModule >> renderCreateJingleOn: html [
+PMCJingleModule >> renderCreateJingleOn: html [
 	| name path |
 	html
 		form: [ html mdlDialogTitle: 'Create Jingle'.
@@ -65,7 +65,7 @@ EMMJingleModule >> renderCreateJingleOn: html [
 			html
 				mdlDialogActions: [ html mdlButton
 						beSubmit;
-						callback: [ self session model addJingle: (EMMJingle newWithName: name stringPath: path) ];
+						callback: [ self session model addJingle: (PMCJingle newWithName: name stringPath: path) ];
 						with: 'Accept'.
 					html mdlButton
 						id: self rootDialogCloseId;

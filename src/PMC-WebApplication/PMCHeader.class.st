@@ -5,20 +5,20 @@ Description
 I am the reader of the application.
 "
 Class {
-	#name : #EMMHeader,
+	#name : #PMCHeader,
 	#superclass : #EMMComponent,
 	#traits : 'TWithRootDialogComponent',
 	#classTraits : 'TWithRootDialogComponent classTrait',
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #accessing }
-EMMHeader >> possiblePages [
-	^ EMMPage pagesToDisplay
+PMCHeader >> possiblePages [
+	^ PMCPage pagesToDisplay
 ]
 
 { #category : #rendering }
-EMMHeader >> renderContentOn: html [
+PMCHeader >> renderContentOn: html [
 	html
 		mdlLayoutHeader: [ html
 				mdlLayoutHeaderRow: [ html mdlNavigationLink
@@ -59,7 +59,7 @@ EMMHeader >> renderContentOn: html [
 ]
 
 { #category : #accessing }
-EMMHeader >> renderDialogCreatePlayableOn: html [
+PMCHeader >> renderDialogCreatePlayableOn: html [
 	| name path |
 	html
 		form: [ html mdlDialogTitle: 'Create Playable'.
@@ -92,7 +92,7 @@ EMMHeader >> renderDialogCreatePlayableOn: html [
 ]
 
 { #category : #rendering }
-EMMHeader >> renderDrawerOn: html [
+PMCHeader >> renderDrawerOn: html [
 	html
 		mdlLayoutDrawer: [ 
 			html
@@ -106,6 +106,6 @@ EMMHeader >> renderDrawerOn: html [
 ]
 
 { #category : #rendering }
-EMMHeader >> version [
+PMCHeader >> version [
 	^ 'v0.5.0'
 ]

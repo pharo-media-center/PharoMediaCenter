@@ -5,13 +5,13 @@ Description
 A footer for the application with all the useful links.
 "
 Class {
-	#name : #EMMFooter,
+	#name : #PMCFooter,
 	#superclass : #EMMComponent,
-	#category : #'EMM-WebApplication-Core'
+	#category : #'PMC-WebApplication-Core'
 }
 
 { #category : #accessing }
-EMMFooter >> links [
+PMCFooter >> links [
 	^ OrderedDictionary
 		with: 'MDL for Seaside' -> 'https://github.com/DuneSt/MaterialDesignLite'
 		with: 'Pharo' -> 'http://pharo.org/'
@@ -19,7 +19,7 @@ EMMFooter >> links [
 ]
 
 { #category : #rendering }
-EMMFooter >> renderContentOn: html [
+PMCFooter >> renderContentOn: html [
 	html
 		mdlMiniFooter: [ html
 				mdlMiniFooterLeftSection: [ html mdlLogo: 'Event Music Manager'.
