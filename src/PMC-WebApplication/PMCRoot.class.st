@@ -38,7 +38,7 @@ PMCRoot class >> canBeRoot [
 { #category : #initialization }
 PMCRoot class >> initialize [
 		self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults removeParent: class instance ]. "Remove development tools."
-	^ (WAAdmin register: self asApplicationAt: 'Event Music Manager')
+	^ (WAAdmin register: self asApplicationAt: 'Pharo Media Center')
 		preferenceAt: #sessionClass put: PMCSession;
 		addLibrary: JQDeploymentLibrary;
 		addLibrary: MDLLibrary;
@@ -49,7 +49,7 @@ PMCRoot class >> initialize [
 { #category : #'world menu' }
 PMCRoot class >> menuCommandOn: aBuilder [
 	<worldMenu>
-	(aBuilder item: #'Event Music Manager')
+	(aBuilder item: #'Pharo Media Center')
 		order: 20;
 		with: [ (aBuilder item: #'Open in default browser')
 				order: 2;
@@ -69,7 +69,7 @@ PMCRoot class >> open [
 				detect: #isRunning
 				ifFound: [ :anAdaptor | port := anAdaptor server port ]
 				ifNone: [ (ZnZincServerAdaptor port: (port := 8085)) start ] ].
-	WebBrowser openOn: 'http://localhost:' , port asString , '/Event%20Music%20Manager'
+	WebBrowser openOn: 'http://localhost:' , port asString , '/Pharo%20Media%20Center'
 ]
 
 { #category : #hooks }
