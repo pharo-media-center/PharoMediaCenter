@@ -1,6 +1,6 @@
 Class {
 	#name : #PMCModule,
-	#superclass : #EMMComponent,
+	#superclass : #PMCComponent,
 	#category : #'PMC-WebApplication-Core'
 }
 

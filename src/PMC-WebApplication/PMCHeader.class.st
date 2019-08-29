@@ -6,7 +6,7 @@ I am the reader of the application.
 "
 Class {
 	#name : #PMCHeader,
-	#superclass : #EMMComponent,
+	#superclass : #PMCComponent,
 	#traits : 'TWithRootDialogComponent',
 	#classTraits : 'TWithRootDialogComponent classTrait',
 	#category : #'PMC-WebApplication-Core'
@@ -84,7 +84,7 @@ PMCHeader >> renderDialogCreatePlayableOn: html [
 			html
 				mdlDialogActions: [ html mdlButton
 						beSubmit;
-						callback: [ self session model addSong: (EMMMSong newWithName: name stringPath: path) ];
+						callback: [ self session model addSong: (PMCMSong newWithName: name stringPath: path) ];
 						with: 'Accept'.
 					html mdlButton
 						id: self rootDialogCloseId;

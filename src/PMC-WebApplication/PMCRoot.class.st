@@ -18,7 +18,7 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #PMCRoot,
-	#superclass : #EMMComponent,
+	#superclass : #PMCComponent,
 	#traits : 'TRootDialogRenderer',
 	#classTraits : 'TRootDialogRenderer classTrait',
 	#instVars : [

@@ -6,7 +6,7 @@ A footer for the application with all the useful links.
 "
 Class {
 	#name : #PMCFooter,
-	#superclass : #EMMComponent,
+	#superclass : #PMCComponent,
 	#category : #'PMC-WebApplication-Core'
 }
 

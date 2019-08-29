@@ -8,7 +8,7 @@ Each page should have a name that will be used in the URLs and a priority for th
 "
 Class {
 	#name : #PMCPage,
-	#superclass : #EMMComponent,
+	#superclass : #PMCComponent,
 	#category : #'PMC-WebApplication-Core'
 }
 
