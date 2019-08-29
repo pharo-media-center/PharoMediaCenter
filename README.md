@@ -1,5 +1,5 @@
-# EMM
-Event Music Manager
+# Pharo Media Center (PMC)
+old Event Music Manager
 
 ## Installation
 
@@ -8,11 +8,7 @@ Event Music Manager
 
 ```Smalltalk
  Metacello new
-    	githubUser: 'badetitou' project: 'EMM' commitish: 'v0.3.0' path: 'src';
-    	baseline: 'EMM';
+    	githubUser: 'pharo-media-server' project: 'PharoMediaCenter' commitish: 'v0.6.0' path: 'src';
+    	baseline: 'PharoMediaCenter';
     	load
 ```
-
-## Thanks
-
-- The project is maily inspired from the demo of [https://github.com/DuneSt/MaterialDesignLite](https://github.com/DuneSt/MaterialDesignLite)
