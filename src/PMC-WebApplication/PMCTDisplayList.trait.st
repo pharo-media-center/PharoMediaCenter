@@ -5,7 +5,7 @@ Trait {
 
 { #category : #rendering }
 PMCTDisplayList >> dataPlaylist [
-	^ self session model playList.
+	^ self session model playList
 ]
 
 { #category : #rendering }

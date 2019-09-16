@@ -1,8 +1,8 @@
 Class {
 	#name : #PMCQueueModule,
 	#superclass : #PMCModule,
-	#traits : 'PMCTDisplayList',
-	#classTraits : 'PMCTDisplayList classTrait',
+	#traits : 'PMCTDisplayList + PMCTDisplayListControlListButton',
+	#classTraits : 'PMCTDisplayList classTrait + PMCTDisplayListControlListButton classTrait',
 	#category : #'PMC-WebApplication-Core'
 }
 
@@ -26,24 +26,9 @@ PMCQueueModule >> renderContentOn: html [
 		shadow: 4;
 		with: [ html mdlCell
 				size: 4;
-				with: [ html mdlButton
-						onClick: (html jQuery ajax callback: [ self session model previous ]);
-						icon;
-						with: [ html mdlIcon: 'skip_previous' ].
-					self session model isPlaying
-						ifTrue: [ html mdlAnchorButton
-								callback: [ self session model pause ];
-								icon;
-								with: [ html mdlIcon: 'pause_circle_filled' ] ]
-						ifFalse: [ html mdlAnchorButton
-								callback: [ self session model play ];
-								icon;
-								with: [ html mdlIcon: 'play_circle_filled' ] ].
-
-					html mdlButton
-						onClick: (html jQuery ajax callback: [ self session model next ]);
-						icon;
-						with: [ html mdlIcon: 'skip_next' ] ].
+				with: [ html div
+						id: self controlListButtonID;
+						with: [ self renderControlListButtonOn: html ] ].
 			html mdlCell
 				size: 6;
 				with: [ html paragraph
