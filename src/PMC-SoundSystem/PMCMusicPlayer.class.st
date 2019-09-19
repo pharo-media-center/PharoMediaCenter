@@ -72,8 +72,14 @@ PMCMusicPlayer >> defaultPlayerStrategy [
 { #category : #initialization }
 PMCMusicPlayer >> initialize [
 	super initialize.
+	playableToMedia := OrderedCollection new.
 	self playerStrategy: self defaultPlayerStrategy new.
 	self playerStrategy initializePlayerWithVideo: false.
+]
+
+{ #category : #adding }
+PMCMusicPlayer >> initializeVLCWithVideo: aBoolean [
+	self playerStrategy initializePlayerWithVideo: aBoolean
 ]
 
 { #category : #accessing }
