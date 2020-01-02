@@ -22,9 +22,7 @@ PMCListModule >> folderChanged: anEMMFolderSelectedAnnouncement [
 { #category : #rendering }
 PMCListModule >> initialize [
 	datas := OrderedCollection new.
-	SystemAnnouncer uniqueInstance weak subscribe: PMCFolderSelectedAnnouncement
-			send: #folderChanged:
-			to: self.
+	SystemAnnouncer uniqueInstance weak when: PMCFolderSelectedAnnouncement send: #folderChanged: to: self
 ]
 
 { #category : #rendering }

@@ -35,14 +35,14 @@ PMCMusicPlayerVLCStrategy class >> startUp: isImageStarting [
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> currentMedia [
 	| mediaPlayer currentMedia |
-	mediaPlayer := vlc getCurrentMediaPlayerOfListPlayer: vlcListPlayer.
+	mediaPlayer := vlcListPlayer mediaPlayer.
 	^ currentMedia := vlc getMediaInsideMediaPlayer: mediaPlayer.
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> currentPosition [
 	| mediaPlayer |
-	mediaPlayer := vlc getCurrentMediaPlayerOfListPlayer: vlcListPlayer.
+	mediaPlayer := vlcListPlayer mediaPlayer.
 	^ vlc positionMediaPlayer: mediaPlayer
 ]
 
@@ -82,7 +82,7 @@ PMCMusicPlayerVLCStrategy >> initializePlayerWithVideo: withVideoBoolean [
 		ifFalse: [ | colArguments |
 			colArguments := {'--no-video'}.
 			vlcInstance := vlc createVLCWithArguments: colArguments ].
-	vlcListPlayer := vlc createListPlayerForInstance: vlcInstance
+	vlcListPlayer := vlcInstance createMediaListPlayer
 ]
 
 { #category : #adding }
@@ -94,7 +94,7 @@ PMCMusicPlayerVLCStrategy >> insert: aMedia atIndex: anIndex [
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> isPlaying [
-	^ vlc isListPlayerPlaying: vlcListPlayer
+	^ vlcListPlayer isPlaying
 ]
 
 { #category : #adding }
