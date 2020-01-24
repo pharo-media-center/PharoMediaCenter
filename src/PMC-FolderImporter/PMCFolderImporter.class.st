@@ -2,7 +2,8 @@ Class {
 	#name : #PMCFolderImporter,
 	#superclass : #PMCImporter,
 	#instVars : [
-		'model'
+		'model',
+		'vlc'
 	],
 	#category : #'PMC-FolderImporter'
 }
@@ -14,34 +15,22 @@ PMCFolderImporter >> artistsDelimiter [
 
 { #category : #'as yet unclassified' }
 PMCFolderImporter >> createSongFromFile: file [
-	| song artists id3parser folder |
+	| song artists folder media |
 	song := PMCMSong new.
-	song name: file basenameWithoutExtension.
-	"Try to parse ID3 metadata for MP3 files"
-	id3parser := ID3Parser on: (File named: file originalString) readStream.
-	[ artists := self ensureArtists: id3parser id3v2Tag artist ]
-		on: FrameNotFoundError
-		do: [ artists := Set
-				with:
-					(PMCArtist new
-						name: 'unknow';
-						yourself) ].
+	media := vlc createMediaFromPath: file fullName.
+	media parseLocal.
+	[ media parseStatus = VLCMediaParsedStatus libvlc_media_parsed_status_not_started ] whileTrue.
+	song name: media title.
+	song track: media trackNumber.
+	song length: media duration.
+	artists := self ensureArtists: media artist asString.
 	artists do: [ :artist | artist addSong: song ].
 	song artists addAll: artists.
 	model songs add: song.
 	folder := self ensureFolderFromFileReference: file parent.
 	folder addSong: song.
 	song folder: folder.
-	[ song title: id3parser id3v2Tag title ]
-		on: FrameNotFoundError
-		do: [ song title: (self notDefineTitleFor: file) ].
-	[ song track: id3parser id3v2Tag track asInteger ]
-		on: FrameNotFoundError
-		do: [ song track: self notDefineTrackValue ].
-	[ song length: id3parser id3v2Tag length ]
-		on: FrameNotFoundError
-		do: [ song length: self notDefineTextValue ].
-	song stringPath: file originalString.
+	song stringPath: file fullName.
 	^ song
 ]
 
@@ -70,7 +59,10 @@ PMCFolderImporter >> ensureFolderFromFileReference: directory [
 
 { #category : #'as yet unclassified' }
 PMCFolderImporter >> importFrom: anArgument in: anEMM [
-	^ self importFromFolder: anArgument inAModel: anEMM
+	vlc := VLCLibrary uniqueInstance createVLCInstance.
+	self importFromFolder: anArgument inAModel: anEMM.
+	vlc vlcRelease.
+	vlc := nil
 ]
 
 { #category : #'as yet unclassified' }

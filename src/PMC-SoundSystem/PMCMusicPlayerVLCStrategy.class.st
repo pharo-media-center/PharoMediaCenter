@@ -88,7 +88,7 @@ PMCMusicPlayerVLCStrategy >> initializePlayerWithVideo: withVideoBoolean [
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> insert: aMedia atIndex: anIndex [
 	| result |
-	result := vlc insertInMediaList: mediaList media: aMedia atIndex: anIndex. "we do not do -1 because we want the next entry"
+	result := mediaList insertMedia: aMedia at: anIndex anIndex. "we do not do -1 because we want the next entry"
 	result ~= 0 ifTrue: [ self error: 'Fail add media at the end of the list' ]
 ]
 
@@ -104,37 +104,37 @@ PMCMusicPlayerVLCStrategy >> mediaForPlayable: aPlayable [
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> musicList: aListOfMedia [
-	mediaList := vlc createMediaListFromInstance: vlcInstance.
-	aListOfMedia do: [ :aMedia | vlc addMedia: aMedia inMediaList: mediaList ].
-	vlc setMediaList: mediaList forListPlayer: vlcListPlayer
+	mediaList := vlcInstance createMediaList.
+	aListOfMedia do: [ :aMedia | mediaList addMedia: aMedia ].
+	vlcListPlayer mediaList: mediaList
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> nextSound [
-	vlc nextListPlayer: vlcListPlayer
+	vlcListPlayer next
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> pause [
-	vlc pauseListPlayer: vlcListPlayer 
+	vlcListPlayer pause
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> play [
-	vlc playListPlayer: vlcListPlayer
+	vlcListPlayer play
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> previousSound [
-	vlc previousListPlayer: vlcListPlayer
+	vlcListPlayer previous
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> size [
-	vlc countMediaIn: mediaList
+	^ mediaList count
 ]
 
 { #category : #adding }
 PMCMusicPlayerVLCStrategy >> stop [
-	vlc stopListPlayer: vlcListPlayer
+	vlcListPlayer stop
 ]
