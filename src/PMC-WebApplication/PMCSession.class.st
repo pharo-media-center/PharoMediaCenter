@@ -20,7 +20,7 @@ PMCSession >> currentPMC [
 	| emm |
 	PMC allInstancesDo: [ :a | ^ a ].
 	emm := PMC new.
-	[emm import] on: Error do: [ emm folderImport ].
+	[emm import] on: Error do: [  ].
 	^ emm
 ]
 
