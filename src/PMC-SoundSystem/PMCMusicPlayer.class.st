@@ -66,7 +66,7 @@ PMCMusicPlayer >> currentPosition [
 
 { #category : #initialization }
 PMCMusicPlayer >> defaultPlayerStrategy [
-	^ PMCMusicPlayerServerStrategy
+	^ PMCMusicPlayerVLCStrategy
 ]
 
 { #category : #initialization }
