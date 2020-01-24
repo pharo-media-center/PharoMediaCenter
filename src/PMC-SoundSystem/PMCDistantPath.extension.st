@@ -2,5 +2,5 @@ Extension { #name : #PMCDistantPath }
 
 { #category : #'*PMC-SoundSystem' }
 PMCDistantPath >> createMediaWithVLC: vlc forInstance: anInstance [
-	^ vlc mediaFileForInstance: anInstance fromStringLocation: self path
+	^ anInstance createMediaFromLocation: self path
 ]
